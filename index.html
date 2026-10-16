@@ -87,14 +87,8 @@
         </div>
 
         <div class="hero-buttons">
-            <!--
-                Чтобы изменить ссылку на форму регистрации —
-                замените адрес в href="..."
-            -->
-            <a href="https://forms.yandex.ru/u/6a02404ff47e73ba3de291e7"
-               class="btn btn-primary"
-               target="_blank"
-               rel="noopener noreferrer">
+            <!-- Кнопка ведёт к встроенной форме регистрации ниже (секция #registration) -->
+            <a href="#registration" class="btn btn-primary">
                 Зарегистрироваться
             </a>
             <a href="#program" class="btn btn-outline">Программа</a>
@@ -673,7 +667,7 @@
 
 <!-- ================================================================
      РЕГИСТРАЦИЯ
-     Чтобы изменить ссылку на форму — замените адрес в href="..."
+     Встроенная форма Битрикс24 (inline/126/jm15vu, bo.miet.ru)
 ================================================================ -->
 <section class="registration-section" id="registration" aria-labelledby="reg-heading">
     <div class="container">
@@ -710,21 +704,15 @@
             </div>
 
             <!--
-                ССЫЛКА НА ФОРМУ РЕГИСТРАЦИИ
-                Замените адрес ниже на вашу форму
+                ФОРМА РЕГИСТРАЦИИ БИТРИКС24
+                Встроенная форма inline/126/jm15vu (bo.miet.ru).
+                Чтобы заменить форму — вставьте сюда новый скрипт из Битрикс24.
             -->
-            <a href="https://forms.yandex.ru/u/6a02404ff47e73ba3de291e7"
-               class="btn btn-reg"
-               target="_blank"
-               rel="noopener noreferrer">
-                Перейти к регистрации
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <line x1="5" y1="12" x2="19" y2="12"/>
-                    <polyline points="12 5 19 12 12 19"/>
-                </svg>
-            </a>
+            <div class="reg-form">
+                <script data-b24-form="inline/126/jm15vu" data-skip-moving="true">(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})(window,document,'https://bo.miet.ru/upload/crm/form/loader_126_jm15vu.js');</script>
+            </div>
 
-            <p class="reg-note">Форма откроется в новой вкладке на сайте Яндекс.Формы</p>
+            <p class="reg-note">Заполняя форму, вы соглашаетесь с политикой обработки персональных данных</p>
         </div>
 
     </div>

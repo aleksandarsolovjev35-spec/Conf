@@ -2557,3 +2557,22 @@ footer {
     .program-item--lunch   { background: #f0fff0; }
     .program-item--special { background: #f0f0ff; }
 }
+
+/* =====================================================
+   ВСТРОЕННАЯ ФОРМА РЕГИСТРАЦИИ БИТРИКС24
+===================================================== */
+.reg-content {
+    max-width: 760px;
+}
+
+.reg-form {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    text-align: left;
+}
+
+@media (max-width: 480px) {
+    .reg-form { padding: 20px 14px; }
+}
