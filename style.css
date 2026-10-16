@@ -2845,3 +2845,29 @@ body > header::before  { content: 'header#' attr(id); }
 body > footer::before  { content: 'footer'; }
 
 body > footer { position: relative; }
+
+/* =====================================================
+   ЦЕНТРИРОВАНИЕ СОДЕРЖИМОГО СЕКЦИЙ ОТНОСИТЕЛЬНО ИХ ГРАНИЦ
+   (работает вместе с красной отладочной разметкой выше)
+===================================================== */
+body > section,
+body > header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body > section > .container,
+body > header > .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.speakers-grid,
+.partners-grid,
+.contacts-grid,
+.album-grid {
+    justify-content: center;
+}
