@@ -629,21 +629,61 @@
                 </a>
             </div>
 
-            <a href="photos.html" class="photobank-teaser-preview" aria-label="Перейти в фотобанк конференции">
-                <span class="photobank-teaser-tile">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                </span>
-                <span class="photobank-teaser-tile">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                </span>
-                <span class="photobank-teaser-tile">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                </span>
-                <span class="photobank-teaser-tile photobank-teaser-tile--more">
-                    <strong>6 альбомов</strong>
-                    <small>Смотреть все →</small>
-                </span>
-            </a>
+            <!-- Карусель альбомов: клик по слайду, стрелкам или кнопке выше ведёт в фотобанк (photos.html) -->
+            <div class="photobank-carousel" id="photobankCarousel">
+                <div class="photobank-carousel-viewport">
+                    <div class="photobank-carousel-track" id="carouselTrack">
+                        <a href="photos.html" class="photobank-slide" aria-label="Альбом «Торжественное открытие конференции» — перейти в фотобанк">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                            <strong>Торжественное открытие конференции</strong>
+                            <small>17 декабря • 0 фото • Фото появится после конференции</small>
+                            <span class="photobank-slide-badge">Скоро</span>
+                        </a>
+                        <a href="photos.html" class="photobank-slide" aria-label="Альбом «Пленарные доклады» — перейти в фотобанк">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                            <strong>Пленарные доклады</strong>
+                            <small>17 декабря • 0 фото • Фото появится после конференции</small>
+                            <span class="photobank-slide-badge">Скоро</span>
+                        </a>
+                        <a href="photos.html" class="photobank-slide" aria-label="Альбом «Секционные доклады» — перейти в фотобанк">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                            <strong>Секционные доклады</strong>
+                            <small>17 декабря • 0 фото • Фото появится после конференции</small>
+                            <span class="photobank-slide-badge">Скоро</span>
+                        </a>
+                        <a href="photos.html" class="photobank-slide" aria-label="Альбом «Стендовая сессия и постерные доклады» — перейти в фотобанк">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                            <strong>Стендовая сессия и постерные доклады</strong>
+                            <small>17 декабря • 0 фото • Фото появится после конференции</small>
+                            <span class="photobank-slide-badge">Скоро</span>
+                        </a>
+                        <a href="photos.html" class="photobank-slide" aria-label="Альбом «Гости конференции и общение» — перейти в фотобанк">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                            <strong>Гости конференции и общение</strong>
+                            <small>17 декабря • 0 фото • Фото появится после конференции</small>
+                            <span class="photobank-slide-badge">Скоро</span>
+                        </a>
+                        <a href="photos.html" class="photobank-slide" aria-label="Альбом «Подведение итогов и закрытие конференции» — перейти в фотобанк">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                            <strong>Подведение итогов и закрытие конференции</strong>
+                            <small>17 декабря • 0 фото • Фото появится после конференции</small>
+                            <span class="photobank-slide-badge">Скоро</span>
+                        </a>
+                    </div>
+                </div>
+
+                <button type="button" class="photobank-carousel-arrow photobank-carousel-arrow--prev" id="carouselPrev" aria-label="Предыдущий альбом">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button type="button" class="photobank-carousel-arrow photobank-carousel-arrow--next" id="carouselNext" aria-label="Следующий альбом">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+
+                <div class="photobank-carousel-footer">
+                    <div class="photobank-carousel-dots" id="carouselDots" role="tablist" aria-label="Выбор альбома"></div>
+                    <span class="photobank-carousel-counter" id="carouselCounter">1 / 6</span>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -865,11 +905,68 @@
     document.querySelectorAll(
         '.about-stat, .about-topic-card, ' +
         '.speaker-card, .partner-logo, .contact-card, ' +
-        '.photobank-teaser-tile, .program-item'
+        '.photobank-carousel, .program-item'
     ).forEach(el => {
         el.classList.add('animate-target');
         observer.observe(el);
     });
+    // ===== Карусель фотобанка на главной =====
+    // Клик по слайду ведёт в фотобанк (photos.html). Стрелки, точки и свайп листают альбомы.
+    (function () {
+        const track   = document.getElementById('carouselTrack');
+        if (!track) return;
+        const slides  = track.querySelectorAll('.photobank-slide');
+        const dotsBox = document.getElementById('carouselDots');
+        const counter = document.getElementById('carouselCounter');
+        const total   = slides.length;
+        let current   = 0;
+        let timer     = null;
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'photobank-carousel-dot';
+            dot.setAttribute('aria-label', 'Альбом ' + (i + 1) + ' из ' + total);
+            dot.addEventListener('click', () => { goTo(i); restart(); });
+            dotsBox.appendChild(dot);
+        });
+        const dots = dotsBox.querySelectorAll('.photobank-carousel-dot');
+
+        function goTo(i) {
+            current = (i + total) % total;
+            track.style.transform = 'translateX(-' + current * 100 + '%)';
+            dots.forEach((d, di) => d.classList.toggle('is-active', di === current));
+            counter.textContent = (current + 1) + ' / ' + total;
+        }
+
+        document.getElementById('carouselPrev').addEventListener('click', () => { goTo(current - 1); restart(); });
+        document.getElementById('carouselNext').addEventListener('click', () => { goTo(current + 1); restart(); });
+
+        // Автопрокрутка (пауза при наведении/фокусе и при reduced-motion)
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function restart() {
+            clearInterval(timer);
+            if (!reduceMotion) timer = setInterval(() => goTo(current + 1), 4500);
+        }
+        const carousel = document.getElementById('photobankCarousel');
+        carousel.addEventListener('mouseenter', () => clearInterval(timer));
+        carousel.addEventListener('mouseleave', restart);
+        carousel.addEventListener('focusin',  () => clearInterval(timer));
+        carousel.addEventListener('focusout', restart);
+
+        // Свайп на телефоне
+        let touchX = null;
+        carousel.addEventListener('touchstart', (e) => { touchX = e.changedTouches[0].clientX; }, { passive: true });
+        carousel.addEventListener('touchend', (e) => {
+            if (touchX === null) return;
+            const dx = e.changedTouches[0].clientX - touchX;
+            if (Math.abs(dx) > 40) { goTo(current + (dx < 0 ? 1 : -1)); restart(); }
+            touchX = null;
+        }, { passive: true });
+
+        goTo(0);
+        restart();
+    })();
 </script>
 
 </body>
