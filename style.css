@@ -2797,3 +2797,16 @@ section h2.animate-target.animate-in::after {
 
     section h2.animate-target.animate-in::after { animation: none; }
 }
+
+/* Контакты: содержимое строго по центру белой карточки
+   (карточки в ряду тянутся на одинаковую высоту, поэтому
+   выравниваем группу иконка+заголовок+текст по вертикали) */
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.contact-card p { margin: 0; }
