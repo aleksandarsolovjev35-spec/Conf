@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>III Ежегодная конференция НМСТ — 17 декабря 2025</title>
+
+    <meta name="description" content="III Ежегодная конференция «Технологии микросистем, корпусирования и сборки ЭКБ». 17 декабря 2025, НИУ МИЭТ, Зеленоград. Регистрация открыта.">
+    <meta name="keywords" content="НМСТ, конференция, микросистемы, корпусирование, ЭКБ, МИЭТ, Зеленоград, 2025">
+    <meta name="author" content="НИУ МИЭТ">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <meta property="og:title" content="III Ежегодная конференция НМСТ — 17 декабря 2025">
+    <meta property="og:description" content="Технологии микросистем, корпусирования и сборки ЭКБ. НИУ МИЭТ, Зеленоград.">
+    <meta property="og:image" content="images/og-cover.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================================================================
+     НАВИГАЦИЯ
+     Чтобы изменить пункт — отредактируйте текст внутри <a>...</a>
+================================================================ -->
+<nav class="navbar" id="navbar" aria-label="Главное меню">
+    <div class="container nav-container">
+
+        <a href="#hero" class="nav-logo" aria-label="На главную">НМСТ 2025</a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks" role="menubar">
+            <li role="none"><a href="#about"        role="menuitem">О конференции</a></li>
+            <li role="none"><a href="#speakers"     role="menuitem">Спикеры</a></li>
+            <li role="none"><a href="#program"      role="menuitem">Программа</a></li>
+            <li role="none"><a href="#partners"     role="menuitem">Партнёры</a></li>
+            <li role="none"><a href="#registration" role="menuitem">Регистрация</a></li>
+            <li role="none"><a href="#contacts"     role="menuitem">Контакты</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- ================================================================
+     ГЛАВНЫЙ ЭКРАН
+     Измените дату, название и место проведения
+================================================================ -->
+<header id="hero">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container hero-content">
+
+        <div class="hero-badge">17 декабря 2025</div>
+
+        <h1>III Ежегодная конференция</h1>
+
+        <p class="hero-subtitle">«Технологии микросистем, корпусирования и сборки ЭКБ»</p>
+
+        <div class="hero-details">
+            <div class="hero-detail">
+                <svg class="hero-detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>НИУ МИЭТ, Зеленоград</span>
+            </div>
+            <div class="hero-detail">
+                <svg class="hero-detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8"  y1="2" x2="8"  y2="6"/>
+                    <line x1="3"  y1="10" x2="21" y2="10"/>
+                </svg>
+                <span>17 декабря 2025 года</span>
+            </div>
+        </div>
+
+        <div class="hero-buttons">
+            <!--
+                Чтобы изменить ссылку на форму регистрации —
+                замените адрес в href="..."
+            -->
+            <a href="https://forms.yandex.ru/u/6a02404ff47e73ba3de291e7"
+               class="btn btn-primary"
+               target="_blank"
+               rel="noopener noreferrer">
+                Зарегистрироваться
+            </a>
+            <a href="#program" class="btn btn-outline">Программа</a>
+        </div>
+    </div>
+</header>
+
+
+<!-- ================================================================
+     О КОНФЕРЕНЦИИ
+     Отредактируйте тексты, цифры и направления.
+     Чтобы добавить направление — скопируйте блок
+     «НАЧАЛО НАПРАВЛЕНИЯ» до «КОНЕЦ НАПРАВЛЕНИЯ» и вставьте ниже.
+================================================================ -->
+<section class="about-section" id="about" aria-labelledby="about-heading">
+    <div class="container">
+
+        <div class="section-header">
+            <div class="section-tag">О мероприятии</div>
+            <h2 id="about-heading">Главное событие отрасли</h2>
+            <p class="section-subtitle">
+                Площадка для обмена опытом между учёными, инженерами и производителями
+            </p>
+        </div>
+
+        <!-- Верхний блок: текст + статистика -->
+        <div class="about-hero">
+
+            <div class="about-hero-text">
+                <p>
+                    III Ежегодная конференция НМСТ соберёт ведущих специалистов в области
+                    микросистемной техники, корпусирования и сборки электронной компонентной базы.
+                </p>
+                <p>
+                    Конференция включает пленарные доклады, стендовую сессию и неформальное общение.
+                    Это уникальная возможность обменяться опытом с коллегами из ведущих
+                    научных и производственных организаций России.
+                </p>
+                <a href="#registration" class="btn btn-primary-dark">Принять участие</a>
+            </div>
+
+            <!--
+                СТАТИСТИКА
+                Измените числа и подписи.
+                --bar-width: ширина полоски (0%–100%)
+            -->
+            <div class="about-stats">
+                <div class="about-stat">
+                    <div class="about-stat-number">15+</div>
+                    <div class="about-stat-label">Докладов</div>
+                    <div class="about-stat-bar" style="--bar-width: 75%;" aria-hidden="true"></div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-number">200+</div>
+                    <div class="about-stat-label">Участников</div>
+                    <div class="about-stat-bar" style="--bar-width: 90%;" aria-hidden="true"></div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-number">20+</div>
+                    <div class="about-stat-label">Организаций</div>
+                    <div class="about-stat-bar" style="--bar-width: 65%;" aria-hidden="true"></div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-number">1</div>
+                    <div class="about-stat-label">Насыщенный день</div>
+                    <div class="about-stat-bar" style="--bar-width: 100%;" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Тематические направления -->
+        <div class="about-topics-header">
+            <h3>Тематические направления</h3>
+        </div>
+
+        <div class="about-topics">
+
+            <!-- ===== НАЧАЛО НАПРАВЛЕНИЯ 1 ===== -->
+            <div class="about-topic-card">
+                <div class="about-topic-icon-wrap">
+                    <svg class="about-topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="4" y="4" width="16" height="16" rx="2"/>
+                        <rect x="9" y="9" width="6" height="6"/>
+                        <line x1="9"  y1="2"  x2="9"  y2="4"/>
+                        <line x1="15" y1="2"  x2="15" y2="4"/>
+                        <line x1="9"  y1="20" x2="9"  y2="22"/>
+                        <line x1="15" y1="20" x2="15" y2="22"/>
+                        <line x1="2"  y1="9"  x2="4"  y2="9"/>
+                        <line x1="2"  y1="15" x2="4"  y2="15"/>
+                        <line x1="20" y1="9"  x2="22" y2="9"/>
+                        <line x1="20" y1="15" x2="22" y2="15"/>
+                    </svg>
+                </div>
+                <h4>Корпусирование ЭКБ</h4>
+                <p>Современные подходы к проектированию и производству корпусов микросхем</p>
+            </div>
+            <!-- ===== КОНЕЦ НАПРАВЛЕНИЯ 1 ===== -->
+
+            <!-- ===== НАЧАЛО НАПРАВЛЕНИЯ 2 ===== -->
+            <div class="about-topic-card">
+                <div class="about-topic-icon-wrap">
+                    <svg class="about-topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h4>3D-сборка и интеграция</h4>
+                <p>Технологии трёхмерной сборки и гетерогенной интеграции микросистем</p>
+            </div>
+            <!-- ===== КОНЕЦ НАПРАВЛЕНИЯ 2 ===== -->
+
+            <!-- ===== НАЧАЛО НАПРАВЛЕНИЯ 3 ===== -->
+            <div class="about-topic-card">
+                <div class="about-topic-icon-wrap">
+                    <svg class="about-topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                    </svg>
+                </div>
+                <h4>МЭМС-технологии</h4>
+                <p>Разработка и производство микроэлектромеханических систем и датчиков</p>
+            </div>
+            <!-- ===== КОНЕЦ НАПРАВЛЕНИЯ 3 ===== -->
+
+            <!-- ===== НАЧАЛО НАПРАВЛЕНИЯ 4 ===== -->
+            <div class="about-topic-card">
+                <div class="about-topic-icon-wrap">
+                    <svg class="about-topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 3H5a2 2 0 0 0-2 2v4"/>
+                        <path d="M15 3h4a2 2 0 0 1 2 2v4"/>
+                        <path d="M9 21H5a2 2 0 0 1-2-2v-4"/>
+                        <path d="M15 21h4a2 2 0 0 0 2-2v-4"/>
+                        <line x1="12" y1="8"  x2="12" y2="16"/>
+                        <line x1="8"  y1="12" x2="16" y2="12"/>
+                    </svg>
+                </div>
+                <h4>Материалы и процессы</h4>
+                <p>Новые материалы, подложки и технологические процессы для микроэлектроники</p>
+            </div>
+            <!-- ===== КОНЕЦ НАПРАВЛЕНИЯ 4 ===== -->
+
+            <!-- ===== НАЧАЛО НАПРАВЛЕНИЯ 5 ===== -->
+            <div class="about-topic-card">
+                <div class="about-topic-icon-wrap">
+                    <svg class="about-topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                </div>
+                <h4>Надёжность и испытания</h4>
+                <p>Методы контроля качества, испытания и обеспечение надёжности ЭКБ</p>
+            </div>
+            <!-- ===== КОНЕЦ НАПРАВЛЕНИЯ 5 ===== -->
+
+            <!-- ===== НАЧАЛО НАПРАВЛЕНИЯ 6 ===== -->
+            <div class="about-topic-card">
+                <div class="about-topic-icon-wrap">
+                    <svg class="about-topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                </div>
+                <h4>Импортозамещение</h4>
+                <p>Отечественные решения и стратегии технологической независимости</p>
+            </div>
+            <!-- ===== КОНЕЦ НАПРАВЛЕНИЯ 6 ===== -->
+
+            <!--
+                ДОБАВИТЬ НОВОЕ НАПРАВЛЕНИЕ:
+                Скопируйте блок выше (от «НАЧАЛО» до «КОНЕЦ»)
+                и вставьте сюда, заменив заголовок и описание.
+            -->
+
+        </div>
+
+        <!-- Преимущества участия -->
+        <div class="about-benefits">
+
+            <div class="about-benefit">
+                <div class="about-benefit-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <div>
+                    <strong>Нетворкинг</strong>
+                    <span>Знакомства с экспертами отрасли</span>
+                </div>
+            </div>
+
+            <div class="about-benefit">
+                <div class="about-benefit-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                </div>
+                <div>
+                    <strong>Сертификат</strong>
+                    <span>Подтверждение участия</span>
+                </div>
+            </div>
+
+            <div class="about-benefit">
+                <div class="about-benefit-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                        <line x1="6"  y1="1" x2="6"  y2="4"/>
+                        <line x1="10" y1="1" x2="10" y2="4"/>
+                        <line x1="14" y1="1" x2="14" y2="4"/>
+                    </svg>
+                </div>
+                <div>
+                    <strong>Кофе-брейк</strong>
+                    <span>Общение в неформальной обстановке</span>
+                </div>
+            </div>
+
+            <div class="about-benefit">
+                <div class="about-benefit-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                </div>
+                <div>
+                    <strong>Бесплатно</strong>
+                    <span>Участие без оргвзноса</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================================================================
+     СПИКЕРЫ ПОЯСНЕНИЕ
+     Чтобы ДОБАВИТЬ спикера — скопируйте блок
+     «НАЧАЛО КАРТОЧКИ СПИКЕРА» — «КОНЕЦ КАРТОЧКИ СПИКЕРА»
+     и вставьте ниже, заменив данные.
+     Чтобы УДАЛИТЬ — удалите весь блок.
+     ФОТО: положите файл в папку images/speakers/
+================================================================ -->
+<section class="speakers-section" id="speakers" aria-labelledby="speakers-heading">
+    <div class="container">
+        <h2 id="speakers-heading">Спикеры</h2>
+        <p class="section-subtitle">Ведущие эксперты отрасли поделятся опытом и знаниями</p>
+
+        <div class="speakers-grid">
+
+            <!-- ===== НАЧАЛО КАРТОЧКИ СПИКЕРА 1 ===== -->
+            <article class="speaker-card">
+                <div class="speaker-photo">
+                    <img src="images/speakers/speaker.png"
+                         alt="Фото: Иван Иванов"
+                         loading="lazy" width="140" height="140">
+                </div>
+                <div class="speaker-info">
+                    <h3>Иван Иванов</h3>
+                    <p class="speaker-req">д.т.н., профессор МИЭТ</p>
+                    <p class="speaker-topic">«Современные методы корпусирования»</p>
+                    <blockquote class="speaker-quote">«Технологии завтрашнего дня рождаются сегодня»</blockquote>
+                </div>
+            </article>
+            <!-- ===== КОНЕЦ КАРТОЧКИ СПИКЕРА 1 ===== -->
+
+            <!-- ===== НАЧАЛО КАРТОЧКИ СПИКЕРА 2 ===== -->
+            <article class="speaker-card">
+                <div class="speaker-photo">
+                    <img src="images/speakers/speaker.png"
+                         alt="Фото: Анна Смирнова"
+                         loading="lazy" width="140" height="140">
+                </div>
+                <div class="speaker-info">
+                    <h3>Анна Смирнова</h3>
+                    <p class="speaker-req">к.ф.-м.н., ведущий инженер</p>
+                    <p class="speaker-topic">«Сборка 3D-микросистем»</p>
+                    <blockquote class="speaker-quote">«Микроэлектроника — это искусство точности»</blockquote>
+                </div>
+            </article>
+            <!-- ===== КОНЕЦ КАРТОЧКИ СПИКЕРА 2 ===== -->
+
+            <!-- ===== НАЧАЛО КАРТОЧКИ СПИКЕРА 3 ===== -->
+            <article class="speaker-card">
+                <div class="speaker-photo">
+                    <img src="images/speakers/speaker.png"
+                         alt="Фото: Пётр Петров"
+                         loading="lazy" width="140" height="140">
+                </div>
+                <div class="speaker-info">
+                    <h3>Пётр Петров</h3>
+                    <p class="speaker-req">к.т.н., руководитель лаборатории</p>
+                    <p class="speaker-topic">«Перспективы МЭМС-технологий»</p>
+                    <blockquote class="speaker-quote">«Будущее — за миниатюризацией»</blockquote>
+                </div>
+            </article>
+            <!-- ===== КОНЕЦ КАРТОЧКИ СПИКЕРА 3 ===== -->
+
+            <!-- ДОБАВИТЬ НОВОГО СПИКЕРА: скопируйте блок выше и вставьте сюда -->
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     ПРОГРАММА КОНФЕРЕНЦИИ ПОЯСНЕНИЕ
+
+     КАК РЕДАКТИРОВАТЬ:
+     1. Каждый доклад — блок между «НАЧАЛО ДОКЛАДА» и «КОНЕЦ ДОКЛАДА»
+     2. Чтобы ИЗМЕНИТЬ — поменяйте текст внутри блока
+     3. Чтобы ДОБАВИТЬ — скопируйте блок, вставьте, замените данные
+     4. Чтобы УДАЛИТЬ — удалите весь блок от «НАЧАЛО» до «КОНЕЦ»
+     ВАЖНО: не удаляйте символы < > / " — это часть кода!
+================================================================ -->
+<section class="program-section" id="program" aria-labelledby="program-heading">
+    <div class="container">
+        <h2 id="program-heading">Программа конференции</h2>
+        <p class="section-subtitle">17 декабря 2025 года</p>
+
+        <!-- УТРЕННЯЯ СЕССИЯ -->
+        <div class="program-block">
+            <div class="program-block-header">
+                <h3>Утренняя сессия</h3>
+                <span class="program-block-time">09:00 – 12:45</span>
+            </div>
+
+            <!-- ===== НАЧАЛО: Регистрация ===== -->
+            <div class="program-item program-item--special">
+                <div class="program-time">09:00 – 09:30</div>
+                <div class="program-content">
+                    <div class="program-title">Регистрация участников</div>
+                    <div class="program-meta">Фойе, 1 этаж</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ: Регистрация ===== -->
+
+            <!-- ===== НАЧАЛО: Открытие ===== -->
+            <div class="program-item program-item--special">
+                <div class="program-time">09:30 – 09:45</div>
+                <div class="program-content">
+                    <div class="program-title">Торжественное открытие конференции</div>
+                    <div class="program-speaker">Приветственное слово ректора НИУ МИЭТ</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ: Открытие ===== -->
+
+            <!-- ===== НАЧАЛО ДОКЛАДА 1 ===== -->
+            <div class="program-item">
+                <div class="program-time">09:45 – 10:15</div>
+                <div class="program-content">
+                    <div class="program-title">Современные методы корпусирования микросхем</div>
+                    <div class="program-speaker">Иванов И.И., д.т.н., профессор МИЭТ</div>
+                    <div class="program-org">НИУ МИЭТ</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ ДОКЛАДА 1 ===== -->
+
+            <!-- ===== НАЧАЛО ДОКЛАДА 2 ===== -->
+            <div class="program-item">
+                <div class="program-time">10:15 – 10:45</div>
+                <div class="program-content">
+                    <div class="program-title">Технологии трёхмерной сборки микросистем</div>
+                    <div class="program-speaker">Смирнова А.В., к.ф.-м.н., ведущий инженер</div>
+                    <div class="program-org">АО «НИИМЭ»</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ ДОКЛАДА 2 ===== -->
+
+            <!-- ===== НАЧАЛО ДОКЛАДА 3 ===== -->
+            <div class="program-item">
+                <div class="program-time">10:45 – 11:15</div>
+                <div class="program-content">
+                    <div class="program-title">Перспективы развития МЭМС-технологий в России</div>
+                    <div class="program-speaker">Петров П.С., к.т.н., руководитель лаборатории</div>
+                    <div class="program-org">ФГУП «НИИФП»</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ ДОКЛАДА 3 ===== -->
+
+            <!-- ===== НАЧАЛО: Кофе-брейк ===== -->
+            <div class="program-item program-item--break">
+                <div class="program-time">11:15 – 11:45</div>
+                <div class="program-content">
+                    <div class="program-title">Кофе-брейк</div>
+                    <div class="program-meta">Фойе, 2 этаж</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ: Кофе-брейк ===== -->
+
+            <!-- ===== НАЧАЛО ДОКЛАДА 4 ===== -->
+            <div class="program-item">
+                <div class="program-time">11:45 – 12:15</div>
+                <div class="program-content">
+                    <div class="program-title">Новые материалы для микроэлектронного производства</div>
+                    <div class="program-speaker">Козлова М.А., д.х.н., профессор</div>
+                    <div class="program-org">МГУ им. Ломоносова</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ ДОКЛАДА 4 ===== -->
+
+            <!-- ===== НАЧАЛО ДОКЛАДА 5 ===== -->
+            <div class="program-item">
+                <div class="program-time">12:15 – 12:45</div>
+                <div class="program-content">
+                    <div class="program-title">Отечественные решения для корпусирования силовой электроники</div>
+                    <div class="program-speaker">Волков Д.Е., к.т.н., начальник отдела</div>
+                    <div class="program-org">АО «Ангстрем»</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ ДОКЛАДА 5 ===== -->
+
+        </div>
+
+        <!-- ОБЕД -->
+        <div class="program-block">
+            <div class="program-item program-item--lunch">
+                <div class="program-time">12:45 – 13:45</div>
+                <div class="program-content">
+                    <div class="program-title">Обед</div>
+                    <div class="program-meta">Столовая МИЭТ, корпус 3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ДНЕВНАЯ СЕССИЯ -->
+        <div class="program-block">
+            <div class="program-block-header">
+                <h3>Дневная сессия</h3>
+                <span class="program-block-time">13:45 – 17:00</span>
+            </div>
+
+            <!-- ===== НАЧАЛО ДОКЛАДА 6 ===== -->
+            <div class="program-item">
+                <div class="program-time">13:45 – 14:15</div>
+                <div class="program-content">
+                    <div class="program-title">Методы контроля качества микросборок</div>
+                    <div class="program-speaker">Новиков А.П., к.т.н., ведущий специалист</div>
+                    <div class="program-org">АО «ЗНТЦ»</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ ДОКЛАДА 6 ===== -->
+			
+
+            <!-- ===== НАЧАЛО ДОКЛАДА 7 ===== -->
+            <div class="program-item">
+                <div class="program-time">14:15 – 14:45</div>
+                <div class="program-content">
+                    <div class="program-title">Гетерогенная интеграция: вызовы и решения</div>
+                    <div class="program-speaker">Фёдорова Е.Н., д.т.н., профессор</div>
+                    <div class="program-org">СПбПУ</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ ДОКЛАДА 7 ===== -->
+
+            <!-- ===== НАЧАЛО ДОКЛАДА 8 ===== -->
+            <div class="program-item">
+                <div class="program-time">14:45 – 15:15</div>
+                <div class="program-content">
+                    <div class="program-title">Применение лазерных технологий в микросборке</div>
+                    <div class="program-speaker">Белов С.К., к.ф.-м.н., старший научный сотрудник</div>
+                    <div class="program-org">ИОФ РАН</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ ДОКЛАДА 8 ===== -->
+
+            <!-- ===== НАЧАЛО: Кофе-брейк ===== -->
+            <div class="program-item program-item--break">
+                <div class="program-time">15:15 – 15:45</div>
+                <div class="program-content">
+                    <div class="program-title">Кофе-брейк</div>
+                    <div class="program-meta">Фойе, 2 этаж</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ: Кофе-брейк ===== -->
+
+            <!-- ===== НАЧАЛО ДОКЛАДА 9 ===== -->
+            <div class="program-item">
+                <div class="program-time">15:45 – 16:15</div>
+                <div class="program-content">
+                    <div class="program-title">Импортозамещение в области тестового оборудования</div>
+                    <div class="program-speaker">Григорьев В.М., инженер-технолог</div>
+                    <div class="program-org">ООО «МикроТест»</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ ДОКЛАДА 9 ===== -->
+
+            <!-- ===== НАЧАЛО ДОКЛАДА 10 ===== -->
+            <div class="program-item">
+                <div class="program-time">16:15 – 16:45</div>
+                <div class="program-content">
+                    <div class="program-title">Стендовая сессия и обсуждение постерных докладов</div>
+                    <div class="program-speaker">Все участники</div>
+                    <div class="program-meta">Зал B, 2 этаж</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ ДОКЛАДА 10 ===== -->
+
+            <!-- ===== НАЧАЛО: Закрытие ===== -->
+            <div class="program-item program-item--special">
+                <div class="program-time">16:45 – 17:00</div>
+                <div class="program-content">
+                    <div class="program-title">Подведение итогов и закрытие конференции</div>
+                    <div class="program-speaker">Председатель оргкомитета</div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ: Закрытие ===== -->
+
+        </div>
+
+        <!--
+            ДОБАВИТЬ НОВУЮ СЕССИЮ:
+            Скопируйте блок <div class="program-block">...</div>
+            и вставьте сюда, затем замените данные.
+        -->
+
+        <p class="program-note">
+            * Программа может незначительно корректироваться.
+            Актуальная версия всегда доступна на этой странице.
+        </p>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     ПАРТНЁРЫ И СПОНСОРЫ ПОЯСНЕНИЕ
+     Логотипы кладите в папку images/partners/
+     Рекомендуемый размер: 400x220 px, формат PNG.
+     Чтобы добавить — скопируйте блок «НАЧАЛО» — «КОНЕЦ».
+================================================================ -->
+<section class="partners-section" id="partners" aria-labelledby="partners-heading">
+    <div class="container">
+        <h2 id="partners-heading">Партнёры и спонсоры</h2>
+        <p class="section-subtitle">Благодарим за поддержку конференции</p>
+
+        <div class="partners-grid">
+
+            <!-- ===== НАЧАЛО ЛОГОТИПА ПАРТНЁРА 1 ===== -->
+            <div class="partner-logo">
+                <img src="images/partners/logo.png"
+                     alt="Логотип партнёра: Название компании 1"
+                     loading="lazy" width="200" height="110">
+            </div>
+            <!-- ===== КОНЕЦ ЛОГОТИПА ПАРТНЁРА 1 ===== -->
+
+            <!-- ===== НАЧАЛО ЛОГОТИПА ПАРТНЁРА 2 ===== -->
+            <div class="partner-logo">
+                <img src="images/partners/logo.png"
+                     alt="Логотип партнёра: Название компании 2"
+                     loading="lazy" width="200" height="110">
+            </div>
+            <!-- ===== КОНЕЦ ЛОГОТИПА ПАРТНЁРА 2 ===== -->
+
+            <!-- ===== НАЧАЛО ЛОГОТИПА ПАРТНЁРА 3 ===== -->
+            <div class="partner-logo">
+                <img src="images/partners/logo.png"
+                     alt="Логотип партнёра: Название компании 3"
+                     loading="lazy" width="200" height="110">
+            </div>
+            <!-- ===== КОНЕЦ ЛОГОТИПА ПАРТНЁРА 3 ===== -->
+
+            <!-- ДОБАВИТЬ НОВОГО ПАРТНЁРА: скопируйте блок выше и вставьте сюда -->
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     РЕГИСТРАЦИЯ
+     Чтобы изменить ссылку на форму — замените адрес в href="..."
+================================================================ -->
+<section class="registration-section" id="registration" aria-labelledby="reg-heading">
+    <div class="container">
+
+        <div class="reg-content">
+            <h2 id="reg-heading">Регистрация</h2>
+            <p class="reg-text">
+                Участие в конференции бесплатное. Для подтверждения заполните
+                короткую форму — это займёт не более 2 минут.
+            </p>
+
+            <div class="reg-features">
+                <div class="reg-feature">
+                    <svg class="reg-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span>Заполнение — 2 минуты</span>
+                </div>
+                <div class="reg-feature">
+                    <svg class="reg-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <span>Подтверждение на почту</span>
+                </div>
+                <div class="reg-feature">
+                    <svg class="reg-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                    <span>Участие бесплатное</span>
+                </div>
+            </div>
+
+            <!--
+                ССЫЛКА НА ФОРМУ РЕГИСТРАЦИИ
+                Замените адрес ниже на вашу форму
+            -->
+            <a href="https://forms.yandex.ru/u/6a02404ff47e73ba3de291e7"
+               class="btn btn-reg"
+               target="_blank"
+               rel="noopener noreferrer">
+                Перейти к регистрации
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </a>
+
+            <p class="reg-note">Форма откроется в новой вкладке на сайте Яндекс.Формы</p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================================================================
+     КОНТАКТЫ
+     Замените имя, email и телефон на актуальные
+================================================================ -->
+<section class="contacts-section" id="contacts" aria-labelledby="contacts-heading">
+    <div class="container">
+        <h2 id="contacts-heading">Контакты</h2>
+
+        <div class="contacts-grid">
+
+            <div class="contact-card">
+                <div class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <h3>Председатель оргкомитета</h3>
+                <!-- Имя контактного лица -->
+                <p>Косолапова Галина Викторовна</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </div>
+                <h3>Email</h3>
+                <!-- Адрес электронной почты -->
+                <p><a href="mailto:galka-vikt@mail.ru">galka-vikt@mail.ru</a></p>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                </div>
+                <h3>Телефон</h3>
+                <!-- Номер телефона -->
+                <p><a href="tel:+79958990559">+7 (995) 899-05-59</a></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     ПОДВАЛ
+================================================================ -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 НМСТ / НИУ МИЭТ. Все права защищены.</p>
+    </div>
+</footer>
+
+
+<!-- Кнопка «Наверх» -->
+<button class="scroll-top" id="scrollTop" aria-label="Вернуться наверх" title="Наверх">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"/>
+    </svg>
+</button>
+
+
+<script>
+    // ===== Бургер-меню =====
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    const navbar    = document.getElementById('navbar');
+
+    navToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('active');
+        navToggle.classList.toggle('active');
+        navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!navbar.contains(e.target)) {
+            navLinks.classList.remove('active');
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // ===== Навбар + кнопка «Наверх» =====
+    const scrollTopBtn = document.getElementById('scrollTop');
+
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+        scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== Плавная прокрутка =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const top = target.getBoundingClientRect().top
+                          + window.pageYOffset
+                          - navbar.offsetHeight - 10;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ===== Анимация появления =====
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll(
+        '.about-stat, .about-topic-card, .about-benefit, ' +
+        '.speaker-card, .partner-logo, .contact-card, ' +
+        '.program-item'
+    ).forEach(el => {
+        el.classList.add('animate-target');
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
