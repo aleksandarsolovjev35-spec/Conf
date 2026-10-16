@@ -866,17 +866,3 @@ body.lightbox-open { overflow: hidden; }
 .photobank-carousel.animate-target.animate-in {
     transform: scale(1);
 }
-
-/* Контакты (index.html): внутренняя группа карточки строго по центру
-   белой подложки — и по вертикали, и по горизонтали. Этот файл
-   подключается последним, поэтому правило гарантированно применяется. */
-.contact-card {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 230px;
-}
-
-.contact-card > * { margin-top: 0; }
-.contact-card p { margin-bottom: 0; }
