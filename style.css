@@ -2728,3 +2728,72 @@ footer {
 
     .page-transition { transition: none; }
 }
+
+/* =====================================================
+   КОМБИНАЦИЯ АНИМАЦИЙ ПО БЛОКАМ
+===================================================== */
+
+/* Программа: пункты въезжают слева */
+.program-item.animate-target {
+    transform: translateX(-44px);
+}
+
+.program-item.animate-target.animate-in {
+    transform: translateX(0);
+}
+
+/* Спикеры: мягкий zoom */
+.speaker-card.animate-target {
+    transform: scale(0.92);
+}
+
+.speaker-card.animate-target.animate-in {
+    transform: scale(1);
+}
+
+/* Заголовки секций: «шторка» — текст открывается слева направо
+   за синей кромкой */
+section h2.animate-target {
+    position: relative;
+    opacity: 1;
+    transform: none;
+    clip-path: inset(-10% 100% -10% 0);
+    transition: clip-path 0.85s ease;
+}
+
+section h2.animate-target.animate-in {
+    clip-path: inset(-10% -10% -10% 0);
+}
+
+section h2.animate-target::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 5px;
+    border-radius: 3px;
+    background: var(--blue);
+    opacity: 0;
+}
+
+section h2.animate-target.animate-in::after {
+    animation: curtain-edge 0.85s ease both;
+}
+
+.registration-section h2.animate-target::after { background: white; }
+
+@keyframes curtain-edge {
+    0%   { left: 0; opacity: 1; }
+    85%  { opacity: 1; }
+    100% { left: calc(100% - 5px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    section h2.animate-target {
+        clip-path: none;
+        transition: none;
+    }
+
+    section h2.animate-target.animate-in::after { animation: none; }
+}

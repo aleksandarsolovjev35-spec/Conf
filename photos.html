@@ -15,8 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=4">
-    <link rel="stylesheet" href="photobank.css?v=6">
+    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="photobank.css?v=7">
 </head>
 <body>
 
@@ -508,6 +508,7 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll(
+        'section h2, ' +
         '.photobank-toolbar, .photobank-notice, .album-card'
     ).forEach(el => {
         el.classList.add('animate-target');

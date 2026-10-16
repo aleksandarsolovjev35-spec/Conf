@@ -22,8 +22,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=4">
-    <link rel="stylesheet" href="photobank.css?v=6">
+    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="photobank.css?v=7">
 </head>
 <body>
 
@@ -891,15 +891,46 @@
         group.timer = setInterval(() => {
             // элементы выше экрана не должны тормозить очередь — показываем сразу
             while (group.queue.length && group.queue[0].getBoundingClientRect().bottom < 0) {
-                group.queue.shift().classList.add('animate-in');
+                const flushed = group.queue.shift();
+                flushed.classList.add('animate-in');
+                if (flushed.classList.contains('about-stat')) startCounter(flushed, true);
             }
             const el = group.queue.shift();
-            if (el) el.classList.add('animate-in');
+            if (el) {
+                el.classList.add('animate-in');
+                if (el.classList.contains('about-stat')) startCounter(el, false);
+            }
             if (!group.queue.length) {
                 clearInterval(group.timer);
                 group.timer = null;
             }
         }, REVEAL_INTERVAL);
+    }
+
+
+    // ===== Счётчики статистики: число докручивается от 0 при появлении =====
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function startCounter(statEl, instant) {
+        const numEl = statEl.querySelector('.about-stat-number');
+        if (!numEl || numEl.dataset.counted) return;
+        numEl.dataset.counted = '1';
+        const raw = numEl.textContent.trim();
+        const target = parseInt(raw, 10);
+        if (isNaN(target)) return;
+        const suffix = raw.replace(String(target), '');
+        if (instant || reduceMotion || target === 0) {
+            numEl.textContent = target + suffix;
+            return;
+        }
+        const duration = 900;
+        const started = performance.now();
+        (function tick(now) {
+            const progress = Math.min((now - started) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            numEl.textContent = Math.round(target * eased) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+        })(started);
     }
 
     const observer = new IntersectionObserver((entries) => {
@@ -923,6 +954,7 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll(
+        'section h2, ' +
         '.about-stat, .about-topic-card, ' +
         '.speaker-card, .partner-logo, .contact-card, ' +
         '.photobank-carousel, .program-item'

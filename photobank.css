@@ -868,3 +868,24 @@ body.lightbox-open { overflow: hidden; }
         transition: none;
     }
 }
+
+/* Альбомы фотобанка и карусель на главной: мягкий zoom при появлении */
+.album-card.animate-target {
+    transform: scale(0.93);
+}
+
+.album-card.animate-target.animate-in {
+    transform: scale(1);
+}
+
+.album-card.animate-target.animate-in:hover {
+    transform: translateY(-4px);
+}
+
+.photobank-carousel.animate-target {
+    transform: scale(0.95);
+}
+
+.photobank-carousel.animate-target.animate-in {
+    transform: scale(1);
+}
