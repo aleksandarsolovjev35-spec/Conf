@@ -2804,47 +2804,6 @@ section h2.animate-target.animate-in::after {
     margin-top: 10px;
 }
 
-/* =====================================================
-   ВРЕМЕННО — ДЛЯ ПРОВЕРКИ ВЁРСТКИ (убрать после просмотра!)
-   Красным пунктиром показаны границы частей страницы,
-   в углу каждой части — её id.
-===================================================== */
-body > header,
-body > section,
-body > main,
-body > footer {
-    outline: 3px dashed red;
-    outline-offset: -3px;
-}
-
-body > header,
-body > section {
-    position: relative;
-}
-
-body > header::before,
-body > section::before,
-body > footer::before {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    z-index: 2000;
-    background: red;
-    color: white;
-    font-family: monospace;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
-    padding: 4px 7px;
-    border-radius: 3px;
-    pointer-events: none;
-}
-
-body > section::before { content: 'section#' attr(id); }
-body > header::before  { content: 'header#' attr(id); }
-body > footer::before  { content: 'footer'; }
-
-body > footer { position: relative; }
 
 /* =====================================================
    ЦЕНТРИРОВАНИЕ СОДЕРЖИМОГО СЕКЦИЙ ОТНОСИТЕЛЬНО ИХ ГРАНИЦ
