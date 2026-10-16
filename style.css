@@ -2877,3 +2877,9 @@ body > header > .container {
 .partners-section {
     padding-top: 36px;
 }
+
+/* Контакты: меньше пустого места от верхней границы секции
+   до заголовка (как в секции партнёров) */
+.contacts-section {
+    padding-top: 36px;
+}
