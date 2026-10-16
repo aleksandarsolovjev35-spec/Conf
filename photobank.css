@@ -599,6 +599,8 @@
 
 .album-view[hidden] { display: none; }
 
+.album-view { scroll-margin-top: 96px; }
+
 .album-view-back {
     display: inline-flex;
     align-items: center;

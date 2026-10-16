@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css?v=3">
-    <link rel="stylesheet" href="photobank.css?v=5">
+    <link rel="stylesheet" href="photobank.css?v=6">
 </head>
 <body>
 
@@ -653,7 +653,10 @@
         buildMosaic(key);
         listBlocks.forEach(el => { if (el) el.hidden = true; });
         albumView.hidden = false;
-        document.querySelector('.photobank-main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // переносим пользователя вниз — к содержимому открытого альбома (мозаике)
+        requestAnimationFrame(() => {
+            albumView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
         if (pushHash) history.replaceState(null, '', '#album/' + key);
     }
 
