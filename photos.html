@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Фотобанк — III Ежегодная конференция НМСТ 2025</title>
+
+    <meta name="description" content="Фотобанк III Ежегодной конференции «Технологии микросистем, корпусирования и сборки ЭКБ». 17 декабря 2025, НИУ МИЭТ, Зеленоград.">
+    <meta name="author" content="НИУ МИЭТ">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="photobank.css">
+</head>
+<body>
+
+<!-- ================================================================
+     НАВИГАЦИЯ
+     Ссылки ведут на главную страницу (index.html) и её разделы.
+     Текущая страница — «Фотобанк» (photos.html).
+================================================================= -->
+<nav class="navbar" id="navbar" aria-label="Главное меню">
+    <div class="container nav-container">
+
+        <a href="index.html" class="nav-logo" aria-label="На главную">НМСТ 2025</a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks" role="menubar">
+            <li role="none"><a href="index.html#about"        role="menuitem">О конференции</a></li>
+            <li role="none"><a href="index.html#speakers"     role="menuitem">Спикеры</a></li>
+            <li role="none"><a href="index.html#program"      role="menuitem">Программа</a></li>
+            <li role="none"><a href="index.html#partners"     role="menuitem">Партнёры</a></li>
+            <li role="none"><a href="photos.html"             role="menuitem" class="nav-link-active" aria-current="page">Фотобанк</a></li>
+            <li role="none"><a href="index.html#registration" role="menuitem">Регистрация</a></li>
+            <li role="none"><a href="index.html#contacts"     role="menuitem">Контакты</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- ================================================================
+     ШАПКА ФОТОБАНКА
+================================================================= -->
+<header class="photobank-hero">
+    <div class="container">
+
+        <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+            <a href="index.html">Главная</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Фотобанк</span>
+        </nav>
+
+        <h1>Фотобанк</h1>
+        <p class="photobank-subtitle">
+            Фотографии III Ежегодной конференции «Технологии микросистем,
+            корпусирования и сборки ЭКБ»
+        </p>
+
+        <div class="photobank-meta">
+            <span>17 декабря 2025 года</span>
+            <span aria-hidden="true">•</span>
+            <span>НИУ МИЭТ, Зеленоград</span>
+            <span aria-hidden="true">•</span>
+            <span id="albumCount">6 альбомов</span>
+        </div>
+
+        <a href="index.html" class="btn-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="19" y1="12" x2="5" y2="12"/>
+                <polyline points="12 19 5 12 12 5"/>
+            </svg>
+            Вернуться на главную
+        </a>
+
+    </div>
+</header>
+
+
+<main class="photobank-main">
+    <div class="container">
+
+        <!-- ============================================================
+             ПОИСК И ФИЛЬТРЫ
+        ============================================================ -->
+        <div class="photobank-toolbar">
+            <label class="photobank-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="search" id="albumSearch" placeholder="Поиск по альбомам…" aria-label="Поиск по альбомам">
+            </label>
+
+            <div class="photobank-filters" role="group" aria-label="Категории альбомов">
+                <button type="button" class="filter-chip is-active" data-filter="all">Все альбомы</button>
+                <button type="button" class="filter-chip" data-filter="plenary">Пленарная часть</button>
+                <button type="button" class="filter-chip" data-filter="sections">Доклады</button>
+                <button type="button" class="filter-chip" data-filter="poster">Стендовая сессия</button>
+                <button type="button" class="filter-chip" data-filter="guests">Гости и общение</button>
+            </div>
+        </div>
+
+        <!-- Статус: фотографий пока нет -->
+        <div class="photobank-notice" role="note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            <p>
+                Фотографии появятся здесь после конференции — 17 декабря 2025 года.
+                Пока в альбомах стоят заглушки.
+            </p>
+        </div>
+
+        <!-- ============================================================
+             СЕТКА АЛЬБОМОВ
+             Как добавить фото: замените блок .album-cover внутри карточки
+             на <img src="images/photobank/..." alt="...">, а подпись
+             «0 фото» — на реальное количество снимков.
+        ============================================================ -->
+        <div class="album-grid" id="albumGrid">
+
+            <!-- ===== НАЧАЛО АЛЬБОМА ===== -->
+            <article class="album-card" data-category="plenary" data-title="Торжественное открытие конференции">
+                <div class="album-cover album-cover--placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                    <span>Фото появится после конференции</span>
+                </div>
+                <span class="album-badge">Скоро</span>
+                <div class="album-info">
+                    <h2 class="album-title">Торжественное открытие конференции</h2>
+                    <p class="album-meta">
+                        <time datetime="2025-12-17">17 декабря</time>
+                        <span aria-hidden="true">•</span>
+                        <span>0 фото</span>
+                    </p>
+                </div>
+            </article>
+            <!-- ===== КОНЕЦ АЛЬБОМА ===== -->
+
+            <!-- ===== НАЧАЛО АЛЬБОМА ===== -->
+            <article class="album-card" data-category="plenary" data-title="Пленарные доклады">
+                <div class="album-cover album-cover--placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                    <span>Фото появится после конференции</span>
+                </div>
+                <span class="album-badge">Скоро</span>
+                <div class="album-info">
+                    <h2 class="album-title">Пленарные доклады</h2>
+                    <p class="album-meta">
+                        <time datetime="2025-12-17">17 декабря</time>
+                        <span aria-hidden="true">•</span>
+                        <span>0 фото</span>
+                    </p>
+                </div>
+            </article>
+            <!-- ===== КОНЕЦ АЛЬБОМА ===== -->
+
+            <!-- ===== НАЧАЛО АЛЬБОМА ===== -->
+            <article class="album-card" data-category="sections" data-title="Секционные доклады">
+                <div class="album-cover album-cover--placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                    <span>Фото появится после конференции</span>
+                </div>
+                <span class="album-badge">Скоро</span>
+                <div class="album-info">
+                    <h2 class="album-title">Секционные доклады</h2>
+                    <p class="album-meta">
+                        <time datetime="2025-12-17">17 декабря</time>
+                        <span aria-hidden="true">•</span>
+                        <span>0 фото</span>
+                    </p>
+                </div>
+            </article>
+            <!-- ===== КОНЕЦ АЛЬБОМА ===== -->
+
+            <!-- ===== НАЧАЛО АЛЬБОМА ===== -->
+            <article class="album-card" data-category="poster" data-title="Стендовая сессия и постерные доклады">
+                <div class="album-cover album-cover--placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                    <span>Фото появится после конференции</span>
+                </div>
+                <span class="album-badge">Скоро</span>
+                <div class="album-info">
+                    <h2 class="album-title">Стендовая сессия и постерные доклады</h2>
+                    <p class="album-meta">
+                        <time datetime="2025-12-17">17 декабря</time>
+                        <span aria-hidden="true">•</span>
+                        <span>0 фото</span>
+                    </p>
+                </div>
+            </article>
+            <!-- ===== КОНЕЦ АЛЬБОМА ===== -->
+
+            <!-- ===== НАЧАЛО АЛЬБОМА ===== -->
+            <article class="album-card" data-category="guests" data-title="Гости конференции и общение">
+                <div class="album-cover album-cover--placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                    <span>Фото появится после конференции</span>
+                </div>
+                <span class="album-badge">Скоро</span>
+                <div class="album-info">
+                    <h2 class="album-title">Гости конференции и общение</h2>
+                    <p class="album-meta">
+                        <time datetime="2025-12-17">17 декабря</time>
+                        <span aria-hidden="true">•</span>
+                        <span>0 фото</span>
+                    </p>
+                </div>
+            </article>
+            <!-- ===== КОНЕЦ АЛЬБОМА ===== -->
+
+            <!-- ===== НАЧАЛО АЛЬБОМА ===== -->
+            <article class="album-card" data-category="plenary" data-title="Подведение итогов и закрытие конференции">
+                <div class="album-cover album-cover--placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                    <span>Фото появится после конференции</span>
+                </div>
+                <span class="album-badge">Скоро</span>
+                <div class="album-info">
+                    <h2 class="album-title">Подведение итогов и закрытие конференции</h2>
+                    <p class="album-meta">
+                        <time datetime="2025-12-17">17 декабря</time>
+                        <span aria-hidden="true">•</span>
+                        <span>0 фото</span>
+                    </p>
+                </div>
+            </article>
+            <!-- ===== КОНЕЦ АЛЬБОМА ===== -->
+
+            <!-- ДОБАВИТЬ АЛЬБОМ: скопируйте блок выше и вставьте сюда,
+                 изменив data-category, data-title и заголовок -->
+
+        </div>
+
+        <!-- Пустой результат поиска/фильтра -->
+        <p class="album-empty" id="albumEmpty" hidden>По вашему запросу альбомы не найдены.</p>
+
+        <!-- Кнопка назад -->
+        <div class="photobank-back">
+            <a href="index.html" class="btn-back btn-back--dark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="19" y1="12" x2="5" y2="12"/>
+                    <polyline points="12 19 5 12 12 5"/>
+                </svg>
+                Вернуться на главную
+            </a>
+        </div>
+
+    </div>
+</main>
+
+
+<!-- ================================================================
+     ПОДВАЛ
+================================================================= -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 НМСТ / НИУ МИЭТ. Все права защищены.</p>
+    </div>
+</footer>
+
+
+<!-- Кнопка «Наверх» -->
+<button class="scroll-top" id="scrollTop" aria-label="Вернуться наверх" title="Наверх">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"/>
+    </svg>
+</button>
+
+
+<script>
+    // ===== Бургер-меню =====
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    const navbar    = document.getElementById('navbar');
+
+    navToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('active');
+        navToggle.classList.toggle('active');
+        navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!navbar.contains(e.target)) {
+            navLinks.classList.remove('active');
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // ===== Навбар + кнопка «Наверх» =====
+    const scrollTopBtn = document.getElementById('scrollTop');
+
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+        scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== Поиск и фильтр альбомов =====
+    const searchInput = document.getElementById('albumSearch');
+    const chips       = document.querySelectorAll('.filter-chip');
+    const cards       = document.querySelectorAll('.album-card');
+    const emptyNote   = document.getElementById('albumEmpty');
+    const albumCount  = document.getElementById('albumCount');
+    let activeFilter  = 'all';
+
+    function pluralAlbums(n) {
+        if (n === 1) return '1 альбом';
+        if (n >= 2 && n <= 4) return n + ' альбома';
+        return n + ' альбомов';
+    }
+
+    function applyFilter() {
+        const query = searchInput.value.trim().toLowerCase();
+        let visible = 0;
+
+        cards.forEach(card => {
+            const matchesCategory = activeFilter === 'all' || card.dataset.category === activeFilter;
+            const matchesQuery    = !query || card.dataset.title.toLowerCase().includes(query);
+            const show = matchesCategory && matchesQuery;
+            card.hidden = !show;
+            if (show) visible++;
+        });
+
+        emptyNote.hidden = visible !== 0;
+        albumCount.textContent = pluralAlbums(visible);
+    }
+
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            chips.forEach(c => c.classList.remove('is-active'));
+            chip.classList.add('is-active');
+            activeFilter = chip.dataset.filter;
+            applyFilter();
+        });
+    });
+
+    searchInput.addEventListener('input', applyFilter);
+</script>
+
+</body>
+</html>

@@ -2458,3 +2458,9 @@ footer {
 @media (max-width: 480px) {
     .reg-form { padding: 20px 14px; }
 }
+
+/* Меню с пунктом «Фотобанк»: чуть компактнее на планшетах */
+@media (max-width: 1024px) {
+    .nav-links { gap: 20px; }
+    .nav-links a { font-size: 0.9rem; }
+}

@@ -1,0 +1,359 @@
+/* =============================================================
+   СТИЛИ СТРАНИЦЫ «ФОТОБАНК» (photos.html)
+   Подключается после style.css и использует его переменные.
+============================================================= */
+
+/* Активный пункт меню */
+.nav-links a.nav-link-active {
+    color: white;
+    font-weight: 700;
+}
+
+.navbar.scrolled .nav-links a.nav-link-active {
+    color: var(--blue);
+}
+
+.nav-links a.nav-link-active::after {
+    width: 100%;
+}
+
+/* ===== Шапка страницы ===== */
+.photobank-hero {
+    background: linear-gradient(135deg, #0a1628 0%, #0f45c7 100%);
+    color: white;
+    padding: 150px 0 64px;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 24px;
+}
+
+.breadcrumbs a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.photobank-hero h1 {
+    color: white;
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+}
+
+.photobank-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 640px;
+    margin-bottom: 20px;
+}
+
+.photobank-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 36px;
+}
+
+/* Кнопка «Назад» — светлый вариант (на тёмной шапке) */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 26px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    font-weight: 600;
+    font-size: 0.98rem;
+    text-decoration: none;
+    transition: all var(--transition);
+}
+
+.btn-back svg {
+    width: 18px;
+    height: 18px;
+    transition: transform var(--transition);
+}
+
+.btn-back:hover {
+    background: white;
+    border-color: white;
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.btn-back:hover svg { transform: translateX(-4px); }
+
+.btn-back:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 3px;
+}
+
+/* Кнопка «Назад» — тёмный вариант (на светлом фоне) */
+.btn-back--dark {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+.btn-back--dark:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+}
+
+.btn-back--dark:focus-visible {
+    outline-color: var(--blue);
+}
+
+/* ===== Основная часть ===== */
+.photobank-main {
+    background: var(--light-gray);
+    padding: 48px 0 80px;
+}
+
+/* Поиск и фильтры */
+.photobank-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.photobank-search {
+    flex: 1 1 280px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+    padding: 0 16px;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.photobank-search:focus-within {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px var(--blue-light);
+}
+
+.photobank-search svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--text-light);
+}
+
+.photobank-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font: inherit;
+    font-size: 0.98rem;
+    color: var(--text);
+    background: transparent;
+    padding: 13px 0;
+    min-width: 0;
+}
+
+.photobank-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-chip {
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--gray);
+    background: white;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.filter-chip:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+.filter-chip.is-active {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+}
+
+.filter-chip:focus-visible {
+    outline: 3px solid var(--blue);
+    outline-offset: 2px;
+}
+
+/* Плашка «фото пока нет» */
+.photobank-notice {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--blue-light);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-bottom: 36px;
+    color: var(--blue-dark);
+}
+
+.photobank-notice svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.photobank-notice p {
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+/* ===== Сетка альбомов (как в референсе: обложка, название, дата, кол-во фото) ===== */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.album-card {
+    position: relative;
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.album-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.album-card[hidden] { display: none; }
+
+/* Обложка-заглушка. Когда появятся фото — заменится на <img> */
+.album-cover--placeholder {
+    aspect-ratio: 4 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 24px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--blue-light) 0%, #cfdefc 100%);
+    color: var(--blue);
+}
+
+.album-cover--placeholder svg {
+    width: 56px;
+    height: 56px;
+    opacity: 0.55;
+}
+
+.album-cover--placeholder span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--blue-dark);
+    opacity: 0.75;
+    max-width: 220px;
+    line-height: 1.5;
+}
+
+.album-cover img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.album-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--blue);
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+}
+
+.album-info {
+    padding: 20px 22px 22px;
+}
+
+.album-title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.album-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    color: var(--text-light);
+}
+
+.album-empty {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.05rem;
+    padding: 48px 0;
+}
+
+.photobank-back {
+    margin-top: 48px;
+    text-align: center;
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 992px) {
+    .album-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .photobank-hero {
+        padding: 120px 0 48px;
+    }
+
+    .photobank-hero h1 { font-size: 2.1rem; }
+    .photobank-subtitle { font-size: 1.02rem; }
+
+    .photobank-toolbar { flex-direction: column; align-items: stretch; }
+}
+
+@media (max-width: 560px) {
+    .album-grid { grid-template-columns: 1fr; }
+}
+
+/* Печать: фотобанк не печатаем */
+@media print {
+    .photobank-toolbar, .photobank-back, .btn-back { display: none !important; }
+}
