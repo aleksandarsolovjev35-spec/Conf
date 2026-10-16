@@ -2883,3 +2883,11 @@ body > header > .container {
 .contacts-section {
     padding-top: 36px;
 }
+
+/* Регистрация, программа и спикеры: меньше пустого места
+   от верхней границы секции до заголовка (как у партнёров и контактов) */
+.registration-section,
+.program-section,
+.speakers-section {
+    padding-top: 36px;
+}
