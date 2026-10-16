@@ -452,39 +452,57 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== Анимация появления: карточки появляются строго по очереди =====
-    // Та же очередь, что и на главной: элементы встают в неё в порядке
-    // документа и показываются один за другим, а не все одновременно.
-    const REVEAL_INTERVAL = 150; // мс между появлением соседних элементов
-    const revealQueue = [];
-    let revealTimer = null;
+    // ===== Анимация появления: по одному внутри каждой секции =====
+    // Очередь своя у каждой секции, а не общая на всю страницу:
+    // если перейти по меню сразу в «Программу», её элементы начнут
+    // появляться немедленно, не дожидаясь блоков выше. Элементы,
+    // которые при быстрой прокрутке уже уехали наверх, показываются
+    // сразу без ожидания.
+    const REVEAL_INTERVAL = 130; // мс между соседними элементами одной секции
+    const revealGroups = new Map(); // секция -> { queue: [], timer: null }
 
-    function scheduleReveal() {
-        if (revealTimer) return;
-        revealTimer = setInterval(() => {
-            const el = revealQueue.shift();
+    function getRevealGroup(el) {
+        const key = el.closest('section') || el.parentElement;
+        if (!revealGroups.has(key)) {
+            revealGroups.set(key, { queue: [], timer: null });
+        }
+        return revealGroups.get(key);
+    }
+
+    function scheduleReveal(group) {
+        if (group.timer) return;
+        group.timer = setInterval(() => {
+            // элементы выше экрана не должны тормозить очередь — показываем сразу
+            while (group.queue.length && group.queue[0].getBoundingClientRect().bottom < 0) {
+                group.queue.shift().classList.add('animate-in');
+            }
+            const el = group.queue.shift();
             if (el) el.classList.add('animate-in');
-            if (!revealQueue.length) {
-                clearInterval(revealTimer);
-                revealTimer = null;
+            if (!group.queue.length) {
+                clearInterval(group.timer);
+                group.timer = null;
             }
         }, REVEAL_INTERVAL);
     }
 
     const observer = new IntersectionObserver((entries) => {
+        const touched = new Set();
         entries
             .filter(entry => entry.isIntersecting)
+            // порядок в документе — сверху вниз, слева направо
             .sort((a, b) => {
                 const pos = a.target.compareDocumentPosition(b.target);
                 return (pos & Node.DOCUMENT_POSITION_PRECEDING) ? 1 : -1;
             })
             .forEach(entry => {
                 observer.unobserve(entry.target);
-                if (!revealQueue.includes(entry.target)) {
-                    revealQueue.push(entry.target);
+                const group = getRevealGroup(entry.target);
+                if (!group.queue.includes(entry.target)) {
+                    group.queue.push(entry.target);
+                    touched.add(group);
                 }
             });
-        if (revealQueue.length) scheduleReveal();
+        touched.forEach(scheduleReveal);
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll(
