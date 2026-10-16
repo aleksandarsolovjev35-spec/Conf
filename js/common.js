@@ -10,27 +10,53 @@
     const navLinks  = document.getElementById('navLinks');
     const navbar    = document.getElementById('navbar');
 
+    const mobileNav = window.matchMedia('(max-width: 1024px)');
+
+    function setMenuOpen(isOpen, restoreFocus = false) {
+        const open = isOpen && mobileNav.matches;
+        navLinks.classList.toggle('active', open);
+        navToggle.classList.toggle('active', open);
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', String(open));
+        navToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+        // Закрытая выдвижная панель недоступна для Tab и скринридеров.
+        navLinks.inert = mobileNav.matches && !open;
+        if (restoreFocus) navToggle.focus();
+    }
+
     navToggle.addEventListener('click', () => {
-        const isOpen = navLinks.classList.toggle('active');
-        navToggle.classList.toggle('active');
-        navToggle.setAttribute('aria-expanded', isOpen);
+        setMenuOpen(!navLinks.classList.contains('active'));
     });
 
     navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            navToggle.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-        });
+        link.addEventListener('click', () => setMenuOpen(false));
     });
 
     document.addEventListener('click', (e) => {
-        if (!navbar.contains(e.target)) {
-            navLinks.classList.remove('active');
-            navToggle.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
+        if (!navbar.contains(e.target)) setMenuOpen(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!navLinks.classList.contains('active')) return;
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            setMenuOpen(false, true);
+        }
+        if (e.key === 'Tab') {
+            const lastLink = navLinks.querySelector('li:last-child a');
+            if (e.shiftKey && document.activeElement === navToggle) {
+                e.preventDefault();
+                lastLink.focus();
+            } else if (!e.shiftKey && document.activeElement === lastLink) {
+                e.preventDefault();
+                navToggle.focus();
+            }
         }
     });
+
+    mobileNav.addEventListener('change', () => setMenuOpen(false));
+    window.addEventListener('pageshow', () => setMenuOpen(false));
+    setMenuOpen(false);
 
     // ===== Навбар + кнопка «Наверх» =====
     const scrollTopBtn = document.getElementById('scrollTop');
