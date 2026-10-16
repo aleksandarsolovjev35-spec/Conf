@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css?v=5">
-    <link rel="stylesheet" href="photobank.css?v=7">
+    <link rel="stylesheet" href="photobank.css?v=8">
 </head>
 <body>
 
@@ -105,18 +105,6 @@
             </div>
         </div>
 
-        <!-- Статус: фотографий пока нет -->
-        <div class="photobank-notice" role="note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="12" y1="16" x2="12" y2="12"/>
-                <line x1="12" y1="8" x2="12.01" y2="8"/>
-            </svg>
-            <p>
-                Фотографии появятся здесь после конференции — 17 декабря 2025 года.
-                Пока в альбомах стоят заглушки.
-            </p>
-        </div>
 
         <!-- ============================================================
              СЕТКА АЛЬБОМОВ
@@ -509,7 +497,7 @@
 
     document.querySelectorAll(
         'section h2, ' +
-        '.photobank-toolbar, .photobank-notice, .album-card'
+        '.photobank-toolbar, .album-card'
     ).forEach(el => {
         el.classList.add('animate-target');
         observer.observe(el);
@@ -613,7 +601,6 @@
     // блоки списка альбомов, которые прячем при открытом альбоме
     const listBlocks = [
         document.querySelector('.photobank-toolbar'),
-        document.querySelector('.photobank-notice'),
         document.getElementById('albumGrid'),
         document.getElementById('albumEmpty'),
     ];

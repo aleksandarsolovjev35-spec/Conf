@@ -206,29 +206,6 @@
     outline-offset: 2px;
 }
 
-/* Плашка «фото пока нет» */
-.photobank-notice {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: var(--blue-light);
-    border-radius: var(--radius);
-    padding: 18px 22px;
-    margin-bottom: 36px;
-    color: var(--blue-dark);
-}
-
-.photobank-notice svg {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
-}
-
-.photobank-notice p {
-    font-size: 0.98rem;
-    line-height: 1.6;
-}
-
 /* ===== Сетка альбомов (как в референсе: обложка, название, дата, кол-во фото) ===== */
 .album-grid {
     display: grid;
