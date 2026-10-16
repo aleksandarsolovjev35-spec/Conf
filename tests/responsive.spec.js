@@ -105,6 +105,9 @@ test('фотобанк: поиск, альбом и просмотр в двух
     await expect(page.locator('#albumGrid')).toBeHidden();
     await expect(page.locator('.photobank-toolbar')).toBeHidden();
     await expect(page.locator('#albumView')).toBeVisible();
+    await expect(page.locator('#albumViewTitle')).toHaveText('Торжественное открытие конференции');
+    await expect(page.locator('.photo-thumb')).toHaveCount(10);
+    await expect(page.locator('.album-view-meta, .album-view-hint')).toHaveCount(0);
     await expectNoOverflow(page);
     expect(await page.locator('.photo-thumb').evaluateAll(tiles =>
         tiles.some(tile => tile.scrollHeight > tile.clientHeight)

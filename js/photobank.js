@@ -112,18 +112,11 @@
         document.getElementById('albumEmpty'),
     ];
 
-    function pluralPhotos(n) {
-        if (n === 1) return '1 фото';
-        if (n >= 2 && n <= 4) return n + ' фото';
-        return n + ' фото';
-    }
-
     let mosaicTimers = [];
     function buildMosaic(key) {
         const album = ALBUMS[key];
         currentScenes = album.scenes;
         albumTitleEl.textContent = album.title;
-        document.getElementById('albumViewCount').textContent = pluralPhotos(currentScenes.length);
         mosaic.innerHTML = '';
         mosaicTimers.forEach(clearTimeout);
         mosaicTimers = [];
