@@ -2664,3 +2664,13 @@ footer {
 
     .photobank-slide strong { font-size: 0.95rem; }
 }
+
+/* Скрываем собственный заголовок формы Битрикс24
+   («Регистрация на конференцию Micropack») внутри блока регистрации.
+   Срабатывает, если форма отрисована в DOM страницы. */
+.reg-form .b24-form-header,
+.reg-form .b24-form-header-title,
+.b24-form-header,
+.b24-form-header-title {
+    display: none !important;
+}
