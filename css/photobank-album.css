@@ -4,14 +4,17 @@
 
 .album-view[hidden] { display: none; }
 
-.album-view { scroll-margin-top: 96px; }
+.album-view {
+    padding: 0;
+    scroll-margin-top: 96px;
+}
 
 .album-view-back {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    padding: 11px 20px;
-    margin-bottom: 22px;
+    padding: 8px 20px;
+    margin-bottom: 16px;
     border-radius: 10px;
     border: 2px solid var(--blue);
     background: transparent;
