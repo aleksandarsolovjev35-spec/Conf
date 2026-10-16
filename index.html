@@ -22,8 +22,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=15">
-    <link rel="stylesheet" href="photobank.css?v=8">
+    <!-- Стили: модули по ответственности (см. README.md)
+         base → каркас → секции главной → фотобанк-тизер → анимации → адаптив -->
+    <link rel="stylesheet" href="css/base.css?v=1">
+    <link rel="stylesheet" href="css/header.css?v=1">
+    <link rel="stylesheet" href="css/about.css?v=1">
+    <link rel="stylesheet" href="css/speakers.css?v=1">
+    <link rel="stylesheet" href="css/program.css?v=1">
+    <link rel="stylesheet" href="css/partners.css?v=1">
+    <link rel="stylesheet" href="css/photobank-teaser.css?v=1">
+    <link rel="stylesheet" href="css/registration.css?v=1">
+    <link rel="stylesheet" href="css/contacts.css?v=1">
+    <link rel="stylesheet" href="css/animations.css?v=1">
+    <link rel="stylesheet" href="css/responsive.css?v=1">
 </head>
 <body>
 
@@ -776,255 +787,10 @@
 </button>
 
 
-<script>
-    // ===== Бургер-меню =====
-    const navToggle = document.getElementById('navToggle');
-    const navLinks  = document.getElementById('navLinks');
-    const navbar    = document.getElementById('navbar');
-
-    navToggle.addEventListener('click', () => {
-        const isOpen = navLinks.classList.toggle('active');
-        navToggle.classList.toggle('active');
-        navToggle.setAttribute('aria-expanded', isOpen);
-    });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            navToggle.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-        });
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!navbar.contains(e.target)) {
-            navLinks.classList.remove('active');
-            navToggle.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-        }
-    });
-
-    // ===== Навбар + кнопка «Наверх» =====
-    const scrollTopBtn = document.getElementById('scrollTop');
-
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-        scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
-    });
-
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // ===== Плавная прокрутка =====
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const top = target.getBoundingClientRect().top
-                          + window.pageYOffset
-                          - navbar.offsetHeight - 10;
-                window.scrollTo({ top, behavior: 'smooth' });
-            }
-        });
-    });
-
-    // ===== Анимация появления: по одному внутри каждой секции =====
-    // Очередь своя у каждой секции, а не общая на всю страницу:
-    // если перейти по меню сразу в «Программу», её элементы начнут
-    // появляться немедленно, не дожидаясь блоков выше. Элементы,
-    // которые при быстрой прокрутке уже уехали наверх, показываются
-    // сразу без ожидания.
-    const REVEAL_INTERVAL = 130; // мс между соседними элементами одной секции
-    const revealGroups = new Map(); // секция -> { queue: [], timer: null }
-
-    function getRevealGroup(el) {
-        const key = el.closest('section') || el.parentElement;
-        if (!revealGroups.has(key)) {
-            revealGroups.set(key, { queue: [], timer: null });
-        }
-        return revealGroups.get(key);
-    }
-
-    function scheduleReveal(group) {
-        if (group.timer) return;
-        group.timer = setInterval(() => {
-            // элементы выше экрана не должны тормозить очередь — показываем сразу
-            while (group.queue.length && group.queue[0].getBoundingClientRect().bottom < 0) {
-                const flushed = group.queue.shift();
-                flushed.classList.add('animate-in');
-                if (flushed.classList.contains('about-stat')) startCounter(flushed, true);
-            }
-            const el = group.queue.shift();
-            if (el) {
-                el.classList.add('animate-in');
-                if (el.classList.contains('about-stat')) startCounter(el, false);
-            }
-            if (!group.queue.length) {
-                clearInterval(group.timer);
-                group.timer = null;
-            }
-        }, REVEAL_INTERVAL);
-    }
-
-
-    // ===== Счётчики статистики: число докручивается от 0 при появлении =====
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function startCounter(statEl, instant) {
-        const numEl = statEl.querySelector('.about-stat-number');
-        if (!numEl || numEl.dataset.counted) return;
-        numEl.dataset.counted = '1';
-        const raw = numEl.textContent.trim();
-        const target = parseInt(raw, 10);
-        if (isNaN(target)) return;
-        const suffix = raw.replace(String(target), '');
-        if (instant || reduceMotion || target === 0) {
-            numEl.textContent = target + suffix;
-            return;
-        }
-        const duration = 900;
-        const started = performance.now();
-        (function tick(now) {
-            const progress = Math.min((now - started) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            numEl.textContent = Math.round(target * eased) + suffix;
-            if (progress < 1) requestAnimationFrame(tick);
-        })(started);
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-        const touched = new Set();
-        entries
-            .filter(entry => entry.isIntersecting)
-            // порядок в документе — сверху вниз, слева направо
-            .sort((a, b) => {
-                const pos = a.target.compareDocumentPosition(b.target);
-                return (pos & Node.DOCUMENT_POSITION_PRECEDING) ? 1 : -1;
-            })
-            .forEach(entry => {
-                observer.unobserve(entry.target);
-                const group = getRevealGroup(entry.target);
-                if (!group.queue.includes(entry.target)) {
-                    group.queue.push(entry.target);
-                    touched.add(group);
-                }
-            });
-        touched.forEach(scheduleReveal);
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll(
-        'section h2, ' +
-        '.about-stat, .about-topic-card, ' +
-        '.speaker-card, .partner-logo, .contact-card, ' +
-        '.photobank-carousel, .program-item'
-    ).forEach(el => {
-        el.classList.add('animate-target');
-        observer.observe(el);
-    });
-    // ===== Карусель фотобанка на главной =====
-    // Клик по слайду ведёт в фотобанк (photos.html). Стрелки, точки и свайп листают альбомы.
-    (function () {
-        const track   = document.getElementById('carouselTrack');
-        if (!track) return;
-        const slides  = track.querySelectorAll('.photobank-slide');
-        const dotsBox = document.getElementById('carouselDots');
-        const counter = document.getElementById('carouselCounter');
-        const total   = slides.length;
-        let current   = 0;
-        let timer     = null;
-
-        slides.forEach((_, i) => {
-            const dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = 'photobank-carousel-dot';
-            dot.setAttribute('aria-label', 'Альбом ' + (i + 1) + ' из ' + total);
-            dot.addEventListener('click', () => { goTo(i); restart(); });
-            dotsBox.appendChild(dot);
-        });
-        const dots = dotsBox.querySelectorAll('.photobank-carousel-dot');
-
-        function goTo(i) {
-            current = (i + total) % total;
-            track.style.transform = 'translateX(-' + current * 100 + '%)';
-            dots.forEach((d, di) => d.classList.toggle('is-active', di === current));
-            counter.textContent = (current + 1) + ' / ' + total;
-        }
-
-        document.getElementById('carouselPrev').addEventListener('click', () => { goTo(current - 1); restart(); });
-        document.getElementById('carouselNext').addEventListener('click', () => { goTo(current + 1); restart(); });
-
-        // Автопрокрутка (пауза при наведении/фокусе и при reduced-motion)
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        function restart() {
-            clearInterval(timer);
-            if (!reduceMotion) timer = setInterval(() => goTo(current + 1), 4500);
-        }
-        const carousel = document.getElementById('photobankCarousel');
-        carousel.addEventListener('mouseenter', () => clearInterval(timer));
-        carousel.addEventListener('mouseleave', restart);
-        carousel.addEventListener('focusin',  () => clearInterval(timer));
-        carousel.addEventListener('focusout', restart);
-
-        // Свайп на телефоне
-        let touchX = null;
-        carousel.addEventListener('touchstart', (e) => { touchX = e.changedTouches[0].clientX; }, { passive: true });
-        carousel.addEventListener('touchend', (e) => {
-            if (touchX === null) return;
-            const dx = e.changedTouches[0].clientX - touchX;
-            if (Math.abs(dx) > 40) { goTo(current + (dx < 0 ? 1 : -1)); restart(); }
-            touchX = null;
-        }, { passive: true });
-
-        goTo(0);
-        restart();
-    })();
-    // ===== Плавный переход между страницами (главная <-> фотобанк) =====
-    // В браузерах с кросс-документными View Transitions анимацию делает
-    // сам браузер (см. @view-transition в style.css), здесь — запасной
-    // вариант через оверлей для остальных браузеров.
-    (function () {
-        const overlay = document.getElementById('pageTransition');
-        if (!overlay) return;
-        const nativeVT = 'onpagereveal' in window;
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // Приход на страницу по переходу: оверлей плавно уходит
-        if (sessionStorage.getItem('page-transition') === '1') {
-            sessionStorage.removeItem('page-transition');
-            if (!nativeVT && !reduceMotion) {
-                overlay.classList.add('is-cover');
-                requestAnimationFrame(() => requestAnimationFrame(() => {
-                    overlay.classList.remove('is-cover');
-                }));
-            }
-        }
-
-        if (nativeVT || reduceMotion) return;
-
-        document.querySelectorAll('a[href]').forEach(link => {
-            const url = new URL(link.getAttribute('href'), location.href);
-            const isOtherPage = url.origin === location.origin &&
-                                url.pathname !== location.pathname &&
-                                !link.hasAttribute('download');
-            if (!isOtherPage) return;
-            link.addEventListener('click', (e) => {
-                if (e.defaultPrevented || e.button !== 0 ||
-                    e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ||
-                    (link.target && link.target !== '_self')) return;
-                e.preventDefault();
-                sessionStorage.setItem('page-transition', '1');
-                overlay.classList.add('is-cover');
-                setTimeout(() => { location.href = url.href; }, 330);
-            });
-        });
-
-        // Возврат по кнопке «Назад» браузера: не оставлять закрытый оверлей
-        window.addEventListener('pageshow', () => overlay.classList.remove('is-cover'));
-    })();
-
-</script>
+<!-- Скрипты: общий каркас → анимации → логика страницы -->
+<script src="js/common.js"></script>
+<script src="js/reveal.js"></script>
+<script src="js/home.js"></script>
 
 </body>
 </html>
