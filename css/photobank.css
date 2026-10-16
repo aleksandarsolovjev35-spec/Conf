@@ -306,6 +306,11 @@
     padding-bottom: 56px;
 }
 
+/* В альбоме поднимаем содержимое ближе к шапке, не меняя отступы списка. */
+.photobank-main.album-open {
+    padding-top: 24px;
+}
+
 .album-grid { align-items: stretch; }
 
 .album-card { height: 100%; }
