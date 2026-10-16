@@ -778,14 +778,40 @@
         });
     });
 
-    // ===== Анимация появления =====
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target);
+    // ===== Анимация появления: элементы появляются строго по очереди =====
+    // Видимые элементы встают в очередь в порядке следования в документе
+    // и показываются один за другим с интервалом, а не все одновременно.
+    const REVEAL_INTERVAL = 150; // мс между появлением соседних элементов
+    const revealQueue = [];
+    let revealTimer = null;
+
+    function scheduleReveal() {
+        if (revealTimer) return;
+        revealTimer = setInterval(() => {
+            const el = revealQueue.shift();
+            if (el) el.classList.add('animate-in');
+            if (!revealQueue.length) {
+                clearInterval(revealTimer);
+                revealTimer = null;
             }
-        });
+        }, REVEAL_INTERVAL);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries
+            .filter(entry => entry.isIntersecting)
+            // порядок в документе — сверху вниз, слева направо
+            .sort((a, b) => {
+                const pos = a.target.compareDocumentPosition(b.target);
+                return (pos & Node.DOCUMENT_POSITION_PRECEDING) ? 1 : -1;
+            })
+            .forEach(entry => {
+                observer.unobserve(entry.target);
+                if (!revealQueue.includes(entry.target)) {
+                    revealQueue.push(entry.target);
+                }
+            });
+        if (revealQueue.length) scheduleReveal();
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll(

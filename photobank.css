@@ -357,3 +357,28 @@
 @media print {
     .photobank-toolbar, .photobank-back, .btn-back { display: none !important; }
 }
+
+/* Поочерёдное появление карточек (классы ставит JS фотобанка).
+   Переход включает opacity, чтобы карточки не просто сдвигались, а плавно проявлялись. */
+.album-card.animate-target {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow var(--transition);
+}
+
+.album-card.animate-target.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.album-card.animate-target.animate-in:hover {
+    transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .album-card.animate-target {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

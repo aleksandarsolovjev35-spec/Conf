@@ -339,6 +339,48 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // ===== Анимация появления: карточки появляются строго по очереди =====
+    // Та же очередь, что и на главной: элементы встают в неё в порядке
+    // документа и показываются один за другим, а не все одновременно.
+    const REVEAL_INTERVAL = 150; // мс между появлением соседних элементов
+    const revealQueue = [];
+    let revealTimer = null;
+
+    function scheduleReveal() {
+        if (revealTimer) return;
+        revealTimer = setInterval(() => {
+            const el = revealQueue.shift();
+            if (el) el.classList.add('animate-in');
+            if (!revealQueue.length) {
+                clearInterval(revealTimer);
+                revealTimer = null;
+            }
+        }, REVEAL_INTERVAL);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => {
+                const pos = a.target.compareDocumentPosition(b.target);
+                return (pos & Node.DOCUMENT_POSITION_PRECEDING) ? 1 : -1;
+            })
+            .forEach(entry => {
+                observer.unobserve(entry.target);
+                if (!revealQueue.includes(entry.target)) {
+                    revealQueue.push(entry.target);
+                }
+            });
+        if (revealQueue.length) scheduleReveal();
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll(
+        '.photobank-toolbar, .photobank-notice, .album-card'
+    ).forEach(el => {
+        el.classList.add('animate-target');
+        observer.observe(el);
+    });
+
     // ===== Поиск и фильтр альбомов =====
     const searchInput = document.getElementById('albumSearch');
     const chips       = document.querySelectorAll('.filter-chip');
