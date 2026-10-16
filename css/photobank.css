@@ -208,7 +208,9 @@
     box-shadow: var(--shadow-lg);
 }
 
-.album-card[hidden] { display: none; }
+.album-card[hidden],
+.album-grid[hidden],
+.photobank-toolbar[hidden] { display: none; }
 
 .album-cover--placeholder {
     aspect-ratio: 4 / 3;
