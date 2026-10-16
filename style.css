@@ -2850,3 +2850,76 @@ body > header > .container {
 .speakers-section {
     padding-top: 36px;
 }
+
+/* =====================================================
+   ОБЩЕЕ ВЫРАВНИВАНИЕ: симметрия и единый ритм секций
+===================================================== */
+
+/* Одинаковые отступы сверху и снизу у всех секций */
+.about-section,
+.speakers-section,
+.program-section,
+.partners-section,
+.photobank-teaser-section,
+.registration-section,
+.contacts-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+}
+
+/* Заголовок секции: всегда по центру, одинаковый отступ до контента */
+body > section h2 {
+    margin-top: 0;
+    margin-bottom: 28px;
+}
+
+/* Шапки блоков: ровный интервал после них */
+.section-header {
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+.about-hero { margin-bottom: 40px; }
+
+/* Сетки: без случайных верхних отступов, карточки одной высоты */
+.speakers-grid,
+.partners-grid,
+.contacts-grid,
+.about-topics {
+    margin-top: 0;
+    align-items: stretch;
+}
+
+.speaker-card,
+.partner-logo,
+.contact-card {
+    height: 100%;
+}
+
+/* Программа: одинаковый шаг между блоками */
+.program-block { margin-bottom: 28px; }
+.program-block:last-of-type { margin-bottom: 0; }
+
+/* Сетка партнёров: логотипы по центру ячеек */
+.partners-grid {
+    align-items: center;
+    justify-items: center;
+}
+
+/* Подвал: текст по центру */
+footer { text-align: center; }
+
+@media (max-width: 768px) {
+    .about-section,
+    .speakers-section,
+    .program-section,
+    .partners-section,
+    .photobank-teaser-section,
+    .registration-section,
+    .contacts-section {
+        padding-top: 44px;
+        padding-bottom: 44px;
+    }
+
+    body > section h2 { margin-bottom: 22px; }
+}

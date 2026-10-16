@@ -866,3 +866,19 @@ body.lightbox-open { overflow: hidden; }
 .photobank-carousel.animate-target.animate-in {
     transform: scale(1);
 }
+
+/* Общее выравнивание фотобанка: симметричные отступы и ровная сетка */
+.photobank-main {
+    padding-top: 56px;
+    padding-bottom: 56px;
+}
+
+.album-grid { align-items: stretch; }
+.album-card { height: 100%; }
+
+@media (max-width: 768px) {
+    .photobank-main {
+        padding-top: 44px;
+        padding-bottom: 44px;
+    }
+}
