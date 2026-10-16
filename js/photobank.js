@@ -5,8 +5,9 @@
    Требует common.js и reveal.js выше.
 ============================================================= */
 
-    // Появление элементов фотобанка по одному внутри секции
-    initReveal('section h2, .photobank-toolbar, .album-card');
+    // Появление элементов фотобанка по одному внутри секции.
+    // Панель поиска и фильтров (.photobank-toolbar) — без анимации, она статична.
+    initReveal('section h2, .album-card');
 
     // ===== Поиск и фильтр альбомов =====
     const searchInput = document.getElementById('albumSearch');
