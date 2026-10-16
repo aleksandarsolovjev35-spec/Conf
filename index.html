@@ -603,6 +603,54 @@
 
 
 <!-- ================================================================
+     ФОТОБАНК — ПЕРЕХОД НА ОТДЕЛЬНУЮ СТРАНИЦУ
+     Кнопка и превью ведут на photos.html.
+     Миниатюры — заглушки: после конференции их можно заменить
+     на настоящие фото (<img src="images/photobank/...">).
+================================================================ -->
+<section class="photobank-teaser-section" id="photobank" aria-labelledby="photobank-heading">
+    <div class="container">
+        <div class="photobank-teaser">
+
+            <div class="photobank-teaser-text">
+                <div class="section-tag">Фото</div>
+                <h2 id="photobank-heading">Фотобанк конференции</h2>
+                <p>
+                    Все фотографии мероприятия — открытие, доклады, стендовая сессия
+                    и общение участников — мы соберём в отдельном фотобанке.
+                    Фото появятся после конференции, 17 декабря 2025 года.
+                </p>
+                <a href="photos.html" class="btn btn-primary photobank-teaser-btn">
+                    Перейти в фотобанк
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </a>
+            </div>
+
+            <a href="photos.html" class="photobank-teaser-preview" aria-label="Перейти в фотобанк конференции">
+                <span class="photobank-teaser-tile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </span>
+                <span class="photobank-teaser-tile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </span>
+                <span class="photobank-teaser-tile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </span>
+                <span class="photobank-teaser-tile photobank-teaser-tile--more">
+                    <strong>6 альбомов</strong>
+                    <small>Смотреть все →</small>
+                </span>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
      РЕГИСТРАЦИЯ
      Встроенная форма Битрикс24 (inline/126/jm15vu, bo.miet.ru)
 ================================================================ -->
@@ -817,7 +865,7 @@
     document.querySelectorAll(
         '.about-stat, .about-topic-card, ' +
         '.speaker-card, .partner-logo, .contact-card, ' +
-        '.program-item'
+        '.photobank-teaser-tile, .program-item'
     ).forEach(el => {
         el.classList.add('animate-target');
         observer.observe(el);

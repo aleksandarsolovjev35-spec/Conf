@@ -2458,3 +2458,105 @@ footer {
     .nav-links { gap: 20px; }
     .nav-links a { font-size: 0.9rem; }
 }
+
+/* =====================================================
+   ФОТОБАНК — БЛОК-ПЕРЕХОД НА ГЛАВНОЙ (ведёт на photos.html)
+===================================================== */
+.photobank-teaser-section {
+    background: var(--light-gray);
+}
+
+.photobank-teaser {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 48px;
+}
+
+.photobank-teaser-text h2 {
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.photobank-teaser-text p {
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+.photobank-teaser-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.photobank-teaser-btn svg {
+    width: 19px;
+    height: 19px;
+    transition: transform var(--transition);
+}
+
+.photobank-teaser-btn:hover svg { transform: translateX(4px); }
+
+.photobank-teaser-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    text-decoration: none;
+}
+
+.photobank-teaser-tile {
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--blue-light) 0%, #cfdefc 100%);
+    color: var(--blue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.photobank-teaser-tile svg {
+    width: 40px;
+    height: 40px;
+    opacity: 0.55;
+}
+
+.photobank-teaser-preview:hover .photobank-teaser-tile {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.photobank-teaser-tile--more {
+    background: linear-gradient(135deg, var(--blue) 0%, #1a5cff 100%);
+    color: white;
+    text-align: center;
+    padding: 12px;
+}
+
+.photobank-teaser-tile--more strong {
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.photobank-teaser-tile--more small {
+    font-size: 0.88rem;
+    opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+    .photobank-teaser {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 32px 24px;
+    }
+
+    .photobank-teaser-text h2 { text-align: center; }
+    .photobank-teaser-text { text-align: center; }
+}
