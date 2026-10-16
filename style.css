@@ -546,52 +546,6 @@ h2 {
     color: var(--text-light);
     line-height: 1.6;
 }
-
-/* Преимущества */
-.about-benefits {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    background: linear-gradient(135deg, var(--blue) 0%, #1a5cff 100%);
-    border-radius: 16px;
-    padding: 36px 32px;
-    color: white;
-}
-
-.about-benefit {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.about-benefit-icon {
-    flex-shrink: 0;
-    width: 48px; height: 48px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.about-benefit-icon svg {
-    width: 22px; height: 22px;
-    color: white;
-}
-
-.about-benefit strong {
-    display: block;
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 2px;
-}
-
-.about-benefit span {
-    font-size: 0.82rem;
-    opacity: 0.8;
-    line-height: 1.4;
-}
-
 /* =====================================================
    СПИКЕРЫ
 ===================================================== */
@@ -1085,11 +1039,6 @@ footer {
     .about-topics {
         grid-template-columns: repeat(2, 1fr);
     }
-
-    .about-benefits {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-    }
 }
 
 /* =====================================================
@@ -1161,13 +1110,6 @@ footer {
         margin-right: auto;
         margin-bottom: 40px;
     }
-
-    .about-benefits {
-        grid-template-columns: 1fr;
-        padding: 28px 24px;
-        gap: 20px;
-    }
-
     /* Спикеры */
     .speakers-grid {
         grid-template-columns: 1fr;
@@ -1271,7 +1213,6 @@ footer {
         border: 1px solid #ccc;
     }
 
-    .about-benefits { background: #f0f0f0; color: black; }
     .program-item   { transform: none !important; }
 
     .program-item--break   { background: #fff9e6; }
@@ -1825,52 +1766,6 @@ h2 {
     color: var(--text-light);
     line-height: 1.6;
 }
-
-/* Преимущества */
-.about-benefits {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    background: linear-gradient(135deg, var(--blue) 0%, #1a5cff 100%);
-    border-radius: 16px;
-    padding: 36px 32px;
-    color: white;
-}
-
-.about-benefit {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.about-benefit-icon {
-    flex-shrink: 0;
-    width: 48px; height: 48px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.about-benefit-icon svg {
-    width: 22px; height: 22px;
-    color: white;
-}
-
-.about-benefit strong {
-    display: block;
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 2px;
-}
-
-.about-benefit span {
-    font-size: 0.82rem;
-    opacity: 0.8;
-    line-height: 1.4;
-}
-
 /* =====================================================
    СПИКЕРЫ
 ===================================================== */
@@ -2364,11 +2259,6 @@ footer {
     .about-topics {
         grid-template-columns: repeat(2, 1fr);
     }
-
-    .about-benefits {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-    }
 }
 
 /* =====================================================
@@ -2440,13 +2330,6 @@ footer {
         margin-right: auto;
         margin-bottom: 40px;
     }
-
-    .about-benefits {
-        grid-template-columns: 1fr;
-        padding: 28px 24px;
-        gap: 20px;
-    }
-
     /* Спикеры */
     .speakers-grid {
         grid-template-columns: 1fr;
@@ -2550,7 +2433,6 @@ footer {
         border: 1px solid #ccc;
     }
 
-    .about-benefits { background: #f0f0f0; color: black; }
     .program-item   { transform: none !important; }
 
     .program-item--break   { background: #fff9e6; }
