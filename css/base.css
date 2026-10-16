@@ -1,0 +1,209 @@
+/* =============================================================
+   BASE — база сайта: переменные, сброс, типографика, контейнер,
+   общие секции и кнопки. Подключается первым на обеих страницах.
+============================================================= */
+
+:root {
+    --blue:       #0f45c7;
+    --blue-dark:  #0a2f8a;
+    --blue-light: #e8efff;
+    --white:      #ffffff;
+    --light-gray: #f7f8fc;
+    --gray:       #e5e7eb;
+    --text:       #1f2937;
+    --text-light: #6b7280;
+    --shadow:     0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-lg:  0 8px 40px rgba(0, 0, 0, 0.12);
+    --radius:     12px;
+    --transition: 0.3s ease;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: var(--blue);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover { color: var(--blue-dark); }
+
+a:focus-visible {
+    outline: 3px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 36px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    border: 2px solid transparent;
+    text-decoration: none;
+}
+
+.btn:hover          { text-decoration: none; transform: translateY(-2px); }
+
+.btn:focus-visible  { outline: 3px solid white; outline-offset: 3px; }
+
+.btn:active         { transform: translateY(0); }
+
+.btn-primary {
+    background: white;
+    color: var(--blue);
+    border-color: white;
+}
+
+.btn-primary:hover {
+    background: var(--blue-light);
+    border-color: var(--blue-light);
+    color: var(--blue-dark);
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.25);
+}
+
+.btn-outline {
+    background: transparent;
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    color: white;
+}
+
+.btn-primary-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    padding: 14px 36px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    border: 2px solid var(--blue);
+    background: var(--blue);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-primary-dark:hover {
+    background: var(--blue-dark);
+    border-color: var(--blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(15, 69, 199, 0.3);
+    color: white;
+}
+
+.btn-primary-dark:focus-visible {
+    outline: 3px solid var(--blue);
+    outline-offset: 3px;
+}
+
+section { padding: 90px 0; }
+
+section:nth-of-type(even) { background: var(--light-gray); }
+
+h2 {
+    text-align: center;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--text);
+    letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-tag {
+    display: inline-block;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 6px 18px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+}
+
+.section-header h2 { margin-bottom: 12px; }
+
+body > section,
+body > header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body > section > .container,
+body > header > .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body > section h2 {
+    margin-top: 0;
+    margin-bottom: 28px;
+}
+
+.section-header {
+    margin-bottom: 36px;
+    text-align: center;
+}

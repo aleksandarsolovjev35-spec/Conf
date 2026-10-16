@@ -1,0 +1,245 @@
+/* =============================================================
+   HEADER — каркас страницы: навигация, главный экран (hero),
+   подвал и кнопка «наверх». Обе страницы.
+============================================================= */
+
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: transparent;
+    padding: 16px 0;
+    transition: all var(--transition);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    padding: 10px 0;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+    transition: color var(--transition);
+    text-decoration: none;
+}
+
+.nav-logo:hover           { color: white; text-decoration: none; }
+
+.navbar.scrolled .nav-logo       { color: var(--blue); }
+
+.navbar.scrolled .nav-logo:hover { color: var(--blue-dark); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color var(--transition);
+    position: relative;
+    text-decoration: none;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 2px;
+    background: currentColor;
+    transition: width var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after { width: 100%; }
+
+.nav-links a:hover                    { color: white; }
+
+.navbar.scrolled .nav-links a         { color: var(--text); }
+
+.navbar.scrolled .nav-links a:hover   { color: var(--blue); }
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 5px;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    width: 24px; height: 2px;
+    background: white;
+    transition: all var(--transition);
+    border-radius: 2px;
+}
+
+.navbar.scrolled .nav-toggle span { background: var(--text); }
+
+#hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a1628 0%, #0f45c7 50%, #1a5cff 100%);
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(30, 100, 255, 0.3) 0%, transparent 70%),
+        radial-gradient(ellipse at 80% 20%, rgba(100, 150, 255, 0.2) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    padding: 120px 24px 80px;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+#hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    opacity: 0.9;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-details {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.hero-detail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.15rem;
+    opacity: 0.9;
+}
+
+.hero-detail-icon {
+    width: 22px; height: 22px;
+    flex-shrink: 0;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+footer {
+    background: #0a1628;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9rem;
+}
+
+.scroll-top {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all var(--transition);
+    box-shadow: 0 4px 16px rgba(15, 69, 199, 0.4);
+    z-index: 999;
+}
+
+.scroll-top svg { width: 20px; height: 20px; }
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top:hover {
+    background: var(--blue-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(15, 69, 199, 0.5);
+}
+
+.scroll-top:focus-visible {
+    outline: 3px solid var(--blue-light);
+    outline-offset: 3px;
+}
+
+footer { text-align: center; }
+
+.nav-links a.nav-link-active {
+    color: white;
+    font-weight: 700;
+}
+
+.navbar.scrolled .nav-links a.nav-link-active {
+    color: var(--blue);
+}
+
+.nav-links a.nav-link-active::after {
+    width: 100%;
+}
