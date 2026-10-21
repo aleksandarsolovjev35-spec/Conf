@@ -8,18 +8,23 @@ test.beforeEach(async ({ page }) => {
     });
 });
 
-// Актуальность года: на обеих страницах не должно остаться прошлогодних дат.
+test('главная: в заголовке указан год текущей конференции', async ({ page }) => {
+    await page.goto('/index.html');
+    const html = await page.content();
+    expect(html).not.toContain('2025');
+    await expect(page).toHaveTitle(/III.*2026/);
+});
+
+test('фотобанк: описание относится к архиву прошлых конференций', async ({ page }) => {
+    await page.goto('/photos.html');
+    await expect(page).toHaveTitle(/Фотоархив прошлых конференций НМСТ/);
+    await expect(page.locator('.photobank-subtitle')).toContainText('прошлых конференций');
+    await expect(page.locator('.photobank-meta')).toContainText('Архив предыдущих конференций');
+    await expect(page.locator('.photobank-meta')).not.toContainText('17 декабря');
+    await expect(page.locator('.album-card time')).toHaveCount(0);
+});
+
 for (const file of ['index.html', 'photos.html']) {
-    test(`${file}: нет устаревших дат и верного года в заголовке`, async ({ page }) => {
-        await page.goto(`/${file}`);
-        const html = await page.content();
-        expect(html).not.toContain('2025');
-
-        const title = await page.title();
-        expect(title).toContain('2026');
-        expect(title).toContain('III');
-    });
-
     test(`${file}: блокируется обычное копирование изображений`, async ({ page }) => {
         await page.goto(`/${file}`);
         const image = page.locator('img').first();
@@ -108,6 +113,12 @@ test('главная: тематические направления из об�
     await expect(page.locator('.about-topic-card').nth(0)).toContainText('подложек и корпусов');
 });
 
+test('партнёры: поясняющая надпись про официальные логотипы удалена', async ({ page }) => {
+    await page.goto('/index.html');
+    await expect(page.locator('.partners-section .section-subtitle')).toHaveCount(0);
+    await expect(page.locator('#partners')).not.toContainText('Официальные логотипы организаций-партнёров конференции.');
+});
+
 test('главная: партнёры разбиты на категории, в два столбца и ведут на официальные сайты', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto('/index.html');
@@ -166,6 +177,16 @@ test('главная: блоки «Видео» и «Публикации» на
     await expect(page.locator('#video')).toHaveCount(1);
     await expect(page.locator('#publications')).toHaveCount(1);
     await expect(page.locator('.publication-card')).toHaveCount(3);
+});
+
+test('фотобанк: карусель описывает фотоархив прошлых конференций', async ({ page }) => {
+    await page.goto('/index.html');
+    const teaser = page.locator('#photobank');
+    await expect(teaser).toContainText('прошлых конференций НМСТ');
+    await expect(teaser).not.toContainText('после конференции');
+    await expect(teaser).not.toContainText('17 декабря');
+    await expect(teaser.locator('.photobank-slide')).toHaveCount(6);
+    await expect(teaser.locator('.photobank-slide-badge')).toHaveText(Array(6).fill('Архив'));
 });
 
 test('видео: анонс длится минуту и рассказывает о конференции этого года', async ({ page }) => {
