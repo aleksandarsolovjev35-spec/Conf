@@ -263,6 +263,7 @@ test('регистрация: надпись-секция формы скрыв�
     });
     await page.waitForTimeout(300);
 
+    // Скрывается и стилями, и скриптом — проверяем оба слоя
     await expect(page.locator('#layoutSection')).toBeHidden();
     expect(await page.locator('#layoutSection').evaluate(el => el.getBoundingClientRect().height)).toBe(0);
     // Заголовок раздела на месте
