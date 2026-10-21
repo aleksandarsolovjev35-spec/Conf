@@ -1,5 +1,9 @@
 /* =============================================================
-   REGISTRATION — секция «Регистрация» и форма Битрикс24 на главной.
+   REGISTRATION — секция «Регистрация» и встроенная форма
+   Битрикс24 на главной странице.
+   Содержимое блока минимально: заголовок, короткая подпись и форма.
+   Заголовок, который форма рисует сама, перекрывается нашим
+   (js/registration.js), поэтому шаблон Битрикс24 менять не нужно.
 ============================================================= */
 
 .registration-section {
@@ -8,81 +12,23 @@
 }
 
 .reg-content {
-    max-width: 640px;
+    max-width: 760px;
     margin: 0 auto;
     text-align: center;
 }
 
 .registration-section h2 {
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
-.reg-text {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 40px;
+/* Подпись под заголовком — на тёмном фоне, поэтому свой цвет */
+.registration-section .reg-subtitle {
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 36px;
 }
 
-.reg-features {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    flex-wrap: wrap;
-    margin-bottom: 44px;
-}
-
-.reg-feature {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.reg-feature-icon {
-    width: 20px; height: 20px;
-    flex-shrink: 0;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.reg-note {
-    margin-top: 20px;
-    font-size: 0.88rem;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.reg-content {
-    max-width: 760px;
-}
-
-/* Информация о регистрации и кофе-брейке (п. 10) */
-.reg-info {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px 28px;
-    margin: 0 0 32px;
-    padding: 0;
-}
-
-.reg-info li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.88);
-    text-align: left;
-}
-
-.reg-info svg {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    color: rgba(255, 255, 255, 0.75);
-}
+/* ---------- Белая карточка с формой ---------- */
 
 .reg-form {
     background: white;
@@ -90,7 +36,19 @@
     padding: 32px 28px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
     text-align: left;
+    color: var(--text);
 }
+
+.reg-form iframe { max-width: 100%; }
+
+/* Проверка единообразия: наш заголовок и заголовок, который рисует
+   форма, не должны стоять одновременно. */
+.reg-form--title-replaced .b24-form-header { display: none !important; }
+
+/* ---------- Собственный заголовок формы (Bitrix24) ----------
+   Форма приходит со своим заголовком («Регистрация на конференцию
+   Micropack»). Скрываем его разными способами, чтобы не зависеть
+   от версии шаблона: по известным классам и по общим признакам. */
 
 .reg-form .b24-form-header,
 .reg-form .b24-form-header-title,
@@ -99,11 +57,26 @@
     display: none !important;
 }
 
-.registration-section,
-.program-section,
-.speakers-section {
-    padding-top: 36px;
+/* Только шапка формы: [class*="form-title"] трогать нельзя —
+   под этот признак попадают подписи полей. */
+.reg-form [class*="b24-form-header"],
+.reg-form [class*="form-header"] {
+    display: none !important;
 }
+
+/* Элемент, который нашёл js/registration.js по тексту заголовка */
+.reg-form [data-nmst-covered] {
+    display: none !important;
+}
+
+/* Первый блок формы не должен «прилипать» к краю карточки,
+   когда собственный заголовок скрыт. */
+.reg-form .b24-form-content > :first-child,
+.reg-form > .b24-form > .b24-form-content > :first-child {
+    margin-top: 0;
+}
+
+/* ---------- Кнопка (на случай кастомной формы) ---------- */
 
 .btn-reg {
     display: inline-flex;

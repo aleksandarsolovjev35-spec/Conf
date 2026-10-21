@@ -81,7 +81,7 @@
     <link rel="stylesheet" href="css/program.css?v=2">
     <link rel="stylesheet" href="css/partners.css?v=3">
     <link rel="stylesheet" href="css/photobank-teaser.css?v=1">
-    <link rel="stylesheet" href="css/registration.css?v=2">
+    <link rel="stylesheet" href="css/registration.css?v=3">
     <link rel="stylesheet" href="css/contacts.css?v=2">
     <link rel="stylesheet" href="css/media.css?v=1">
     <link rel="stylesheet" href="css/animations.css?v=2">
@@ -1179,8 +1179,9 @@
 <!-- ================================================================
      РЕГИСТРАЦИЯ
      Встроенная форма Битрикс24 (inline/126/jm15vu, bo.miet.ru).
-     Заголовок формы внутри сервиса («… Микропак») скрыт стилями
-     в css/registration.css (п. 13).
+     Собственный заголовок формы («… Микропак») не правится в шаблоне:
+     его перекрывает наш заголовок раздела — см. js/registration.js
+     и правила скрытия в css/registration.css (п. 13).
      TODO: добавить в форму Битрикс24 необязательный вопрос о ДПО —
      правится в личном кабинете bo.miet.ru, не в этом файле.
 ================================================================ -->
@@ -1188,35 +1189,21 @@
     <div class="container">
 
         <div class="reg-content">
-            <h2 id="reg-heading">Регистрация на конференцию</h2>
 
-            <p class="reg-text">
-                Участие в конференции бесплатное, но требует предварительной регистрации.
-                Регистрация открыта с 09:00 17 декабря 2026 года — в это время работает
-                приветственный кофе-брейк.
-            </p>
-
-            <ul class="reg-info">
-                <li>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
-                    Регистрация: 09:00–09:30, фойе, 1 этаж
-                </li>
-                <li>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                    Участие бесплатное
-                </li>
-                <li>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    В форме можно отметить желание пройти программу ДПО — поле необязательное
-                </li>
-            </ul>
+            <div class="section-header">
+                <div class="section-tag">Участие</div>
+                <h2 id="reg-heading">Регистрация на конференцию</h2>
+                <p class="section-subtitle reg-subtitle">Участие бесплатное</p>
+            </div>
 
             <!--
                 ФОРМА РЕГИСТРАЦИИ БИТРИКС24
                 Встроенная форма inline/126/jm15vu (bo.miet.ru).
                 Чтобы заменить форму — вставьте сюда новый скрипт из Битрикс24.
+                Заголовок, который форма рисует сама, перекрывается нашим:
+                js/registration.js находит его по тексту и убирает.
             -->
-            <div class="reg-form">
+            <div class="reg-form" id="regForm">
                 <script data-b24-form="inline/126/jm15vu" data-skip-moving="true">(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})(window,document,'https://bo.miet.ru/upload/crm/form/loader_126_jm15vu.js');</script>
             </div>
 
@@ -1342,6 +1329,7 @@
 <script src="js/reveal.js?v=2"></script>
 <script src="js/home.js?v=3"></script>
 <script src="js/video.js?v=1"></script>
+<script src="js/registration.js?v=1"></script>
 
 </body>
 </html>

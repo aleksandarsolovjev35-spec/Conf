@@ -166,3 +166,96 @@ test('меню: текущий раздел подсвечивается при 
     await page.waitForTimeout(600);
     await expect(page.locator('.nav-links a[href="#program"]')).toHaveClass(/nav-link-active/);
 });
+
+// Разметка, которую рисует встроенная форма Битрикс24 (упрощённо).
+const BITRIX_FORM = `
+<div class="b24-form">
+    <div class="b24-form-header">
+        <div class="b24-form-header-title">Регистрация на конференцию Micropack</div>
+    </div>
+    <div class="b24-form-content">
+        <div class="b24-form-field">
+            <label class="b24-form-control-label" for="f-name">Фамилия *</label>
+            <input id="f-name" type="text">
+        </div>
+        <div class="b24-form-field">
+            <label class="b24-form-control-label" for="f-mail">E-mail *</label>
+            <input id="f-mail" type="email">
+        </div>
+        <button type="submit" class="b24-form-btn">Отправить</button>
+    </div>
+</div>`;
+
+test('регистрация: заголовок встроенной формы перекрыт нашим', async ({ page }) => {
+    await page.goto('/index.html');
+
+    // Форма подгружается после загрузки страницы — имитируем это
+    await page.evaluate(html => {
+        document.getElementById('regForm').insertAdjacentHTML('beforeend', html);
+    }, BITRIX_FORM);
+    await page.waitForTimeout(300);
+
+    // Заголовок формы скрыт, остался только наш
+    await expect(page.locator('.b24-form-header')).toBeHidden();
+    await expect(page.locator('#reg-heading')).toBeVisible();
+    await expect(page.locator('#reg-heading')).toHaveText('Регистрация на конференцию');
+    expect(await page.getByText('Micropack').count()).toBeGreaterThan(0);
+    await expect(page.getByText('Micropack')).toBeHidden();
+
+    // Поля и кнопка при этом на месте и доступны
+    await expect(page.locator('#f-name')).toBeVisible();
+    await expect(page.locator('#f-mail')).toBeVisible();
+    await expect(page.locator('.b24-form-btn')).toBeVisible();
+    await expect(page.locator('#regForm')).toHaveClass(/reg-form--title-replaced/);
+});
+
+test('регистрация: в блоке нет дублирующей информации', async ({ page }) => {
+    await page.goto('/index.html');
+    const section = page.locator('#registration');
+    await expect(section.locator('h2')).toHaveCount(1);
+    await expect(section.locator('.reg-text, .reg-info, .reg-features')).toHaveCount(0);
+    await expect(section).not.toContainText('09:00–09:30');
+    await expect(section).not.toContainText('ДПО');
+    // Время и место регистрации остаются в программе
+    await expect(page.locator('#program')).toContainText('кофе');
+});
+
+test('регистрация: заголовок формы закрывается и без известных классов', async ({ page }) => {
+    await page.goto('/index.html');
+    // Форма с произвольной разметкой: CSS-правила её не ловят, работает только JS
+    await page.evaluate(() => {
+        document.getElementById('regForm').insertAdjacentHTML('beforeend', `
+            <div class="crm-wrap">
+                <div class="crm-head"><h3>Регистрация на конференцию Micropack</h3></div>
+                <div class="crm-body">
+                    <label>Фамилия *<input type="text" id="crm-name"></label>
+                    <label>E-mail *<input type="email" id="crm-mail"></label>
+                    <button type="submit">Отправить</button>
+                </div>
+            </div>`);
+    });
+    await page.waitForTimeout(300);
+
+    const title = page.locator('.crm-head h3');
+    await expect(title).toBeHidden();
+    expect(await title.evaluate(el => el.getBoundingClientRect().height)).toBe(0);
+    // Обёртка заголовка скрыта целиком — лишних отступов не остаётся
+    await expect(page.locator('.crm-head')).toBeHidden();
+    // Поля на месте
+    await expect(page.locator('#crm-name')).toBeVisible();
+    await expect(page.locator('#crm-mail')).toBeVisible();
+});
+
+test('регистрация: наш заголовок внутри карточки не пострадал', async ({ page }) => {
+    await page.goto('/index.html');
+    await page.evaluate(() => {
+        document.getElementById('regForm').insertAdjacentHTML('beforeend', `
+            <div class="b24-form"><div class="b24-form-header">
+                <div class="b24-form-header-title">Регистрация на конференцию Micropack</div>
+            </div><input type="text" id="f1"></div>`);
+    });
+    await page.waitForTimeout(300);
+    // Заголовок раздела (вне формы) остаётся видимым
+    await expect(page.locator('.reg-content .section-header')).toBeVisible();
+    await expect(page.locator('#reg-heading')).toBeVisible();
+});
