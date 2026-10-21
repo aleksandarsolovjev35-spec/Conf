@@ -5,7 +5,7 @@
 
 | Файл | Организация | Откуда взят |
 |---|---|---|
-| `zntc.png` | АО «ЗНТЦ» | профиль компании, [zntc.ru](https://zntc.ru/) |
+| `zntc.png` | АО «ЗНТЦ» | Файл пользователя `logo.png` (21.10.2026), 428×108 px, прозрачный фон |
 | `sovtest-ate.png` | ООО «Совтест АТЕ» | каталог выставки CEMAT Russia |
 | `t1.png` | Т1 Интеграция | профиль компании на career.habr.com |
 | `eremex.png` | ЭРЕМЕКС | [официальная страница логотипов](https://www.eremex.ru/about/logos/) |
@@ -26,12 +26,14 @@
 2. В `index.html` в блоке `#partners` добавить карточку:
 
 ```html
-<div class="partner-logo">
+<a class="partner-logo" href="https://example.org/" target="_blank" rel="noopener noreferrer">
     <img src="images/logos/partners/имя-файла.png" alt="Название организации"
          width="640" height="210" loading="lazy">
-</div>
+</a>
 ```
 
+В `href` укажите официальный сайт партнёра; карточка откроется в новой
+вкладке, а `rel="noopener noreferrer"` ограничит доступ к исходной странице.
 `alt` обязателен: для логотипа это единственное текстовое представление
 названия. Логотипы в карточках спикеров (`#speakers`) добавляются так же —
 `<img>` внутрь `.speaker-brand`, название остаётся в `.speaker-name`

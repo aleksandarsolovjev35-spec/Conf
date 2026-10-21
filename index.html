@@ -864,8 +864,8 @@
         <div class="partners-tier">
             <h3 class="partners-tier-title">Стратегический партнёр</h3>
             <a class="partner-strategic" href="https://zntc.ru/" target="_blank" rel="noopener noreferrer">
-                <img src="images/logos/partners/zntc.png" alt="АО «ЗНТЦ» — Зеленоградский нанотехнологический центр"
-                     width="242" height="64" loading="lazy">
+                <img src="images/logos/partners/zntc.png?v=2" alt="АО «ЗНТЦ» — Зеленоградский нанотехнологический центр"
+                     width="428" height="108" loading="lazy">
             </a>
         </div>
 
@@ -1030,7 +1030,7 @@
      Телефон и e-mail всегда в одном блоке, отдельными строками.
      Карточка без данных помечается классом contact-card--pending.
      Здесь же — полный адрес места проведения.
-     TODO: заполнить контакты по партнёрству и информационному партнёрству.
+     TODO: добавить телефон и e-mail Тимошенкова С. П., когда их предоставят.
 ================================================================ -->
 <section class="contacts-section" id="contacts" aria-labelledby="contacts-heading">
     <div class="container">
@@ -1042,8 +1042,8 @@
 
         <div class="contacts-grid">
 
-            <!-- ===== НАЧАЛО КАРТОЧКИ КОНТАКТА ===== -->
-            <article class="contact-card">
+            <!-- ===== ПРЕДСЕДАТЕЛЬ ОРГКОМИТЕТА ===== -->
+            <article class="contact-card contact-card--pending">
                 <div class="contact-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -1051,8 +1051,21 @@
                     </svg>
                 </div>
                 <h3>Председатель оргкомитета</h3>
+                <p class="contact-name">Тимошенков Сергей Петрович</p>
+                <p class="contact-pending">Контакт уточняется</p>
+            </article>
+
+            <!-- ===== ПРЕДСЕДАТЕЛЬ ПРОГРАММНОГО КОМИТЕТА ===== -->
+            <article class="contact-card">
+                <div class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <h3>Председатель программного комитета</h3>
                 <p class="contact-name">Вертянов Денис Васильевич</p>
-                <p class="contact-note">Кандидат технических наук · регистрация, доклады и общие вопросы</p>
+                <p class="contact-note">Кандидат технических наук</p>
                 <ul class="contact-links">
                     <li>
                         <a href="mailto:vdv.vertyanov@yandex.ru">
@@ -1065,9 +1078,8 @@
                     </li>
                 </ul>
             </article>
-            <!-- ===== КОНЕЦ КАРТОЧКИ КОНТАКТА ===== -->
 
-            <!-- ===== НАЧАЛО КАРТОЧКИ КОНТАКТА ===== -->
+            <!-- ===== КООРДИНАТОР МЕРОПРИЯТИЯ ===== -->
             <article class="contact-card">
                 <div class="contact-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1075,7 +1087,7 @@
                         <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
                     </svg>
                 </div>
-                <h3>По вопросам работы с делегатами и спонсорами</h3>
+                <h3>Координатор мероприятия</h3>
                 <p class="contact-name">Косолапова Галина Викторовна</p>
                 <ul class="contact-links">
                     <li>
@@ -1097,20 +1109,6 @@
                     </li>
                 </ul>
             </article>
-            <!-- ===== КОНЕЦ КАРТОЧКИ КОНТАКТА ===== -->
-
-            <!-- ===== НАЧАЛО КАРТОЧКИ КОНТАКТА ===== -->
-            <article class="contact-card contact-card--pending">
-                <div class="contact-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 11l18-5v12L3 14v-3z"/>
-                        <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
-                    </svg>
-                </div>
-                <h3>Информационное партнёрство</h3>
-                <p class="contact-pending">Контакт уточняется</p>
-            </article>
-            <!-- ===== КОНЕЦ КАРТОЧКИ КОНТАКТА ===== -->
 
             <!-- Место проведения: полный адрес (п. 3) -->
             <div class="venue">
