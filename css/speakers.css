@@ -224,3 +224,44 @@
 .contact-card {
     height: 100%;
 }
+
+/* Вся карточка — ссылка на официальный сайт организации */
+.speaker-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.speaker-link:focus-visible {
+    outline: 3px solid var(--blue);
+    outline-offset: 6px;
+    border-radius: 8px;
+}
+
+.speaker-card--org:has(.speaker-link:hover) {
+    border-top-color: var(--blue-dark);
+    box-shadow: var(--shadow-lg);
+}
+
+.speaker-link:hover .speaker-name { color: var(--blue); }
+
+/* Ненавязчивый указатель, что карточка ведёт на внешний сайт */
+.speaker-link::after {
+    content: '↗';
+    margin-left: auto;
+    align-self: flex-start;
+    font-size: 0.85rem;
+    line-height: 1;
+    color: var(--text-light);
+    opacity: 0.45;
+    transition: opacity var(--transition), color var(--transition);
+}
+
+.speaker-link:hover::after {
+    opacity: 1;
+    color: var(--blue);
+}
