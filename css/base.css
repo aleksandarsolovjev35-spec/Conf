@@ -29,6 +29,18 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
+/* Единая точка приземления для якорей под фиксированной шапкой.
+   Работает и при переходе с photos.html на index.html#раздел. */
+#hero,
+#about,
+#speakers,
+#program,
+#partners,
+#registration,
+#contacts {
+    scroll-margin-top: 72px;
+}
+
 body {
     font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     color: var(--text);

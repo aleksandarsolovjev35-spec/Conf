@@ -8,6 +8,14 @@ test.beforeEach(async ({ page }) => {
     });
 });
 
+async function expectTargetAlignedBelowNavbar(page, selector) {
+    await expect.poll(async () => page.locator(selector).evaluate(target => {
+        const navbar = document.getElementById('navbar');
+        const gap = target.getBoundingClientRect().top - navbar.getBoundingClientRect().bottom;
+        return gap >= 0 && gap <= 20;
+    }), { timeout: 5000 }).toBe(true);
+}
+
 test('главная: в заголовке указан год текущей конференции', async ({ page }) => {
     await page.goto('/index.html');
     const html = await page.content();
@@ -456,6 +464,19 @@ test('видео: превью без ссылки не притворяется
     await expect(page.locator('#videoHint')).toContainText('появится');
     // iframe не подгружается до клика
     await expect(page.locator('.video-teaser iframe')).toHaveCount(0);
+});
+
+test('фотобанк: переход к разделу главной точно учитывает фиксированную шапку', async ({ page }) => {
+    await page.goto('/photos.html');
+    await page.locator('a[href="index.html#program"]').click();
+    await expect(page).toHaveURL(/\/index\.html#program$/);
+    await expectTargetAlignedBelowNavbar(page, '#program');
+});
+
+test('главная: якорная прокрутка не смещает раздел ниже нужной позиции', async ({ page }) => {
+    await page.goto('/index.html');
+    await page.locator('.nav-links a[href="#program"]').click();
+    await expectTargetAlignedBelowNavbar(page, '#program');
 });
 
 test('меню: текущий раздел подсвечивается при прокрутке', async ({ page }) => {
