@@ -146,6 +146,9 @@ test('контакты: единый шаблон карточки', async ({ pa
         expect(await card.locator('.contact-icon').evaluate(el => el.compareDocumentPosition(el.closest('.contact-card').querySelector('h3')) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
     }
     await expect(page.locator('.contacts-grid')).not.toContainText('Кандидат технических наук');
+    await expect(cards.nth(0).locator('.contact-icon')).toHaveClass(/contact-icon--committee/);
+    await expect(cards.nth(1).locator('.contact-icon')).toHaveClass(/contact-icon--program/);
+    await expect(cards.nth(2).locator('.contact-icon')).toHaveClass(/contact-icon--coordinator/);
 
     // Председатель оргкомитета — Тимошенков С. П.; контакты ещё не предоставлены
     const organizer = cards.nth(0);
