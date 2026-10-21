@@ -233,6 +233,16 @@
     opacity: 0.95;
 }
 
+/* Логотипы подразделений: официальные файлы, белые на прозрачном.
+   Высота меньше, чем у МИЭТ — МИЭТ остаётся главным. */
+.hero-logo-mark {
+    height: 46px;
+    width: auto;
+    opacity: 0.92;
+}
+
+.hero-logo-mark--wide { height: 40px; }
+
 .hero-logo-text {
     display: flex;
     flex-direction: column;

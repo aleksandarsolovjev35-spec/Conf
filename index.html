@@ -75,17 +75,17 @@
     <!-- Стили: модули по ответственности (см. README.md)
          base → каркас → секции главной → фотобанк-тизер → анимации → адаптив -->
     <link rel="stylesheet" href="css/base.css?v=4">
-    <link rel="stylesheet" href="css/header.css?v=4">
+    <link rel="stylesheet" href="css/header.css?v=3">
     <link rel="stylesheet" href="css/about.css?v=3">
     <link rel="stylesheet" href="css/speakers.css?v=5">
-    <link rel="stylesheet" href="css/program.css?v=2">
+    <link rel="stylesheet" href="css/program.css?v=3">
     <link rel="stylesheet" href="css/partners.css?v=5">
     <link rel="stylesheet" href="css/photobank-teaser.css?v=1">
     <link rel="stylesheet" href="css/registration.css?v=4">
     <link rel="stylesheet" href="css/contacts.css?v=3">
     <link rel="stylesheet" href="css/media.css?v=1">
     <link rel="stylesheet" href="css/animations.css?v=2">
-    <link rel="stylesheet" href="css/responsive.css?v=3">
+    <link rel="stylesheet" href="css/responsive.css?v=4">
 
     <!-- Без JS контент должен оставаться видимым: анимации появления
          включаются только при наличии класса .js -->
@@ -183,19 +183,16 @@
         <!--
             ЛОГОТИПЫ ОРГАНИЗАТОРОВ (п. 5): МИЭТ — крупнее, логотипы
             подразделений — мельче.
-            TODO: заменить текстовые начертания НМСТ и НИЛ ТКПМ на
-            официальные файлы (SVG) в images/logos/, когда будут получены.
+            Официальные файлы: images/logos/nmst.png, images/logos/nil-tkpm.png.
+            Логотипы белые на прозрачном — рассчитаны на тёмный фон шапки.
         -->
         <div class="hero-logos">
             <img class="hero-logo-miet" src="images/logos/miet-white.png" alt="НИУ МИЭТ" width="220" height="100">
-            <span class="hero-logo-text">
-                <strong>НМСТ</strong>
-                <small>Институт нано- и микросистемной техники</small>
-            </span>
-            <span class="hero-logo-text">
-                <strong>НИЛ ТКПМ</strong>
-                <small>Передовые технологии корпусирования и производства 3D микросистем</small>
-            </span>
+            <img class="hero-logo-mark" src="images/logos/nmst.png"
+                 alt="Институт нано- и микросистемной техники (НМСТ)" width="263" height="240">
+            <img class="hero-logo-mark hero-logo-mark--wide" src="images/logos/nil-tkpm.png"
+                 alt="НИЛ ТКПМ — передовые технологии корпусирования и производства 3D микросистем"
+                 width="508" height="240">
         </div>
 
     </div>
@@ -670,317 +667,90 @@
             <h2 id="program-heading">Программа конференции</h2>
         </div>
 
-        <!-- УТРЕННЯЯ СЕССИЯ -->
-        <div class="program-block">
-            <div class="program-block-header">
-                <h3>Утренняя сессия</h3>
-                <span class="program-block-time">09:00 – 13:00</span>
-            </div>
+        <!--
+            Общее расписание: только временные диапазоны работы конференции.
+            Список докладов и тайминг докладчиков публикуются позже —
+            когда оргкомитет подтвердит состав программы.
+        -->
+        <div class="program-blocks">
 
-            <!-- ===== НАЧАЛО: Регистрация ===== -->
-            <div class="program-item program-item--special">
-                <div class="program-time">09:00 – 09:30</div>
-                <div class="program-content">
-                    <div class="program-title">Регистрация участников и приветственный кофе</div>
-                    <div class="program-meta">Фойе, 1 этаж · во время регистрации работает кофе-брейк</div>
+            <div class="program-block">
+                <div class="program-block-header">
+                    <h3>Утренняя часть</h3>
+                    <span class="program-block-time">09:00 – 13:00</span>
+                </div>
+
+                <div class="program-item program-item--special">
+                    <div class="program-time">09:00 – 09:30</div>
+                    <div class="program-content">
+                        <div class="program-title">Регистрация участников и приветственный кофе</div>
+                        <div class="program-meta">Фойе, 1 этаж</div>
+                    </div>
+                </div>
+
+                <div class="program-item program-item--special">
+                    <div class="program-time">09:30 – 11:30</div>
+                    <div class="program-content">
+                        <div class="program-title">Пленарное заседание</div>
+                    </div>
+                </div>
+
+                <div class="program-item program-item--special">
+                    <div class="program-time">11:30 – 12:00</div>
+                    <div class="program-content">
+                        <div class="program-title">Кофе-брейк</div>
+                    </div>
+                </div>
+
+                <div class="program-item program-item--special">
+                    <div class="program-time">12:00 – 13:00</div>
+                    <div class="program-content">
+                        <div class="program-title">Секционные доклады</div>
+                    </div>
                 </div>
             </div>
-            <!-- ===== КОНЕЦ: Регистрация ===== -->
 
-            <!-- ===== НАЧАЛО: Открытие ===== -->
-            <div class="program-item program-item--special">
-                <div class="program-time">09:30 – 09:45</div>
-                <div class="program-content">
-                    <div class="program-title">Торжественное открытие конференции</div>
-                    <div class="program-speaker">Приветственное слово ректора НИУ МИЭТ</div>
+            <div class="program-block">
+                <div class="program-block-header">
+                    <h3>Дневная часть</h3>
+                    <span class="program-block-time">13:00 – 18:00</span>
+                </div>
+
+                <div class="program-item program-item--special">
+                    <div class="program-time">13:00 – 13:45</div>
+                    <div class="program-content">
+                        <div class="program-title">Обед</div>
+                    </div>
+                </div>
+
+                <div class="program-item program-item--special">
+                    <div class="program-time">13:45 – 16:45</div>
+                    <div class="program-content">
+                        <div class="program-title">Секционные доклады</div>
+                    </div>
+                </div>
+
+                <div class="program-item program-item--special">
+                    <div class="program-time">16:45 – 17:30</div>
+                    <div class="program-content">
+                        <div class="program-title">Стендовая сессия и дискуссионные площадки</div>
+                    </div>
+                </div>
+
+                <div class="program-item program-item--special">
+                    <div class="program-time">17:30 – 18:00</div>
+                    <div class="program-content">
+                        <div class="program-title">Подведение итогов и закрытие конференции</div>
+                    </div>
                 </div>
             </div>
-            <!-- ===== КОНЕЦ: Открытие ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 1 ===== -->
-            <div class="program-item">
-                <div class="program-time">09:45 – 10:00</div>
-                <div class="program-content">
-                    <div class="program-title">Пленарный доклад</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">НИУ МИЭТ</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 1 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 2 ===== -->
-            <div class="program-item">
-                <div class="program-time">10:00 – 10:15</div>
-                <div class="program-content">
-                    <div class="program-title">Пленарный доклад</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">НИУ МИЭТ</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 2 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 3 ===== -->
-            <div class="program-item">
-                <div class="program-time">10:15 – 10:30</div>
-                <div class="program-content">
-                    <div class="program-title">Корпусирование ЭКБ: практические решения</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">АО «ЗНТЦ»</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 3 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 4 ===== -->
-            <div class="program-item">
-                <div class="program-time">10:30 – 10:45</div>
-                <div class="program-content">
-                    <div class="program-title">Оборудование и оснастка для корпусирования</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">ООО «Совтест АТЕ»</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 4 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 5 ===== -->
-            <div class="program-item">
-                <div class="program-time">10:45 – 11:00</div>
-                <div class="program-content">
-                    <div class="program-title">Цифровое проектирование и моделирование процессов</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">Т1 Интеграция</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 5 ===== -->
-
-            <!-- ===== НАЧАЛО: Кофе-брейк ===== -->
-            <div class="program-item program-item--break">
-                <div class="program-time">11:00 – 11:30</div>
-                <div class="program-content">
-                    <div class="program-title">Кофе-брейк</div>
-                    <div class="program-meta">Фойе, 1 этаж</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ: Кофе-брейк ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 6 ===== -->
-            <div class="program-item">
-                <div class="program-time">11:30 – 11:45</div>
-                <div class="program-content">
-                    <div class="program-title">Отечественные САПР для проектирования подложек и систем в корпусе</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">ЭРЕМЕКС</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 6 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 7 ===== -->
-            <div class="program-item">
-                <div class="program-time">11:45 – 12:00</div>
-                <div class="program-content">
-                    <div class="program-title">Материалы и подложки для корпусирования</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">ООО «Остек-ЭК»</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 7 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 8 ===== -->
-            <div class="program-item">
-                <div class="program-time">12:00 – 12:15</div>
-                <div class="program-content">
-                    <div class="program-title">Технологическая оснастка для сборочных процессов</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">Савтек</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 8 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 9 ===== -->
-            <div class="program-item">
-                <div class="program-time">12:15 – 12:30</div>
-                <div class="program-content">
-                    <div class="program-title">Корпусирование высокопроизводительных микросхем</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">Трамплин Электроникс</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 9 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 10 ===== -->
-            <div class="program-item">
-                <div class="program-time">12:30 – 12:45</div>
-                <div class="program-content">
-                    <div class="program-title">Испытания и контроль ЭКБ</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">Тестовые Решения</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 10 ===== -->
-
-            <!-- ===== НАЧАЛО: Обед ===== -->
-            <div class="program-item program-item--lunch">
-                <div class="program-time">12:45 – 13:45</div>
-                <div class="program-content">
-                    <div class="program-title">Обед</div>
-                    <div class="program-meta">Столовая МИЭТ · точное место уточняется</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ: Обед ===== -->
 
         </div>
 
-        <!-- ДНЕВНАЯ СЕССИЯ -->
-        <div class="program-block">
-            <div class="program-block-header">
-                <h3>Дневная сессия</h3>
-                <span class="program-block-time">13:45 – 18:00</span>
-            </div>
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 11 ===== -->
-            <div class="program-item">
-                <div class="program-time">13:45 – 14:00</div>
-                <div class="program-content">
-                    <div class="program-title">Микросистемы и датчики: разработка и производство</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">АО «НИИМА «Прогресс»</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 11 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 12 ===== -->
-            <div class="program-item">
-                <div class="program-time">14:00 – 14:15</div>
-                <div class="program-content">
-                    <div class="program-title">Тонкоплёночные технологии и подложки</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">ЛМП</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 12 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 13 ===== -->
-            <div class="program-item">
-                <div class="program-time">14:15 – 14:30</div>
-                <div class="program-content">
-                    <div class="program-title">Материалы для корпусирования: исследования и внедрение</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">ФИЦ ПХФ и МХ РАН</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 13 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 14 ===== -->
-            <div class="program-item">
-                <div class="program-time">14:30 – 14:45</div>
-                <div class="program-content">
-                    <div class="program-title">СБИС и системы в корпусе: проектирование и верификация</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">НИИСИ РАН</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 14 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 15 ===== -->
-            <div class="program-item">
-                <div class="program-time">14:45 – 15:00</div>
-                <div class="program-content">
-                    <div class="program-title">Полупроводниковые приборы и их корпусирование</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">НИИПП</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 15 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 16 ===== -->
-            <div class="program-item">
-                <div class="program-time">15:00 – 15:15</div>
-                <div class="program-content">
-                    <div class="program-title">Многокристальные модули и 3D-сборка</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">ДжиЭс-Нанотех</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 16 ===== -->
-
-            <!-- ===== НАЧАЛО: Кофе-брейк ===== -->
-            <div class="program-item program-item--break">
-                <div class="program-time">15:15 – 15:45</div>
-                <div class="program-content">
-                    <div class="program-title">Кофе-брейк</div>
-                    <div class="program-meta">Фойе, 1 этаж</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ: Кофе-брейк ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 17 ===== -->
-            <div class="program-item">
-                <div class="program-time">15:45 – 16:00</div>
-                <div class="program-content">
-                    <div class="program-title">Моделирование тепловых и механических режимов корпусов</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">МФТИ</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 17 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 18 ===== -->
-            <div class="program-item">
-                <div class="program-time">16:00 – 16:15</div>
-                <div class="program-content">
-                    <div class="program-title">Методы контроля качества микросборок</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">НИУ МИЭТ</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 18 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 19 ===== -->
-            <div class="program-item">
-                <div class="program-time">16:15 – 16:30</div>
-                <div class="program-content">
-                    <div class="program-title">Зондовый контроль и измерения на пластине</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">ООО «Совтест АТЕ»</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 19 ===== -->
-
-            <!-- ===== НАЧАЛО ДОКЛАДА 20 ===== -->
-            <div class="program-item">
-                <div class="program-time">16:30 – 16:45</div>
-                <div class="program-content">
-                    <div class="program-title">Вакуумная пайка и монтаж кристаллов</div>
-                    <div class="program-speaker">Докладчик: уточняется</div>
-                    <div class="program-org">ООО «Остек-ЭК»</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ ДОКЛАДА 20 ===== -->
-
-            <!-- ===== НАЧАЛО: Стендовая сессия ===== -->
-            <div class="program-item program-item--special">
-                <div class="program-time">16:45 – 17:30</div>
-                <div class="program-content">
-                    <div class="program-title">Стендовая сессия и дискуссионные площадки</div>
-                    <div class="program-speaker">Стенды организаций-участников, переговоры о кооперации</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ: Стендовая сессия ===== -->
-
-            <!-- ===== НАЧАЛО: Закрытие ===== -->
-            <div class="program-item program-item--special">
-                <div class="program-time">17:30 – 18:00</div>
-                <div class="program-content">
-                    <div class="program-title">Подведение итогов и закрытие конференции</div>
-                    <div class="program-speaker">Председатель оргкомитета</div>
-                </div>
-            </div>
-            <!-- ===== КОНЕЦ: Закрытие ===== -->
-
-        </div>
-
-        <p class="program-note">
-            В программе возможны изменения — следите за обновлениями.
-            Для докладчиков: длительность доклада — 15 минут, включая вопросы.
+        <p class="program-note program-note--pending">
+            <strong>Расписание докладчиков будет опубликовано позже.</strong>
+            Точный тайминг докладов появится здесь после подтверждения программы
+            оргкомитетом. Следите за обновлениями на этой странице.
         </p>
 
     </div>
@@ -1246,24 +1016,16 @@
                     </svg>
                 </div>
                 <h3>Председатель оргкомитета</h3>
-                <p class="contact-name">Косолапова Галина Викторовна</p>
-                <p class="contact-note">Регистрация, доклады и общие вопросы</p>
+                <p class="contact-name">Вертянов Денис Васильевич</p>
+                <p class="contact-note">Кандидат технических наук · регистрация, доклады и общие вопросы</p>
                 <ul class="contact-links">
                     <li>
-                        <a href="tel:+79958990559">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
-                            <span>+7 (995) 899-05-59</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mailto:galka-vikt@mail.ru">
+                        <a href="mailto:vdv.vertyanov@yandex.ru">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
                             </svg>
-                            <span>galka-vikt@mail.ru</span>
+                            <span>vdv.vertyanov@yandex.ru</span>
                         </a>
                     </li>
                 </ul>

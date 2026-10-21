@@ -16,7 +16,8 @@ favicon-подобные иконки — images/logos/favicon-32.png, favicon-1
 images/
   hero/             — фон первого экрана (webp + jpg, отдельная
                       мобильная версия hero-bg-mobile.*)
-  logos/            — логотип МИЭТ (белый и синий варианты), favicon
+  logos/            — логотипы МИЭТ (белый и синий), НМСТ, НИЛ ТКПМ, favicon
+  logos/partners/   — официальные логотипы партнёров + README с источниками
 
 css/                — стили, по одному файлу на ответственность:
   base.css            — переменные, сброс, типографика, контейнер, кнопки,
@@ -78,9 +79,10 @@ JS: `common → reveal → home/photobank`.
 - **Заменить фон первого экрана** — положить новые файлы в `images/hero/`
   (`hero-bg.webp` + `hero-bg.jpg` и мобильные `hero-bg-mobile.*`) под теми же
   именами: разметка менять не нужно.
-- **Добавить официальные логотипы** — файлы в `images/logos/` (МИЭТ) и
-  `images/partners/` (партнёры); в разметке заменить текстовые карточки
-  `.partner-logo` / `.partner-name` на `<img src="images/partners/...">`.
+- **Добавить логотип организации** — файл в `images/logos/partners/`, затем
+  `<img>` в карточку `.partner-logo` или в `.speaker-brand` (см. README рядом
+  с папкой). В шапке логотипы организаторов: `.hero-logo-miet` для МИЭТ,
+  `.hero-logo-mark` для НМСТ и НИЛ ТКПМ.
 - **Добавить альбом фотобанка** — карточка в `photos.html` + запись в `ALBUMS`
   (`js/photobank.js`).
 - **Заменить заглушки на фото** — в `ALBUMS` добавить адреса файлов;

@@ -248,8 +248,10 @@
 
 @media (max-width: 1024px) {
     .nav-logo-img { height: 34px; }
-    .hero-logos { gap: 24px 32px; }
+    .hero-logos { gap: 20px 28px; }
     .hero-logo-miet { height: 50px; }
+    .hero-logo-mark { height: 42px; }
+    .hero-logo-mark--wide { height: 34px; }
 }
 
 @media (max-width: 768px) {
@@ -271,6 +273,8 @@
         gap: 2px;
     }
     .hero-logo-text small { max-width: 36ch; }
+    .hero-logo-mark { height: 40px; }
+    .hero-logo-mark--wide { height: 32px; }
 
     .contact-card,
     .venue {
