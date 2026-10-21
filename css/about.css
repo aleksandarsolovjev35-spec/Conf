@@ -1,5 +1,6 @@
 /* =============================================================
    ABOUT — секция «О конференции» главной страницы.
+   Текст раздела увеличен и выровнен по общей шкале (п. 7).
 ============================================================= */
 
 .about-hero {
@@ -11,11 +12,13 @@
 }
 
 .about-hero-text p {
-    font-size: 1.1rem;
+    font-size: 1.16rem;
     line-height: 1.85;
     color: var(--text);
     margin-bottom: 18px;
 }
+
+.about-hero-text p:last-of-type { margin-bottom: 26px; }
 
 .about-stats {
     display: flex;
@@ -86,7 +89,7 @@
 }
 
 .about-topics-header h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.35rem, 2.2vw, 1.7rem);
     font-weight: 700;
     color: var(--text);
     position: relative;
@@ -107,7 +110,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 }
 
 .about-topic-card {
@@ -161,16 +164,14 @@
 .about-topic-card:hover .about-topic-icon { color: white; }
 
 .about-topic-card h4 {
-    font-size: 1.1rem;
+    font-size: 1.12rem;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .about-topic-card p {
-    font-size: 0.92rem;
+    font-size: 0.96rem;
     color: var(--text-light);
-    line-height: 1.6;
+    line-height: 1.65;
 }
-
-.about-hero { margin-bottom: 40px; }

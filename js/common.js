@@ -66,6 +66,11 @@
         scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
     });
 
+    // Страницы со светлой шапкой помечают <body data-navbar="light">
+    if (document.body.dataset.navbar === 'light') {
+        navbar.classList.add('navbar--light');
+    }
+
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });

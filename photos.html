@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Фотобанк — III Ежегодная конференция НМСТ 2025</title>
+    <title>Фотобанк — IV Ежегодная конференция НМСТ 2026</title>
 
-    <meta name="description" content="Фотобанк III Ежегодной конференции «Технологии микросистем, корпусирования и сборки ЭКБ». 17 декабря 2025, НИУ МИЭТ, Зеленоград.">
+    <meta name="description" content="Фотобанк IV Ежегодной конференции «Технологии микросистем, корпусирования и сборки ЭКБ». 17 декабря 2026, НИУ МИЭТ, Зеленоград.">
     <meta name="author" content="НИУ МИЭТ">
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/logos/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/logos/favicon-180.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,16 +18,18 @@
 
     <!-- Стили: модули по ответственности (см. README.md)
          base → каркас → страница фотобанка → альбом/лайтбокс → анимации → адаптив -->
-    <link rel="stylesheet" href="css/base.css?v=1">
-    <link rel="stylesheet" href="css/header.css?v=1">
+    <link rel="stylesheet" href="css/base.css?v=3">
+    <link rel="stylesheet" href="css/header.css?v=4">
     <link rel="stylesheet" href="css/photobank.css?v=3">
     <link rel="stylesheet" href="css/photobank-album.css?v=2">
-    <link rel="stylesheet" href="css/animations.css?v=1">
-    <link rel="stylesheet" href="css/responsive.css?v=2">
+    <link rel="stylesheet" href="css/animations.css?v=2">
+    <link rel="stylesheet" href="css/responsive.css?v=3">
+    <!-- Без JS контент должен оставаться видимым (см. css/animations.css) -->
+    <script>document.documentElement.classList.add('js');</script>
 </head>
-<body>
+<body data-navbar="light">
 
-<div class="page-transition" id="pageTransition" aria-hidden="true">НМСТ&nbsp;2025</div>
+<div class="page-transition" id="pageTransition" aria-hidden="true">НМСТ&nbsp;2026</div>
 
 <!-- ================================================================
      НАВИГАЦИЯ
@@ -36,7 +39,10 @@
 <nav class="navbar" id="navbar" aria-label="Главное меню">
     <div class="container nav-container">
 
-        <a href="index.html" class="nav-logo" aria-label="На главную">НМСТ 2025</a>
+        <a href="index.html" class="nav-logo" aria-label="НИУ МИЭТ — на главную">
+            <img src="images/logos/miet-white.png" alt="НИУ МИЭТ" class="nav-logo-img nav-logo-img--light" width="150" height="68">
+            <img src="images/logos/miet.png" alt="" aria-hidden="true" class="nav-logo-img nav-logo-img--dark" width="150" height="68">
+        </a>
 
         <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
             <span></span>
@@ -71,12 +77,12 @@
 
         <h1>Фотобанк</h1>
         <p class="photobank-subtitle">
-            Фотографии III Ежегодной конференции «Технологии микросистем,
+            Фотографии IV Ежегодной конференции «Технологии микросистем,
             корпусирования и сборки ЭКБ»
         </p>
 
         <div class="photobank-meta">
-            <span>17 декабря 2025 года</span>
+            <span>17 декабря 2026 года</span>
             <span aria-hidden="true">•</span>
             <span>НИУ МИЭТ, Зеленоград</span>
             <span aria-hidden="true">•</span>
@@ -133,7 +139,7 @@
                 <div class="album-info">
                     <h2 class="album-title">Торжественное открытие конференции</h2>
                     <p class="album-meta">
-                        <time datetime="2025-12-17">17 декабря</time>
+                        <time datetime="2026-12-17">17 декабря</time>
                         <span aria-hidden="true">•</span>
                         <span>10 фото</span>
                     </p>
@@ -154,7 +160,7 @@
                 <div class="album-info">
                     <h2 class="album-title">Пленарные доклады</h2>
                     <p class="album-meta">
-                        <time datetime="2025-12-17">17 декабря</time>
+                        <time datetime="2026-12-17">17 декабря</time>
                         <span aria-hidden="true">•</span>
                         <span>12 фото</span>
                     </p>
@@ -175,7 +181,7 @@
                 <div class="album-info">
                     <h2 class="album-title">Секционные доклады</h2>
                     <p class="album-meta">
-                        <time datetime="2025-12-17">17 декабря</time>
+                        <time datetime="2026-12-17">17 декабря</time>
                         <span aria-hidden="true">•</span>
                         <span>12 фото</span>
                     </p>
@@ -196,7 +202,7 @@
                 <div class="album-info">
                     <h2 class="album-title">Стендовая сессия и постерные доклады</h2>
                     <p class="album-meta">
-                        <time datetime="2025-12-17">17 декабря</time>
+                        <time datetime="2026-12-17">17 декабря</time>
                         <span aria-hidden="true">•</span>
                         <span>10 фото</span>
                     </p>
@@ -217,7 +223,7 @@
                 <div class="album-info">
                     <h2 class="album-title">Гости конференции и общение</h2>
                     <p class="album-meta">
-                        <time datetime="2025-12-17">17 декабря</time>
+                        <time datetime="2026-12-17">17 декабря</time>
                         <span aria-hidden="true">•</span>
                         <span>8 фото</span>
                     </p>
@@ -238,7 +244,7 @@
                 <div class="album-info">
                     <h2 class="album-title">Подведение итогов и закрытие конференции</h2>
                     <p class="album-meta">
-                        <time datetime="2025-12-17">17 декабря</time>
+                        <time datetime="2026-12-17">17 декабря</time>
                         <span aria-hidden="true">•</span>
                         <span>8 фото</span>
                     </p>
@@ -364,7 +370,7 @@
 ================================================================= -->
 <footer>
     <div class="container">
-        <p>&copy; 2025 НМСТ / НИУ МИЭТ. Все права защищены.</p>
+        <p>&copy; 2026 НМСТ / НИУ МИЭТ. Все права защищены.</p>
     </div>
 </footer>
 
@@ -407,7 +413,7 @@
 
 
 <!-- Скрипты: общий каркас → анимации → логика страницы -->
-<script src="js/common.js?v=2"></script>
+<script src="js/common.js?v=4"></script>
 <script src="js/reveal.js"></script>
 <script src="js/photobank.js?v=3"></script>
 

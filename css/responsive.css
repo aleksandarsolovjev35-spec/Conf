@@ -100,6 +100,8 @@
     .partners-section,
     .photobank-teaser-section,
     .registration-section,
+    .video-section,
+    .publications-section,
     .contacts-section,
     .photobank-main { padding-top: 44px; padding-bottom: 44px; }
 
@@ -213,11 +215,88 @@
     .photo-thumb svg { width: 26px; height: 26px; }
 }
 
+/* Светлый фон под шапкой (страница фотобанка) — логотип и меню
+   должны быть тёмными, чтобы оставаться различимыми. */
+.navbar--light { background: rgba(255, 255, 255, 0.97); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08); padding: 10px 0; }
+.navbar--light .nav-logo-img--light { display: none; }
+.navbar--light .nav-logo-img--dark  { display: block; }
+.navbar--light .nav-links a { color: var(--text); }
+.navbar--light .nav-links a:hover,
+.navbar--light .nav-links a.nav-link-active { color: var(--blue); }
+.navbar--light .nav-toggle span { background: var(--text); }
+
 @media (max-height: 480px) and (orientation: landscape) {
     .lightbox { padding: 60px 64px 16px; }
     .lightbox-photo { max-height: 42dvh; }
     .lightbox-photo svg { width: 32px; height: 32px; }
     .lightbox-caption { font-size: 0.85rem; padding-top: 8px; }
+}
+
+/* =============================================================
+   Новые блоки 2026: логотипы в шапке и hero, адрес площадки,
+   дополнительные контакты, видео и публикации
+============================================================= */
+
+@media (max-width: 1024px) {
+    .nav-logo-img { height: 34px; }
+    .hero-logos { gap: 24px 32px; }
+    .hero-logo-miet { height: 50px; }
+}
+
+@media (max-width: 900px) {
+    .contacts-list > div {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content { padding: 124px 20px 48px; }
+    #hero h1 { max-width: 22ch; letter-spacing: -0.5px; }
+    .hero-kicker { letter-spacing: 0.05em; }
+    .hero-badge { margin-bottom: 18px; }
+    .hero-logos {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 40px;
+        padding-top: 24px;
+    }
+    .hero-logo-text {
+        align-items: center;
+        text-align: center;
+        padding-left: 0;
+        border-left: none;
+        gap: 2px;
+    }
+    .hero-logo-text small { max-width: 36ch; }
+
+    .venue {
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px;
+    }
+
+    .video-teaser-play { width: 68px; height: 68px; }
+    .video-teaser-play svg { width: 28px; height: 28px; }
+    .video-teaser-caption { left: 20px; bottom: 18px; right: 20px; }
+    .video-teaser-caption strong { font-size: 1rem; }
+
+    .partner-strategic { padding: 32px 24px; }
+    .partner-strategic .partner-name { font-size: 1.4rem; }
+}
+
+@media (max-width: 480px) {
+    .nav-logo-img { height: 30px; }
+    .hero-logo-miet { height: 44px; }
+    .hero-logo-text strong { font-size: 1rem; }
+    .hero-logo-text small { font-size: 0.68rem; }
+
+    .video-teaser { border-radius: 12px; aspect-ratio: 4 / 3; }
+    .video-teaser-play { width: 56px; height: 56px; }
+    .video-teaser-play svg { width: 24px; height: 24px; }
+    .video-teaser-caption small { font-size: 0.78rem; }
+
+    .publication-card { padding: 22px 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -244,8 +323,10 @@
     body { color: black; background: white; }
     section { page-break-inside: avoid; padding: 20px 0; }
     #hero { min-height: auto; background: none; color: black; }
-    #hero h1, .hero-subtitle,
+    #hero h1, .hero-kicker,
     .hero-badge, .hero-detail { color: black; }
+    .hero-bg, .hero-overlay, .hero-logos, .video-teaser-play { display: none !important; }
+    .js .animate-target { opacity: 1 !important; transform: none !important; }
     a { color: black; text-decoration: underline; }
     .speaker-card, .about-topic-card,
     .about-stat, .contact-card, .program-item {

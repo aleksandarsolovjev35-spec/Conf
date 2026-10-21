@@ -251,3 +251,11 @@
     color: var(--text-light);
     font-variant-numeric: tabular-nums;
 }
+
+
+/* Новые блоки главной (видео и публикации) — те же вертикальные отступы */
+.video-section,
+.publications-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+}

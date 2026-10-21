@@ -29,14 +29,15 @@
         })(started);
     }
 
-    // Появление элементов главной: заголовки секций, статистика
-    // (со счётчиками), направления, спикеры, партнёры, контакты,
-    // карусель фотобанка и пункты программы.
+    // Появление элементов главной: статистика (со счётчиками),
+    // направления, спикеры, партнёры, контакты, карусель фотобанка
+    // и пункты программы.
+    // ВАЖНО: заголовки секций (section h2) не анимируем — иначе при
+    // сбое IntersectionObserver раздел выглядит пустым без заголовка.
     initReveal(
-        'section h2, ' +
         '.about-stat, .about-topic-card, ' +
         '.speaker-card, .partner-logo, .contact-card, ' +
-        '.photobank-carousel, .program-item',
+        '.publication-card, .photobank-carousel, .program-item',
         (el, instant) => {
             if (el.classList.contains('about-stat')) startCounter(el, instant);
         }

@@ -116,7 +116,8 @@
 
 .program-item--special .program-title { color: var(--blue-dark); }
 
-.program-block { counter-reset: talk; }
+/* Нумерация докладов сквозная по всей программе, а не по сессиям */
+.program-section { counter-reset: talk; }
 
 .program-item:not(.program-item--break):not(.program-item--lunch):not(.program-item--special) {
     counter-increment: talk;
