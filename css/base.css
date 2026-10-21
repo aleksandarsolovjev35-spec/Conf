@@ -234,24 +234,3 @@ main > section > .container {
     outline: 3px solid white;
     outline-offset: -6px;
 }
-
-/* Кнопка «В календарь» — третичная, рядом с основными действиями */
-.btn-calendar {
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.92);
-    border-color: rgba(255, 255, 255, 0.32);
-    gap: 10px;
-    padding: 14px 28px;
-}
-
-.btn-calendar svg {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-}
-
-.btn-calendar:hover {
-    background: rgba(255, 255, 255, 0.16);
-    border-color: rgba(255, 255, 255, 0.6);
-    color: white;
-}

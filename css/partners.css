@@ -1,7 +1,9 @@
 /* =============================================================
    PARTNERS — секция «Партнёры и спонсоры» главной страницы.
    Два уровня: стратегический партнёр и партнёры (п. 11).
-   TODO: заменить текстовые карточки на официальные логотипы.
+   Логотипы — официальные файлы из images/logos/partners/.
+   В сетке по три карточки в ряд: при четырёх и больше логотипы
+   становились мелкими и нечитаемыми.
 ============================================================= */
 
 .partners-tier {
@@ -43,6 +45,12 @@
     box-shadow: var(--shadow-lg);
 }
 
+.partner-strategic img {
+    max-width: 100%;
+    max-height: 84px;
+    object-fit: contain;
+}
+
 .partner-strategic .partner-name {
     font-size: 1.7rem;
     font-weight: 800;
@@ -57,20 +65,29 @@
 }
 
 /* Партнёры — сетка карточек */
+/* Три карточки в ряд; если их остаётся меньше — последний ряд
+   центрируется, а не липнет к левому краю */
 .partners-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 24px;
 }
 
+.partners-grid .partner-logo {
+    flex: 0 1 calc((100% - 48px) / 3);
+    min-width: 220px;
+}
+
 .partner-logo {
-    min-height: 118px;
+    min-height: 168px;
+    min-width: 220px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: white;
     border-radius: var(--radius);
-    padding: 20px 16px;
+    padding: 28px 24px;
     box-shadow: var(--shadow);
     border: 1px solid transparent;
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
@@ -85,7 +102,7 @@
 
 .partner-logo img {
     max-width: 100%;
-    max-height: 78px;
+    max-height: 88px;
     object-fit: contain;
 }
 

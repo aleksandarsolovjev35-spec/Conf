@@ -55,7 +55,8 @@ test('главная: тематические направления из об�
 
 test('главная: партнёры разбиты на стратегического партнёра и партнёров', async ({ page }) => {
     await page.goto('/index.html');
-    await expect(page.locator('.partner-strategic')).toContainText('ЗНТЦ');
+    // Стратегический партнёр — логотип, название в alt
+    await expect(page.locator('.partner-strategic img')).toHaveAttribute('alt', /ЗНТЦ/);
     const partners = page.locator('.partners-grid .partner-logo');
     await expect(partners).toHaveCount(4);
 });
@@ -113,6 +114,56 @@ test('контакты: единый шаблон карточки', async ({ pa
     expect(venueBox.width).toBeGreaterThan(firstBox.width * 2);
 });
 
+test('спикеры: 16 организаций, разбиты на три группы', async ({ page }) => {
+    await page.goto('/index.html');
+
+    await expect(page.locator('.speaker-card--org')).toHaveCount(16);
+    await expect(page.locator('.speakers-group')).toHaveCount(3);
+
+    const titles = await page.locator('.speakers-group-title').allTextContents();
+    expect(titles).toEqual(['Организаторы', 'Индустрия', 'Наука и образование']);
+
+    // Счётчики в заголовках складываются в общее число карточек
+    const counts = await page.locator('.speakers-group-count').allTextContents();
+    expect(counts.reduce((sum, n) => sum + Number(n), 0)).toBe(16);
+
+    // В каждой группе количество карточек совпадает со счётчиком
+    for (const group of await page.locator('.speakers-group').all()) {
+        const count = Number(await group.locator('.speakers-group-count').textContent());
+        expect(await group.locator('.speaker-card--org').count()).toBe(count);
+    }
+});
+
+test('спикеры и партнёры: официальные логотипы, названия доступны скринридеру', async ({ page }) => {
+    await page.goto('/index.html');
+
+    // Логотипы партнёров: файл открывается, у картинки есть текстовое описание
+    const logos = page.locator('.partners-grid .partner-logo img');
+    await expect(logos).toHaveCount(4);
+    await expect(page.locator('.partner-strategic img')).toHaveCount(1);
+
+    for (const img of await logos.all()) {
+        const alt = await img.getAttribute('alt');
+        expect(alt && alt.trim().length).toBeTruthy();
+        await img.scrollIntoViewIfNeeded();       // lazy-loading грузится по появлению
+        await expect(img).toHaveJSProperty('complete', true);
+        expect(await img.evaluate(el => el.naturalWidth)).toBeGreaterThan(0);
+    }
+
+    // Карточка спикера: логотип есть — название остаётся в разметке
+    const withLogo = page.locator('.speaker-brand:has(img)');
+    expect(await withLogo.count()).toBeGreaterThanOrEqual(6);
+    for (const brand of await withLogo.all()) {
+        await expect(brand.locator('.speaker-name')).toHaveCount(1);
+        await expect(brand.locator('img')).toHaveAttribute('alt', '');
+    }
+
+    // Все 16 карточек имеют строку бренда одинаковой высоты — подписи выровнены
+    const heights = await page.locator('.speaker-brand').evaluateAll(
+        els => [...new Set(els.map(el => Math.round(el.getBoundingClientRect().height)))]);
+    expect(heights).toEqual([40]);
+});
+
 test('без JS контент и заголовки разделов остаются видимыми', async ({ browser }) => {
     const context = await browser.newContext({ javaScriptEnabled: false });
     const page = await context.newPage();
@@ -148,17 +199,18 @@ test('есть семантический main и ссылка «Перейти 
     await expect(page.locator('main#main')).toHaveCount(1);
 });
 
-test('календарь: файл .ics доступен и содержит событие 2026 года', async ({ page }) => {
-    const res = await page.request.get('/nmst-2026.ics');
-    expect(res.status()).toBe(200);
-    const body = await res.text();
-    expect(body).toContain('BEGIN:VCALENDAR');
-    expect(body).toContain('DTSTART;TZID=Europe/Moscow:20261217T090000');
-    expect(body).toContain('DTEND;TZID=Europe/Moscow:20261217T180000');
-    expect(body).toContain('END:VCALENDAR');
-
+test('шапка: только регистрация и программа, без кнопки календаря', async ({ page }) => {
     await page.goto('/index.html');
-    await expect(page.locator('.btn-calendar')).toHaveAttribute('href', 'nmst-2026.ics');
+
+    const buttons = page.locator('.hero-buttons a');
+    await expect(buttons).toHaveCount(2);
+    await expect(buttons.nth(0)).toHaveText('Зарегистрироваться');
+    await expect(buttons.nth(1)).toHaveText('Программа');
+
+    // Событие в календарь больше не предлагаем: ни кнопки, ни файла
+    await expect(page.locator('.btn-calendar, a[href$=".ics"]')).toHaveCount(0);
+    const res = await page.request.get('/nmst-2026.ics');
+    expect(res.status()).toBe(404);
 });
 
 test('SEO: микроразметка события, OG-обложка и robots/sitemap', async ({ page }) => {
