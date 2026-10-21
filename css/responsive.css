@@ -244,13 +244,6 @@
     .hero-logo-miet { height: 50px; }
 }
 
-@media (max-width: 900px) {
-    .contacts-list > div {
-        grid-template-columns: 1fr;
-        gap: 6px;
-    }
-}
-
 @media (max-width: 768px) {
     .hero-content { padding: 124px 20px 48px; }
     #hero h1 { max-width: 22ch; letter-spacing: -0.5px; }
@@ -271,10 +264,9 @@
     }
     .hero-logo-text small { max-width: 36ch; }
 
+    .contact-card,
     .venue {
-        flex-direction: column;
-        gap: 16px;
-        padding: 24px;
+        padding: 28px 22px;
     }
 
     .video-teaser-play { width: 68px; height: 68px; }

@@ -82,6 +82,37 @@ test('контакты: указан полный адрес площадки', 
     await expect(page.locator('.hero-details')).not.toContainText('Зеленоград');
 });
 
+test('контакты: единый шаблон карточки', async ({ page }) => {
+    await page.goto('/index.html');
+    const cards = page.locator('.contacts-grid .contact-card');
+    await expect(cards).toHaveCount(3);
+
+    // В каждой карточке: иконка → роль (h3) → содержимое
+    for (let i = 0; i < 3; i++) {
+        const card = cards.nth(i);
+        await expect(card.locator('.contact-icon')).toHaveCount(1);
+        await expect(card.locator('h3')).toHaveCount(1);
+        expect(await card.locator('.contact-icon').evaluate(el => el.compareDocumentPosition(el.closest('.contact-card').querySelector('h3')) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
+    }
+
+    // Телефон и почта — в одном блоке, отдельными строками
+    const links = cards.first().locator('.contact-links a');
+    await expect(links).toHaveCount(2);
+    await expect(links.nth(0)).toHaveAttribute('href', 'tel:+79958990559');
+    await expect(links.nth(1)).toHaveAttribute('href', 'mailto:galka-vikt@mail.ru');
+
+    // Карточки без данных помечены как ожидающие
+    await expect(page.locator('.contact-card--pending')).toHaveCount(2);
+    await expect(page.locator('.contact-card--pending').first()).toContainText('уточняется');
+
+    // Адрес — карточка того же вида и на всю ширину сетки
+    const venue = page.locator('.venue');
+    await expect(venue.locator('.contact-icon')).toHaveCount(1);
+    await expect(venue.locator('h3')).toHaveText('Место проведения');
+    const [venueBox, firstBox] = await Promise.all([venue.boundingBox(), cards.first().boundingBox()]);
+    expect(venueBox.width).toBeGreaterThan(firstBox.width * 2);
+});
+
 test('без JS контент и заголовки разделов остаются видимыми', async ({ browser }) => {
     const context = await browser.newContext({ javaScriptEnabled: false });
     const page = await context.newPage();
