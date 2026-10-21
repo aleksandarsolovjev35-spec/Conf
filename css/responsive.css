@@ -105,7 +105,8 @@
     .contacts-section,
     .photobank-main { padding-top: 44px; padding-bottom: 44px; }
 
-    body > section h2 { margin-bottom: 22px; }
+    body > section h2,
+    main > section h2 { margin-bottom: 22px; }
     .section-subtitle { margin-bottom: 32px; font-size: 1rem; }
 
     #hero { min-height: 100svh; }

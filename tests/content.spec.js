@@ -99,3 +99,70 @@ test('порядок блоков сохраняется после прокру
     const hidden = await page.locator('.animate-target:not(.animate-in)').count();
     expect(hidden).toBe(0);
 });
+
+test('есть семантический main и ссылка «Перейти к содержанию»', async ({ page }) => {
+    await page.goto('/index.html');
+    await expect(page.locator('main#main')).toHaveCount(1);
+    const skip = page.locator('.skip-link');
+    await expect(skip).toHaveAttribute('href', '#main');
+
+    // Ссылка скрыта, пока на неё не встал фокус
+    expect(await skip.evaluate(el => el.getBoundingClientRect().bottom <= 0)).toBe(true);
+    await page.keyboard.press('Tab');
+    await expect(skip).toBeFocused();
+    // Появление анимировано (top: -100px → 0), поэтому ждём, а не меряем сразу
+    await expect(skip).toBeInViewport();
+
+    await page.goto('/photos.html');
+    await expect(page.locator('main#main')).toHaveCount(1);
+});
+
+test('календарь: файл .ics доступен и содержит событие 2026 года', async ({ page }) => {
+    const res = await page.request.get('/nmst-2026.ics');
+    expect(res.status()).toBe(200);
+    const body = await res.text();
+    expect(body).toContain('BEGIN:VCALENDAR');
+    expect(body).toContain('DTSTART;TZID=Europe/Moscow:20261217T090000');
+    expect(body).toContain('DTEND;TZID=Europe/Moscow:20261217T180000');
+    expect(body).toContain('END:VCALENDAR');
+
+    await page.goto('/index.html');
+    await expect(page.locator('.btn-calendar')).toHaveAttribute('href', 'nmst-2026.ics');
+});
+
+test('SEO: микроразметка события, OG-обложка и robots/sitemap', async ({ page }) => {
+    await page.goto('/index.html');
+
+    const ld = await page.locator('script[type="application/ld+json"]').textContent();
+    const data = JSON.parse(ld);
+    expect(data['@type']).toBe('Event');
+    expect(data.startDate).toContain('2026-12-17');
+    expect(data.location.address.addressLocality).toContain('Зеленоград');
+
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'images/og-cover.jpg');
+    const og = await page.request.get('/images/og-cover.jpg');
+    expect(og.status()).toBe(200);
+    expect(Number(og.headers()['content-length'])).toBeGreaterThan(10000);
+
+    for (const file of ['/robots.txt', '/sitemap.xml']) {
+        const res = await page.request.get(file);
+        expect(res.status(), file).toBe(200);
+    }
+});
+
+test('видео: превью без ссылки не притворяется рабочим', async ({ page }) => {
+    await page.goto('/index.html');
+    const button = page.locator('#videoPlay');
+    await expect(button).toHaveAttribute('aria-disabled', 'true');
+    await expect(page.locator('#videoHint')).toContainText('появится');
+    // iframe не подгружается до клика
+    await expect(page.locator('.video-teaser iframe')).toHaveCount(0);
+});
+
+test('меню: текущий раздел подсвечивается при прокрутке', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/index.html');
+    await page.locator('#program').scrollIntoViewIfNeeded();
+    await page.waitForTimeout(600);
+    await expect(page.locator('.nav-links a[href="#program"]')).toHaveClass(/nav-link-active/);
+});

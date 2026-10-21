@@ -1,0 +1,7 @@
+# TODO: указать итоговый домен сайта после публикации
+User-agent: *
+Allow: /
+Disallow: /tests/
+Disallow: /node_modules/
+
+Sitemap: https://miet.ru/sitemap.xml

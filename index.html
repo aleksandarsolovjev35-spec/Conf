@@ -14,10 +14,59 @@
     <link rel="apple-touch-icon" href="images/logos/favicon-180.png">
 
     <meta property="og:title" content="IV Ежегодная конференция НМСТ — 17 декабря 2026">
-    <meta property="og:description" content="Технологии микросистем, корпусирования и сборки ЭКБ. НИУ МИЭТ, Зеленоград.">
-    <meta property="og:image" content="images/hero/hero-bg.jpg">
+    <meta property="og:description" content="Технологии микросистем, корпусирования и сборки ЭКБ. 17 декабря 2026, НИУ МИЭТ, Зеленоград. Регистрация открыта.">
+    <meta property="og:image" content="images/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="IV Ежегодная конференция НМСТ — Технологии микросистем, корпусирования и сборки ЭКБ">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ru_RU">
+    <!-- TODO: указать итоговый домен сайта после публикации -->
+    <meta property="og:url" content="https://miet.ru/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://miet.ru/">
+
+    <!-- Структурированные данные: событие для поиска и календарей -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "IV Ежегодная научно-практическая конференция «Технологии микросистем, корпусирования и сборки ЭКБ»",
+        "alternateName": "Конференция НМСТ 2026",
+        "startDate": "2026-12-17T09:00:00+03:00",
+        "endDate": "2026-12-17T18:00:00+03:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "description": "Научно-практическая конференция по технологиям микросистем, корпусирования и сборки электронной компонентной базы: пленарные и инженерно-прикладные доклады, стендовая сессия, дискуссионные площадки.",
+        "isAccessibleForFree": true,
+        "image": ["images/og-cover.jpg"],
+        "location": {
+            "@type": "Place",
+            "name": "НИУ МИЭТ",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "площадь Шокина, дом 1",
+                "addressLocality": "Зеленоград, Москва",
+                "postalCode": "124498",
+                "addressCountry": "RU"
+            }
+        },
+        "organizer": [
+            {
+                "@type": "Organization",
+                "name": "НИУ МИЭТ",
+                "url": "https://miet.ru/"
+            }
+        ],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "RUB",
+            "availability": "https://schema.org/InStock",
+            "url": "https://miet.ru/"
+        }
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,6 +92,8 @@
     <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Перейти к содержанию</a>
 
 <div class="page-transition" id="pageTransition" aria-hidden="true">НМСТ&nbsp;2026</div>
 
@@ -127,6 +178,17 @@
                 Зарегистрироваться
             </a>
             <a href="#program" class="btn btn-outline">Программа</a>
+            <a href="nmst-2026.ics" class="btn btn-calendar" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                    <line x1="12" y1="14" x2="12" y2="18"/>
+                    <line x1="10" y1="16" x2="14" y2="16"/>
+                </svg>
+                В календарь
+            </a>
         </div>
 
         <!--
@@ -150,6 +212,8 @@
     </div>
 </header>
 
+
+<main id="main">
 
 <!-- ================================================================
      О КОНФЕРЕНЦИИ
@@ -365,19 +429,25 @@
             </p>
         </div>
 
-        <a class="video-teaser" id="videoTeaser" href="#video"
-           aria-label="Смотреть видеоролик о конференции">
+        <!--
+            TODO: когда появится ролик, добавить data-video-url="https://..."
+            (прямая ссылка на встраиваемый плеер). js/video.js подгрузит iframe
+            только по клику — без лишнего веса при загрузке страницы.
+        -->
+        <div class="video-teaser" id="videoTeaser" data-video-url=""
+             data-video-title="Видеоролик о конференции НМСТ">
             <img class="video-teaser-poster" src="images/hero/hero-bg.jpg"
                  alt="Кадр из видеоролика о конференции" width="1376" height="768" loading="lazy" decoding="async">
             <span class="video-teaser-shade" aria-hidden="true"></span>
-            <span class="video-teaser-play" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 19 12 8 19"/></svg>
-            </span>
+            <button type="button" class="video-teaser-play" id="videoPlay"
+                    aria-label="Смотреть видеоролик о конференции" aria-disabled="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="8 5 19 12 8 19"/></svg>
+            </button>
             <span class="video-teaser-caption">
                 <strong>Видеоролик о конференции</strong>
-                <small>Ссылка на ролик будет добавлена</small>
+                <small id="videoHint">Ролик появится после публикации</small>
             </span>
-        </a>
+        </div>
     </div>
 </section>
 
@@ -1246,6 +1316,9 @@
 </section>
 
 
+</main>
+
+
 <!-- ================================================================
      ПОДВАЛ
 ================================================================ -->
@@ -1268,6 +1341,7 @@
 <script src="js/common.js?v=4"></script>
 <script src="js/reveal.js?v=2"></script>
 <script src="js/home.js?v=3"></script>
+<script src="js/video.js?v=1"></script>
 
 </body>
 </html>
