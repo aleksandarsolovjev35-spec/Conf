@@ -61,12 +61,22 @@ test('главная: партнёры разбиты на стратегиче�
     await expect(partners).toHaveCount(4);
 });
 
-test('главная: в программе есть кофе-брейк при регистрации и финал в 18:00', async ({ page }) => {
+test('программа: только общее расписание, список докладов скрыт', async ({ page }) => {
     await page.goto('/index.html');
-    const first = page.locator('.program-item').first();
-    await expect(first).toContainText('кофе');
-    const lastTime = page.locator('.program-item .program-time').last();
-    await expect(lastTime).toHaveText(/18:00/);
+
+    // Общие временные диапазоны работы конференции
+    await page.locator('.program-item').first().scrollIntoViewIfNeeded();
+    await expect(page.locator('.program-item').first()).toContainText('кофе');
+    await expect(page.locator('.program-item .program-time').last()).toHaveText(/18:00/);
+    await expect(page.locator('.program-block')).toHaveCount(2);
+
+    // Конкретных докладов и их тайминга в программе больше нет
+    await expect(page.locator('#program')).not.toContainText('Докладчик: уточняется');
+    await expect(page.locator('#program .program-org')).toHaveCount(0);
+    expect(await page.locator('#program .program-item').count()).toBeLessThanOrEqual(10);
+
+    // Вместо списка — пометка, что тайминг докладчиков будет позже
+    await expect(page.locator('.program-note--pending')).toContainText('Расписание докладчиков будет опубликовано позже');
 });
 
 test('главная: блоки «Видео» и «Публикации» на месте', async ({ page }) => {
@@ -96,11 +106,12 @@ test('контакты: единый шаблон карточки', async ({ pa
         expect(await card.locator('.contact-icon').evaluate(el => el.compareDocumentPosition(el.closest('.contact-card').querySelector('h3')) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
     }
 
-    // Телефон и почта — в одном блоке, отдельными строками
+    // Председатель оргкомитета — Вертянов Д. В., связь по почте
+    await expect(cards.first()).toContainText('Вертянов Денис Васильевич');
+    await expect(cards.first()).toContainText('Кандидат технических наук');
     const links = cards.first().locator('.contact-links a');
-    await expect(links).toHaveCount(2);
-    await expect(links.nth(0)).toHaveAttribute('href', 'tel:+79958990559');
-    await expect(links.nth(1)).toHaveAttribute('href', 'mailto:galka-vikt@mail.ru');
+    await expect(links).toHaveCount(1);
+    await expect(links.first()).toHaveAttribute('href', 'mailto:vdv.vertyanov@yandex.ru');
 
     // Карточки без данных помечены как ожидающие
     await expect(page.locator('.contact-card--pending')).toHaveCount(2);

@@ -142,3 +142,27 @@
 .program-block { margin-bottom: 28px; }
 
 .program-block:last-of-type { margin-bottom: 0; }
+
+/* Расписание докладчиков ещё не опубликовано — выносим это отдельной
+   плашкой, чтобы посетитель не искал список докладов */
+.program-note--pending {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 860px;
+    margin-top: 32px;
+    padding: 22px 26px;
+    background: white;
+    border-left: 4px solid var(--blue);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: left;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.program-note--pending strong {
+    color: var(--text);
+    font-size: 1rem;
+}
