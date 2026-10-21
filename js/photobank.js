@@ -7,7 +7,7 @@
 
     // Появление элементов фотобанка по одному внутри секции.
     // Панель поиска и фильтров (.photobank-toolbar) — без анимации, она статична.
-    initReveal('section h2, .album-card');
+    initReveal('.album-card');
 
     // ===== Поиск и фильтр альбомов =====
     const searchInput = document.getElementById('albumSearch');

@@ -57,6 +57,33 @@
     max-width: 760px;
 }
 
+/* Информация о регистрации и кофе-брейке (п. 10) */
+.reg-info {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 28px;
+    margin: 0 0 32px;
+    padding: 0;
+}
+
+.reg-info li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.88);
+    text-align: left;
+}
+
+.reg-info svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.75);
+}
+
 .reg-form {
     background: white;
     border-radius: 16px;

@@ -66,9 +66,41 @@
         scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
     });
 
+    // Страницы со светлой шапкой помечают <body data-navbar="light">
+    if (document.body.dataset.navbar === 'light') {
+        navbar.classList.add('navbar--light');
+    }
+
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // ===== Подсветка текущего раздела в меню =====
+    // Работает только там, где меню ведёт на якоря этой же страницы.
+    (function () {
+        const links = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+        if (!links.length || !('IntersectionObserver' in window)) return;
+
+        const sectionToLink = new Map();
+        links.forEach(link => {
+            const section = document.getElementById(link.getAttribute('href').slice(1));
+            if (section) sectionToLink.set(section, link);
+        });
+        if (!sectionToLink.size) return;
+
+        function setActive(activeLink) {
+            links.forEach(link => link.classList.toggle('nav-link-active', link === activeLink));
+        }
+
+        const observer = new IntersectionObserver(entries => {
+            const visible = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if (visible) setActive(sectionToLink.get(visible.target));
+        }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+        sectionToLink.forEach((_, section) => observer.observe(section));
+    })();
 
     // ===== Плавная прокрутка =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

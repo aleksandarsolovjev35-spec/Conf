@@ -58,8 +58,21 @@ function initReveal(selector, onReveal) {
             touched.forEach(scheduleReveal);
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll(selector).forEach(el => {
+    const targets = document.querySelectorAll(selector);
+    targets.forEach(el => {
         el.classList.add('animate-target');
         observer.observe(el);
     });
+
+    // Страховка: если IntersectionObserver не сработал (ошибка JS,
+    // встроенный браузер, печать), через 2.5 с показываем всё, что
+    // осталось скрытым. Контент никогда не должен пропадать.
+    setTimeout(() => {
+        targets.forEach(el => {
+            if (el.classList.contains('animate-in')) return;
+            observer.unobserve(el);
+            el.classList.add('animate-in');
+            if (onReveal) onReveal(el, true);
+        });
+    }, 2500);
 }

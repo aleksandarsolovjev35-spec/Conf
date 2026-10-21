@@ -142,30 +142,41 @@ img {
 
 section { padding: 90px 0; }
 
-section:nth-of-type(even) { background: var(--light-gray); }
+/* Фон секций задаётся явно: порядок блоков можно менять без побочных эффектов */
+.about-section,
+.video-section,
+.program-section,
+.partners-section,
+.photobank-teaser-section { background: var(--light-gray); }
+
+.speakers-section,
+.publications-section,
+.contacts-section { background: var(--white); }
 
 h2 {
     text-align: center;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-size: clamp(1.75rem, 3.1vw, 2.45rem);
     font-weight: 800;
+    line-height: 1.2;
     margin-bottom: 12px;
     color: var(--text);
-    letter-spacing: -0.5px;
+    letter-spacing: -0.6px;
 }
 
 .section-subtitle {
     text-align: center;
     color: var(--text-light);
-    font-size: 1.1rem;
-    margin-bottom: 50px;
-    max-width: 600px;
+    font-size: 1.08rem;
+    line-height: 1.7;
+    margin-bottom: 46px;
+    max-width: 680px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 44px;
 }
 
 .section-tag {
@@ -184,7 +195,8 @@ h2 {
 .section-header h2 { margin-bottom: 12px; }
 
 body > section,
-body > header {
+body > header,
+main > section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -192,18 +204,54 @@ body > header {
 }
 
 body > section > .container,
-body > header > .container {
+body > header > .container,
+main > section > .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
-body > section h2 {
-    margin-top: 0;
-    margin-bottom: 28px;
+/* Ссылка «Перейти к содержанию»: видна только при фокусе с клавиатуры */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    z-index: 5000;
+    background: var(--blue);
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 12px 22px;
+    border-radius: 0 0 10px 10px;
+    text-decoration: none;
+    transition: top 0.2s ease;
 }
 
-.section-header {
-    margin-bottom: 36px;
-    text-align: center;
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 0;
+    color: white;
+    outline: 3px solid white;
+    outline-offset: -6px;
+}
+
+/* Кнопка «В календарь» — третичная, рядом с основными действиями */
+.btn-calendar {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.92);
+    border-color: rgba(255, 255, 255, 0.32);
+    gap: 10px;
+    padding: 14px 28px;
+}
+
+.btn-calendar svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.btn-calendar:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: white;
 }

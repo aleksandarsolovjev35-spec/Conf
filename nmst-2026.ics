@@ -1,0 +1,33 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//NRU MIET//NMST 2026//RU
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Конференция НМСТ 2026
+X-WR-TIMEZONE:Europe/Moscow
+BEGIN:VEVENT
+UID:nmst-2026-conference@miet.ru
+DTSTAMP:20261021T120000Z
+DTSTART;TZID=Europe/Moscow:20261217T090000
+DTEND;TZID=Europe/Moscow:20261217T180000
+SUMMARY:IV Ежегодная конференция НМСТ «Техно
+ логии микросистем, корпусирования и сбо
+ рки ЭКБ»
+LOCATION:НИУ МИЭТ, г. Москва, г. Зеленоград, пл
+ ощадь Шокина, дом 1
+DESCRIPTION:Научно-практическая конференция п
+ о технологиям микросистем, корпусирован
+ ия и сборки ЭКБ.\nРегистрация с 09:00 (фойе, 1
+  этаж), начало программы в 09:30, закрытие в 
+ 18:00.\nПодробности на сайте конференции.
+URL:https://miet.ru/
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Завтра — конференция НМСТ 2026 (НИУ 
+ МИЭТ)
+END:VALARM
+END:VEVENT
+END:VCALENDAR
