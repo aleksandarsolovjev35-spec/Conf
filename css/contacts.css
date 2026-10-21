@@ -74,12 +74,6 @@
     overflow-wrap: anywhere;
 }
 
-.contact-note {
-    font-size: 0.86rem;
-    line-height: 1.5;
-    color: var(--text-light);
-}
-
 /* Телефон и e-mail — всегда одним блоком, в одинаковом виде */
 .contact-links {
     width: 100%;
@@ -91,8 +85,6 @@
     flex-direction: column;
     gap: 10px;
 }
-
-.contact-note + .contact-links { margin-top: 18px; }
 
 .contact-links a {
     display: inline-flex;
@@ -120,34 +112,16 @@
     border-radius: 4px;
 }
 
-/* ---------- Карточка с пока неизвестным контактом ---------- */
-
-.contact-card--pending {
+/* Плейсхолдер контакта занимает ту же строку, что и реальные контакты. */
+.contact-links .contact-pending {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    background: var(--light-gray);
-    border-style: dashed;
-    box-shadow: none;
-}
-
-.contact-card--pending:hover {
-    transform: none;
-    box-shadow: none;
-    border-color: var(--gray);
-}
-
-.contact-card--pending .contact-icon {
-    background: rgba(107, 114, 128, 0.12);
-}
-
-.contact-card--pending .contact-icon svg { color: var(--text-light); }
-
-.contact-pending {
-    width: 100%;
-    margin: 18px 0 0;
-    padding: 18px 0 0;
-    border-top: 1px dashed var(--gray);
-    font-size: 0.95rem;
+    min-height: 24px;
+    font-size: 0.97rem;
+    font-weight: 500;
     color: var(--text-light);
+    overflow-wrap: anywhere;
 }
 
 /* ---------- Место проведения ---------- */

@@ -193,7 +193,6 @@
     .contact-card a { word-break: normal; overflow-wrap: anywhere; }
     .partners-grid { gap: 12px; }
     .partners-grid .partner-logo {
-        flex-basis: calc((100% - 12px) / 2);
         min-width: 0;
         min-height: 96px;
         height: auto;

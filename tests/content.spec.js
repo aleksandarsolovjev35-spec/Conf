@@ -34,6 +34,15 @@ test('главная: название конференции — главный
     expect(sizes.h1).toBeGreaterThan(sizes.kicker * 1.8);
 });
 
+test('заставка: фоновое изображение не перехватывает клики и не перетаскивается', async ({ page }) => {
+    await page.goto('/index.html');
+    const background = page.locator('.hero-bg');
+    const image = background.locator('img');
+    await expect(image).toHaveAttribute('draggable', 'false');
+    expect(await background.evaluate(el => getComputedStyle(el).pointerEvents)).toBe('none');
+    expect(await image.evaluate(el => getComputedStyle(el).pointerEvents)).toBe('none');
+});
+
 test('главная: в шапке логотип МИЭТ вместо текста «НМСТ 2025»', async ({ page }) => {
     await page.goto('/index.html');
     const logo = page.locator('.nav-logo img').first();
@@ -53,7 +62,8 @@ test('главная: тематические направления из об�
     await expect(page.locator('.about-topic-card').nth(0)).toContainText('подложек и корпусов');
 });
 
-test('главная: партнёры разбиты на категории и ведут на официальные сайты', async ({ page }) => {
+test('главная: партнёры разбиты на категории, в два столбца и ведут на официальные сайты', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto('/index.html');
     // Стратегический партнёр — полный высококачественный логотип с прозрачным фоном
     const zntcLogo = page.locator('.partner-strategic img');
@@ -78,6 +88,13 @@ test('главная: партнёры разбиты на категории и
         await expect(link).toHaveAttribute('rel', /noopener/);
         await expect(link.locator('img')).toHaveCount(1);
     }
+
+    await partners.first().scrollIntoViewIfNeeded();
+    const rows = await partners.evaluateAll(els =>
+        els.map(el => Math.round(el.getBoundingClientRect().top)));
+    expect(rows[0]).toBe(rows[1]);
+    expect(rows[2]).toBe(rows[3]);
+    expect(rows[2]).toBeGreaterThan(rows[0]);
 });
 
 test('программа: только общее расписание, список докладов скрыт', async ({ page }) => {
@@ -117,26 +134,31 @@ test('контакты: единый шаблон карточки', async ({ pa
     const cards = page.locator('.contacts-grid .contact-card');
     await expect(cards).toHaveCount(3);
 
-    // В каждой карточке: иконка → роль (h3) → содержимое
+    // В каждой карточке один и тот же порядок: должность → ФИО → контакты.
     for (let i = 0; i < 3; i++) {
         const card = cards.nth(i);
         await expect(card.locator('.contact-icon')).toHaveCount(1);
         await expect(card.locator('h3')).toHaveCount(1);
+        await expect(card.locator('.contact-name')).toHaveCount(1);
+        await expect(card.locator('.contact-links')).toHaveCount(1);
+        await expect(card.locator('.contact-note')).toHaveCount(0);
+        await expect(card).not.toHaveClass(/contact-card--pending/);
         expect(await card.locator('.contact-icon').evaluate(el => el.compareDocumentPosition(el.closest('.contact-card').querySelector('h3')) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
     }
+    await expect(page.locator('.contacts-grid')).not.toContainText('Кандидат технических наук');
 
     // Председатель оргкомитета — Тимошенков С. П.; контакты ещё не предоставлены
     const organizer = cards.nth(0);
     await expect(organizer.locator('h3')).toHaveText('Председатель оргкомитета');
     await expect(organizer).toContainText('Тимошенков Сергей Петрович');
-    await expect(organizer.locator('.contact-pending')).toHaveText('Контакт уточняется');
+    await expect(organizer.locator('.contact-links .contact-pending')).toHaveText('Контакт уточняется');
     await expect(organizer.locator('.contact-links a')).toHaveCount(0);
 
     // Председатель программного комитета — Вертянов Д. В., связь по почте
     const programChair = cards.nth(1);
     await expect(programChair.locator('h3')).toHaveText('Председатель программного комитета');
     await expect(programChair).toContainText('Вертянов Денис Васильевич');
-    await expect(programChair).toContainText('Кандидат технических наук');
+    await expect(programChair).not.toContainText('Кандидат технических наук');
     await expect(programChair.locator('.contact-links a')).toHaveCount(1);
     await expect(programChair.locator('.contact-links a')).toHaveAttribute('href', 'mailto:vdv.vertyanov@yandex.ru');
 
@@ -148,10 +170,9 @@ test('контакты: единый шаблон карточки', async ({ pa
     await expect(coordinator.locator('.contact-links a').first()).toHaveAttribute('href', 'tel:+79958990559');
     await expect(coordinator.locator('.contact-links a').last()).toHaveAttribute('href', 'mailto:galka-vikt@mail.ru');
 
-    // Карточка с известной должностью, но без телефона и почты
-    await expect(page.locator('.contact-card--pending')).toHaveCount(1);
-    await expect(page.locator('.contact-card--pending')).toContainText('Тимошенков Сергей Петрович');
-    await expect(page.locator('.contact-card--pending')).toContainText('уточняется');
+    // Контакт-заглушка находится в том же блоке, что и рабочие контакты.
+    await expect(page.locator('.contact-card--pending')).toHaveCount(0);
+    await expect(organizer.locator('.contact-links .contact-pending')).toContainText('уточняется');
 
     // Адрес — карточка того же вида и на всю ширину сетки
     const venue = page.locator('.venue');
@@ -416,6 +437,8 @@ test('регистрация: в блоке нет дублирующей инф
     await expect(section.locator('.reg-text, .reg-info, .reg-features')).toHaveCount(0);
     await expect(section).not.toContainText('09:00–09:30');
     await expect(section).not.toContainText('ДПО');
+    await expect(section).not.toContainText('Участие бесплатное');
+    await expect(section.locator('.reg-subtitle')).toHaveCount(0);
     // Время и место регистрации остаются в программе
     await expect(page.locator('#program')).toContainText('кофе');
 });

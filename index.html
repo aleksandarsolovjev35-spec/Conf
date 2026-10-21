@@ -75,14 +75,14 @@
     <!-- Стили: модули по ответственности (см. README.md)
          base → каркас → секции главной → фотобанк-тизер → анимации → адаптив -->
     <link rel="stylesheet" href="css/base.css?v=4">
-    <link rel="stylesheet" href="css/header.css?v=4">
+    <link rel="stylesheet" href="css/header.css?v=5">
     <link rel="stylesheet" href="css/about.css?v=3">
     <link rel="stylesheet" href="css/speakers.css?v=8">
     <link rel="stylesheet" href="css/program.css?v=3">
-    <link rel="stylesheet" href="css/partners.css?v=6">
+    <link rel="stylesheet" href="css/partners.css?v=7">
     <link rel="stylesheet" href="css/photobank-teaser.css?v=1">
-    <link rel="stylesheet" href="css/registration.css?v=4">
-    <link rel="stylesheet" href="css/contacts.css?v=4">
+    <link rel="stylesheet" href="css/registration.css?v=5">
+    <link rel="stylesheet" href="css/contacts.css?v=5">
     <link rel="stylesheet" href="css/media.css?v=1">
     <link rel="stylesheet" href="css/animations.css?v=2">
     <link rel="stylesheet" href="css/responsive.css?v=5">
@@ -141,7 +141,7 @@
         <source media="(max-width: 640px)" srcset="images/hero/hero-bg-mobile.webp" type="image/webp">
         <source media="(max-width: 640px)" srcset="images/hero/hero-bg-mobile.jpg" type="image/jpeg">
         <source srcset="images/hero/hero-bg.webp" type="image/webp">
-        <img src="images/hero/hero-bg.jpg" alt="" width="1376" height="768" fetchpriority="high" decoding="async">
+        <img src="images/hero/hero-bg.jpg" alt="" width="1376" height="768" fetchpriority="high" decoding="async" draggable="false">
     </picture>
     <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -1004,7 +1004,6 @@
             <div class="section-header">
                 <div class="section-tag">Участие</div>
                 <h2 id="reg-heading">Регистрация на конференцию</h2>
-                <p class="section-subtitle reg-subtitle">Участие бесплатное</p>
             </div>
 
             <!--
@@ -1028,7 +1027,7 @@
      КОНТАКТЫ (п. 3, 14)
      Единый шаблон карточки: иконка → роль → ФИО → контакты.
      Телефон и e-mail всегда в одном блоке, отдельными строками.
-     Карточка без данных помечается классом contact-card--pending.
+     Если контактных данных пока нет, показываем «Контакт уточняется».
      Здесь же — полный адрес места проведения.
      TODO: добавить телефон и e-mail Тимошенкова С. П., когда их предоставят.
 ================================================================ -->
@@ -1043,7 +1042,7 @@
         <div class="contacts-grid">
 
             <!-- ===== ПРЕДСЕДАТЕЛЬ ОРГКОМИТЕТА ===== -->
-            <article class="contact-card contact-card--pending">
+            <article class="contact-card">
                 <div class="contact-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -1052,7 +1051,9 @@
                 </div>
                 <h3>Председатель оргкомитета</h3>
                 <p class="contact-name">Тимошенков Сергей Петрович</p>
-                <p class="contact-pending">Контакт уточняется</p>
+                <ul class="contact-links">
+                    <li><span class="contact-pending">Контакт уточняется</span></li>
+                </ul>
             </article>
 
             <!-- ===== ПРЕДСЕДАТЕЛЬ ПРОГРАММНОГО КОМИТЕТА ===== -->
@@ -1065,7 +1066,6 @@
                 </div>
                 <h3>Председатель программного комитета</h3>
                 <p class="contact-name">Вертянов Денис Васильевич</p>
-                <p class="contact-note">Кандидат технических наук</p>
                 <ul class="contact-links">
                     <li>
                         <a href="mailto:vdv.vertyanov@yandex.ru">
