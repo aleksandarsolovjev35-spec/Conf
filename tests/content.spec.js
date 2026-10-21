@@ -114,6 +114,22 @@ test('контакты: единый шаблон карточки', async ({ pa
     expect(venueBox.width).toBeGreaterThan(firstBox.width * 2);
 });
 
+test('программа: только расписание, без описательного абзаца под заголовком', async ({ page }) => {
+    await page.goto('/index.html');
+
+    const header = page.locator('#program .section-header');
+    await expect(header).toContainText('Программа конференции');
+
+    // Подзаголовок с датой, временем и длительностью доклада убран
+    await expect(header.locator('.section-subtitle')).toHaveCount(0);
+    await expect(header).not.toContainText('Средняя длительность');
+    await expect(header).not.toContainText('Начало регистрации');
+
+    // Само расписание на месте
+    await expect(page.locator('#program .program-block')).toHaveCount(2);
+    await expect(page.locator('#program .program-item').first()).toBeVisible();
+});
+
 test('спикеры: 16 организаций, разбиты на три группы', async ({ page }) => {
     await page.goto('/index.html');
 
