@@ -19,6 +19,52 @@ for (const file of ['index.html', 'photos.html']) {
         expect(title).toContain('2026');
         expect(title).toContain('III');
     });
+
+    test(`${file}: блокируется обычное копирование изображений`, async ({ page }) => {
+        await page.goto(`/${file}`);
+        const image = page.locator('img').first();
+        await expect(image).toHaveJSProperty('draggable', false);
+
+        const events = await image.evaluate(img => {
+            const contextMenu = new MouseEvent('contextmenu', {
+                bubbles: true, cancelable: true, button: 2,
+            });
+            img.dispatchEvent(contextMenu);
+
+            const dragStart = new Event('dragstart', { bubbles: true, cancelable: true });
+            img.dispatchEvent(dragStart);
+
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNode(img);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            const copy = new Event('copy', { bubbles: true, cancelable: true });
+            document.dispatchEvent(copy);
+            selection.removeAllRanges();
+
+            const headingRange = document.createRange();
+            headingRange.selectNodeContents(document.querySelector('h1'));
+            selection.addRange(headingRange);
+            const textCopy = new Event('copy', { bubbles: true, cancelable: true });
+            document.dispatchEvent(textCopy);
+            selection.removeAllRanges();
+
+            return {
+                contextMenuBlocked: contextMenu.defaultPrevented,
+                dragBlocked: dragStart.defaultPrevented,
+                copyBlocked: copy.defaultPrevented,
+                textCopyAllowed: !textCopy.defaultPrevented,
+                userSelect: getComputedStyle(img).userSelect,
+            };
+        });
+
+        expect(events.contextMenuBlocked).toBe(true);
+        expect(events.dragBlocked).toBe(true);
+        expect(events.copyBlocked).toBe(true);
+        expect(events.textCopyAllowed).toBe(true);
+        expect(events.userSelect).toBe('none');
+    });
 }
 
 test('главная: название конференции — главный акцент, а не «III Ежегодная»', async ({ page }) => {

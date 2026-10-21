@@ -5,6 +5,48 @@
    Подключается на index.html и photos.html первым.
 ============================================================= */
 
+    // ===== Защита изображений от обычного копирования =====
+    // Это мешает случайно сохранить картинку через меню браузера, перетаскивание
+    // или Ctrl/Cmd+C. Сам файл всё равно можно получить через инструменты браузера.
+    (function () {
+        const imageSelector = 'img, picture, svg, canvas';
+
+        function isImageTarget(target) {
+            const element = target instanceof Element ? target : target && target.parentElement;
+            return Boolean(element && element.closest(imageSelector));
+        }
+
+        document.querySelectorAll('img').forEach(image => {
+            image.draggable = false;
+        });
+
+        ['contextmenu', 'dragstart'].forEach(type => {
+            document.addEventListener(type, event => {
+                if (isImageTarget(event.target)) event.preventDefault();
+            }, true);
+        });
+
+        document.addEventListener('copy', event => {
+            const selection = window.getSelection();
+            if (!selection || selection.isCollapsed) return;
+
+            const images = document.querySelectorAll(imageSelector);
+            for (let i = 0; i < selection.rangeCount; i++) {
+                const range = selection.getRangeAt(i);
+                for (const image of images) {
+                    try {
+                        if (range.intersectsNode(image)) {
+                            event.preventDefault();
+                            return;
+                        }
+                    } catch (_) {
+                        // Узел мог быть удалён динамически во время выделения.
+                    }
+                }
+            }
+        }, true);
+    })();
+
     // ===== Бургер-меню =====
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
