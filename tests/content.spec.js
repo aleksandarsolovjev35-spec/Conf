@@ -55,8 +55,12 @@ test('главная: тематические направления из об�
 
 test('главная: партнёры разбиты на категории и ведут на официальные сайты', async ({ page }) => {
     await page.goto('/index.html');
-    // Стратегический партнёр — логотип, название в alt
-    await expect(page.locator('.partner-strategic img')).toHaveAttribute('alt', /ЗНТЦ/);
+    // Стратегический партнёр — полный высококачественный логотип с прозрачным фоном
+    const zntcLogo = page.locator('.partner-strategic img');
+    await expect(zntcLogo).toHaveAttribute('alt', /ЗНТЦ/);
+    await zntcLogo.scrollIntoViewIfNeeded();
+    await expect(zntcLogo).toHaveJSProperty('complete', true);
+    expect(await zntcLogo.evaluate(img => img.naturalWidth)).toBeGreaterThanOrEqual(400);
     const partners = page.locator('.partners-grid .partner-logo');
     await expect(partners).toHaveCount(4);
 
@@ -121,24 +125,33 @@ test('контакты: единый шаблон карточки', async ({ pa
         expect(await card.locator('.contact-icon').evaluate(el => el.compareDocumentPosition(el.closest('.contact-card').querySelector('h3')) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
     }
 
-    // Председатель оргкомитета — Вертянов Д. В., связь по почте
-    await expect(cards.first()).toContainText('Вертянов Денис Васильевич');
-    await expect(cards.first()).toContainText('Кандидат технических наук');
-    const links = cards.first().locator('.contact-links a');
-    await expect(links).toHaveCount(1);
-    await expect(links.first()).toHaveAttribute('href', 'mailto:vdv.vertyanov@yandex.ru');
+    // Председатель оргкомитета — Тимошенков С. П.; контакты ещё не предоставлены
+    const organizer = cards.nth(0);
+    await expect(organizer.locator('h3')).toHaveText('Председатель оргкомитета');
+    await expect(organizer).toContainText('Тимошенков Сергей Петрович');
+    await expect(organizer.locator('.contact-pending')).toHaveText('Контакт уточняется');
+    await expect(organizer.locator('.contact-links a')).toHaveCount(0);
 
-    // Делегаты и спонсоры — Косолапова Г. В., телефон и почта
-    const delegates = cards.nth(1);
-    await expect(delegates.locator('h3')).toHaveText('По вопросам работы с делегатами и спонсорами');
-    await expect(delegates).toContainText('Косолапова Галина Викторовна');
-    await expect(delegates.locator('.contact-links a')).toHaveCount(2);
-    await expect(delegates.locator('.contact-links a').first()).toHaveAttribute('href', 'tel:+79958990559');
-    await expect(delegates.locator('.contact-links a').last()).toHaveAttribute('href', 'mailto:galka-vikt@mail.ru');
+    // Председатель программного комитета — Вертянов Д. В., связь по почте
+    const programChair = cards.nth(1);
+    await expect(programChair.locator('h3')).toHaveText('Председатель программного комитета');
+    await expect(programChair).toContainText('Вертянов Денис Васильевич');
+    await expect(programChair).toContainText('Кандидат технических наук');
+    await expect(programChair.locator('.contact-links a')).toHaveCount(1);
+    await expect(programChair.locator('.contact-links a')).toHaveAttribute('href', 'mailto:vdv.vertyanov@yandex.ru');
 
-    // Карточка без данных помечена как ожидающая
+    // Координатор мероприятия — Косолапова Г. В., телефон и почта
+    const coordinator = cards.nth(2);
+    await expect(coordinator.locator('h3')).toHaveText('Координатор мероприятия');
+    await expect(coordinator).toContainText('Косолапова Галина Викторовна');
+    await expect(coordinator.locator('.contact-links a')).toHaveCount(2);
+    await expect(coordinator.locator('.contact-links a').first()).toHaveAttribute('href', 'tel:+79958990559');
+    await expect(coordinator.locator('.contact-links a').last()).toHaveAttribute('href', 'mailto:galka-vikt@mail.ru');
+
+    // Карточка с известной должностью, но без телефона и почты
     await expect(page.locator('.contact-card--pending')).toHaveCount(1);
-    await expect(page.locator('.contact-card--pending').first()).toContainText('уточняется');
+    await expect(page.locator('.contact-card--pending')).toContainText('Тимошенков Сергей Петрович');
+    await expect(page.locator('.contact-card--pending')).toContainText('уточняется');
 
     // Адрес — карточка того же вида и на всю ширину сетки
     const venue = page.locator('.venue');
