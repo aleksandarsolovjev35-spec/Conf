@@ -237,7 +237,7 @@ test('регистрация: заголовок встроенной формы
     await expect(page.locator('#f-name')).toBeVisible();
     await expect(page.locator('#f-mail')).toBeVisible();
     await expect(page.locator('.b24-form-btn')).toBeVisible();
-    await expect(page.locator('#regForm')).toHaveClass(/reg-form--title-replaced/);
+    await expect(page.locator('#registration')).toHaveClass(/reg-restyled/);
 });
 
 test('регистрация: в блоке нет дублирующей информации', async ({ page }) => {
@@ -249,6 +249,24 @@ test('регистрация: в блоке нет дублирующей инф
     await expect(section).not.toContainText('ДПО');
     // Время и место регистрации остаются в программе
     await expect(page.locator('#program')).toContainText('кофе');
+});
+
+test('регистрация: надпись-секция формы скрывается и вне #regForm', async ({ page }) => {
+    await page.goto('/index.html');
+    // Так форма отдаёт надпись на самом деле: label секции (layout),
+    // вставленный рядом со скриптом-загрузчиком, а не внутри #regForm
+    await page.evaluate(() => {
+        document.getElementById('registration').insertAdjacentHTML('beforeend', `
+            <div class="b24-form-field b24-form-field-layout" id="layoutSection">
+                <div class="b24-form-control-label">Регистрация на конференцию Micropack</div>
+            </div>`);
+    });
+    await page.waitForTimeout(300);
+
+    await expect(page.locator('#layoutSection')).toBeHidden();
+    expect(await page.locator('#layoutSection').evaluate(el => el.getBoundingClientRect().height)).toBe(0);
+    // Заголовок раздела на месте
+    await expect(page.locator('#reg-heading')).toBeVisible();
 });
 
 test('регистрация: заголовок формы закрывается и без известных классов', async ({ page }) => {
