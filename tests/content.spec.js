@@ -53,12 +53,27 @@ test('главная: тематические направления из об�
     await expect(page.locator('.about-topic-card').nth(0)).toContainText('подложек и корпусов');
 });
 
-test('главная: партнёры разбиты на стратегического партнёра и партнёров', async ({ page }) => {
+test('главная: партнёры разбиты на категории и ведут на официальные сайты', async ({ page }) => {
     await page.goto('/index.html');
     // Стратегический партнёр — логотип, название в alt
     await expect(page.locator('.partner-strategic img')).toHaveAttribute('alt', /ЗНТЦ/);
     const partners = page.locator('.partners-grid .partner-logo');
     await expect(partners).toHaveCount(4);
+
+    const officialSites = [
+        ['.partner-strategic', 'https://zntc.ru/'],
+        ['.partners-grid .partner-logo:nth-child(1)', 'https://sovtest-ate.ru/'],
+        ['.partners-grid .partner-logo:nth-child(2)', 'https://t1.ru/'],
+        ['.partners-grid .partner-logo:nth-child(3)', 'https://www.eremex.ru/'],
+        ['.partners-grid .partner-logo:nth-child(4)', 'https://ostec-group.ru/'],
+    ];
+    for (const [selector, url] of officialSites) {
+        const link = page.locator(selector);
+        await expect(link).toHaveAttribute('href', url);
+        await expect(link).toHaveAttribute('target', '_blank');
+        await expect(link).toHaveAttribute('rel', /noopener/);
+        await expect(link.locator('img')).toHaveCount(1);
+    }
 });
 
 test('программа: только общее расписание, список докладов скрыт', async ({ page }) => {
