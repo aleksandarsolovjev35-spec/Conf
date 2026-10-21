@@ -2,12 +2,71 @@
    SPEAKERS — секция «Спикеры» главной страницы.
    Пока показываем организации-докладчиков (п. 9): ФИО и темы
    докладов публикуются позже.
+   16 организаций разбиты на три группы (организаторы, индустрия,
+   наука и образование): сплошная стена одинаковых карточек читалась
+   плохо, а по группам видно структуру программы.
 ============================================================= */
 
+/* ---- Группы ---- */
+
+.speakers-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+}
+
+.speakers-group-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    margin-bottom: 18px;
+}
+
+.speakers-group-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* Счётчик организаций в группе */
+.speakers-group-count {
+    min-width: 24px;
+    padding: 2px 8px;
+    border-radius: 50px;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Пояснение к группе — тише заголовка */
+.speakers-group-note {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    opacity: 0.85;
+}
+
+/* Линия, добивающая строку заголовка до края */
+.speakers-group-head::after {
+    content: '';
+    flex: 1 1 40px;
+    height: 1px;
+    background: var(--gray);
+    align-self: center;
+}
+
+/* auto-fill, а не auto-fit: последние карточки в ряду держатся слева,
+   а не растягиваются на всю ширину */
 .speakers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
+    gap: 18px;
 }
 
 .speaker-card {
@@ -27,29 +86,65 @@
 /* Карточка организации-докладчика */
 .speaker-card--org {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 24px;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 22px;
     border: 1px solid var(--gray);
     border-top: 3px solid var(--blue);
+    border-radius: 12px;
     text-align: left;
 }
 
+/* Бренд организации: либо логотип, либо название текстом.
+   Строка одной высоты, поэтому подписи в ряду выровнены независимо
+   от того, есть для организации официальный логотип или нет. */
+.speaker-brand {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.speaker-brand img {
+    max-width: 100%;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+/* Если логотип есть — название остаётся для скринридеров и поиска */
+.speaker-brand:has(img) .speaker-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.speaker-card--org .speaker-info {
+    min-width: 0;
+}
+
 .speaker-card--org .speaker-info h3 {
-    font-size: 1.12rem;
-    margin-bottom: 8px;
+    font-size: 1rem;
+    line-height: 1.3;
+    margin: 0;
 }
 
 .speaker-card--org .speaker-req {
-    font-size: 0.86rem;
-    line-height: 1.5;
-    margin-bottom: 14px;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    margin-bottom: 12px;
 }
 
+/* Подпись под логотипом не должна «прилипать» к нему */
+
 .speaker-card--org .speaker-topic {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     margin-bottom: 0;
-    padding: 6px 14px;
+    padding: 4px 11px;
     border-radius: 50px;
 }
 
@@ -110,7 +205,6 @@
     margin-right: auto;
 }
 
-.speakers-grid,
 .partners-grid,
 .contacts-grid,
 .album-grid {

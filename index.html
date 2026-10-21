@@ -74,12 +74,12 @@
 
     <!-- Стили: модули по ответственности (см. README.md)
          base → каркас → секции главной → фотобанк-тизер → анимации → адаптив -->
-    <link rel="stylesheet" href="css/base.css?v=3">
+    <link rel="stylesheet" href="css/base.css?v=4">
     <link rel="stylesheet" href="css/header.css?v=4">
     <link rel="stylesheet" href="css/about.css?v=3">
-    <link rel="stylesheet" href="css/speakers.css?v=2">
+    <link rel="stylesheet" href="css/speakers.css?v=5">
     <link rel="stylesheet" href="css/program.css?v=2">
-    <link rel="stylesheet" href="css/partners.css?v=3">
+    <link rel="stylesheet" href="css/partners.css?v=5">
     <link rel="stylesheet" href="css/photobank-teaser.css?v=1">
     <link rel="stylesheet" href="css/registration.css?v=4">
     <link rel="stylesheet" href="css/contacts.css?v=3">
@@ -178,17 +178,6 @@
                 Зарегистрироваться
             </a>
             <a href="#program" class="btn btn-outline">Программа</a>
-            <a href="nmst-2026.ics" class="btn btn-calendar" download>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                    <line x1="12" y1="14" x2="12" y2="18"/>
-                    <line x1="10" y1="16" x2="14" y2="16"/>
-                </svg>
-                В календарь
-            </a>
         </div>
 
         <!--
@@ -466,171 +455,189 @@
             <h2 id="speakers-heading">Спикеры</h2>
             <p class="section-subtitle">
                 ФИО спикеров-докладчиков и точные названия докладов будут опубликованы
-                позже. Ниже — организации, от которых планируются доклады.
+                позже. Ниже — 16 организаций, от которых планируются доклады.
             </p>
         </div>
 
-        <div class="speakers-grid">
+        <div class="speakers-groups">
 
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 1 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>НИУ МИЭТ</h3>
-                    <p class="speaker-req">Институт НМСТ, НИЛ ТКПМ, ПИШ МИЭТ</p>
-                    <p class="speaker-topic">3–4 доклада</p>
+            <div class="speakers-group">
+                <div class="speakers-group-head">
+                    <h3 class="speakers-group-title" id="speakers-group-orgs">Организаторы</h3>
+                    <span class="speakers-group-count">2</span>
+                    <span class="speakers-group-note">Проводят конференцию</span>
                 </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 1 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 2 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>АО «ЗНТЦ»</h3>
-                    <p class="speaker-req">Стратегический партнёр конференции</p>
-                    <p class="speaker-topic">1 доклад</p>
+                <div class="speakers-grid" aria-labelledby="speakers-group-orgs">
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">НИУ МИЭТ</h3>
+                                <img src="images/logos/miet.png" alt="" width="966" height="436" loading="lazy">
+                            </div>
+                            <p class="speaker-req">Институт НМСТ, НИЛ ТКПМ, ПИШ МИЭТ</p>
+                            <p class="speaker-topic">3–4 доклада</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">АО «ЗНТЦ»</h3>
+                                <img src="images/logos/partners/zntc.png" alt="" width="242" height="64" loading="lazy">
+                            </div>
+                            <p class="speaker-req">Стратегический партнёр конференции</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
                 </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 2 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 3 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>ООО «Совтест АТЕ»</h3>
-                    <p class="speaker-req">Партнёр конференции</p>
-                    <p class="speaker-topic">1–2 доклада</p>
+            </div>
+            <div class="speakers-group">
+                <div class="speakers-group-head">
+                    <h3 class="speakers-group-title" id="speakers-group-industry">Индустрия</h3>
+                    <span class="speakers-group-count">10</span>
+                    <span class="speakers-group-note">Оборудование, материалы, разработка</span>
                 </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 3 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 4 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>Т1 Интеграция</h3>
-                    <p class="speaker-req">Партнёр конференции</p>
-                    <p class="speaker-topic">1–2 доклада</p>
+                <div class="speakers-grid" aria-labelledby="speakers-group-industry">
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">ООО «Совтест АТЕ»</h3>
+                                <img src="images/logos/partners/sovtest-ate.png" alt="" width="640" height="210" loading="lazy">
+                            </div>
+                            <p class="speaker-req">Партнёр конференции</p>
+                            <p class="speaker-topic">1–2 доклада</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">Т1 Интеграция</h3>
+                                <img src="images/logos/partners/t1.png" alt="" width="640" height="87" loading="lazy">
+                            </div>
+                            <p class="speaker-req">Партнёр конференции</p>
+                            <p class="speaker-topic">1–2 доклада</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">ЭРЕМЕКС</h3>
+                                <img src="images/logos/partners/eremex.png" alt="" width="431" height="68" loading="lazy">
+                            </div>
+                            <p class="speaker-req">Партнёр конференции</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">ООО «Остек-ЭК»</h3>
+                                <img src="images/logos/partners/ostec.png" alt="" width="222" height="119" loading="lazy">
+                            </div>
+                            <p class="speaker-req">Партнёр конференции</p>
+                            <p class="speaker-topic">1–2 доклада</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">Савтек</h3>
+                            </div>
+                            <p class="speaker-req">Участник программы</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">Трамплин Электроникс</h3>
+                            </div>
+                            <p class="speaker-req">Участник программы</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">Тестовые Решения</h3>
+                            </div>
+                            <p class="speaker-req">Участник программы</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">ЛМП</h3>
+                            </div>
+                            <p class="speaker-req">Участник программы</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">ДжиЭс-Нанотех</h3>
+                            </div>
+                            <p class="speaker-req">Участник программы</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">АО «НИИМА «Прогресс»</h3>
+                            </div>
+                            <p class="speaker-req">Участник программы</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
                 </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 4 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 5 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>ЭРЕМЕКС</h3>
-                    <p class="speaker-req">Партнёр конференции</p>
-                    <p class="speaker-topic">1 доклад</p>
+            </div>
+            <div class="speakers-group">
+                <div class="speakers-group-head">
+                    <h3 class="speakers-group-title" id="speakers-group-science">Наука и образование</h3>
+                    <span class="speakers-group-count">4</span>
+                    <span class="speakers-group-note">Вузы и научные институты</span>
                 </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 5 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 6 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>ООО «Остек-ЭК»</h3>
-                    <p class="speaker-req">Партнёр конференции</p>
-                    <p class="speaker-topic">1–2 доклада</p>
+                <div class="speakers-grid" aria-labelledby="speakers-group-science">
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">МФТИ</h3>
+                            </div>
+                            <p class="speaker-req">Участник программы</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">ФИЦ ПХФ и МХ РАН</h3>
+                            </div>
+                            <p class="speaker-req">Участник программы</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">НИИСИ РАН</h3>
+                            </div>
+                            <p class="speaker-req">Участник программы</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
+                    <article class="speaker-card speaker-card--org">
+                        <div class="speaker-info">
+                            <div class="speaker-brand">
+                                <h3 class="speaker-name">НИИПП</h3>
+                            </div>
+                            <p class="speaker-req">Участник программы</p>
+                            <p class="speaker-topic">1 доклад</p>
+                        </div>
+                    </article>
                 </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 6 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 7 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>Савтек</h3>
-                    <p class="speaker-req">Участник программы</p>
-                    <p class="speaker-topic">1 доклад</p>
-                </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 7 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 8 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>Трамплин Электроникс</h3>
-                    <p class="speaker-req">Участник программы</p>
-                    <p class="speaker-topic">1 доклад</p>
-                </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 8 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 9 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>Тестовые Решения</h3>
-                    <p class="speaker-req">Участник программы</p>
-                    <p class="speaker-topic">1 доклад</p>
-                </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 9 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 10 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>АО «НИИМА «Прогресс»</h3>
-                    <p class="speaker-req">Участник программы</p>
-                    <p class="speaker-topic">1 доклад</p>
-                </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 10 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 11 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>ЛМП</h3>
-                    <p class="speaker-req">Участник программы</p>
-                    <p class="speaker-topic">1 доклад</p>
-                </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 11 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 12 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>ФИЦ ПХФ и МХ РАН</h3>
-                    <p class="speaker-req">Участник программы</p>
-                    <p class="speaker-topic">1 доклад</p>
-                </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 12 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 13 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>НИИСИ РАН</h3>
-                    <p class="speaker-req">Участник программы</p>
-                    <p class="speaker-topic">1 доклад</p>
-                </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 13 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 14 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>НИИПП</h3>
-                    <p class="speaker-req">Участник программы</p>
-                    <p class="speaker-topic">1 доклад</p>
-                </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 14 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 15 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>ДжиЭс-Нанотех</h3>
-                    <p class="speaker-req">Участник программы</p>
-                    <p class="speaker-topic">1 доклад</p>
-                </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 15 ===== -->
-
-            <!-- ===== НАЧАЛО ОРГАНИЗАЦИИ 16 ===== -->
-            <article class="speaker-card speaker-card--org">
-                <div class="speaker-info">
-                    <h3>МФТИ</h3>
-                    <p class="speaker-req">Участник программы</p>
-                    <p class="speaker-topic">1 доклад</p>
-                </div>
-            </article>
-            <!-- ===== КОНЕЦ ОРГАНИЗАЦИИ 16 ===== -->
+            </div>
 
         </div>
 
@@ -1044,13 +1051,16 @@
         <div class="section-header">
             <div class="section-tag">Партнёры</div>
             <h2 id="partners-heading">Партнёры и спонсоры</h2>
+            <p class="section-subtitle">
+                Официальные логотипы организаций-партнёров конференции.
+            </p>
         </div>
 
         <div class="partners-tier">
             <h3 class="partners-tier-title">Стратегический партнёр</h3>
             <div class="partner-strategic">
-                <span class="partner-name">АО «ЗНТЦ»</span>
-                <span class="partner-desc">Зеленоградский нанотехнологический центр</span>
+                <img src="images/logos/partners/zntc.png" alt="АО «ЗНТЦ» — Зеленоградский нанотехнологический центр"
+                     width="242" height="64" loading="lazy">
             </div>
         </div>
 
@@ -1058,29 +1068,25 @@
             <h3 class="partners-tier-title">Партнёры</h3>
             <div class="partners-grid">
 
-                <!-- ===== НАЧАЛО ЛОГОТИПА ПАРТНЁРА 1 ===== -->
                 <div class="partner-logo">
-                    <span class="partner-name">Совтест АТЕ</span>
+                    <img src="images/logos/partners/sovtest-ate.png" alt="Совтест АТЕ"
+                         width="640" height="210" loading="lazy">
                 </div>
-                <!-- ===== КОНЕЦ ЛОГОТИПА ПАРТНЁРА 1 ===== -->
 
-                <!-- ===== НАЧАЛО ЛОГОТИПА ПАРТНЁРА 2 ===== -->
                 <div class="partner-logo">
-                    <span class="partner-name">Т1</span>
+                    <img src="images/logos/partners/t1.png" alt="Т1 Интеграция"
+                         width="640" height="87" loading="lazy">
                 </div>
-                <!-- ===== КОНЕЦ ЛОГОТИПА ПАРТНЁРА 2 ===== -->
 
-                <!-- ===== НАЧАЛО ЛОГОТИПА ПАРТНЁРА 3 ===== -->
                 <div class="partner-logo">
-                    <span class="partner-name">ЭРЕМЕКС</span>
+                    <img src="images/logos/partners/eremex.png" alt="ЭРЕМЕКС"
+                         width="431" height="68" loading="lazy">
                 </div>
-                <!-- ===== КОНЕЦ ЛОГОТИПА ПАРТНЁРА 3 ===== -->
 
-                <!-- ===== НАЧАЛО ЛОГОТИПА ПАРТНЁРА 4 ===== -->
                 <div class="partner-logo">
-                    <span class="partner-name">Остек</span>
+                    <img src="images/logos/partners/ostec.png" alt="Остек-ЭК"
+                         width="222" height="119" loading="lazy">
                 </div>
-                <!-- ===== КОНЕЦ ЛОГОТИПА ПАРТНЁРА 4 ===== -->
 
             </div>
         </div>
