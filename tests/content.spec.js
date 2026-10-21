@@ -122,6 +122,14 @@ test('главная: блоки «Видео» и «Публикации» на
     await expect(page.locator('.publication-card')).toHaveCount(3);
 });
 
+test('видео: анонс длится минуту и рассказывает о конференции этого года', async ({ page }) => {
+    await page.goto('/index.html');
+    await expect(page.locator('#video-heading')).toHaveText('О конференции за одну минуту');
+    await expect(page.locator('#video .section-subtitle')).toContainText('в этом году');
+    await expect(page.locator('#video .section-subtitle')).not.toContainText('прошлого года');
+    await expect(page.locator('.video-teaser-caption strong')).toHaveText('Анонс конференции');
+});
+
 test('контакты: указан полный адрес площадки', async ({ page }) => {
     await page.goto('/index.html');
     const venue = page.locator('.venue');
