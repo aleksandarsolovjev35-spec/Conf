@@ -59,6 +59,17 @@ img {
     display: block;
 }
 
+/* Снижаем возможность случайно выделить, перетащить или сохранить изображения. */
+img,
+picture,
+svg,
+canvas {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
