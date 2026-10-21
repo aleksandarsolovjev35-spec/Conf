@@ -145,16 +145,13 @@
     })();
 
     // ===== Плавная прокрутка =====
+    // Смещение под фиксированной шапкой задано через scroll-margin-top в base.css;
+    // scrollIntoView использует его так же, как обычный межстраничный hash-переход.
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const top = target.getBoundingClientRect().top
-                          + window.pageYOffset
-                          - navbar.offsetHeight - 10;
-                window.scrollTo({ top, behavior: 'smooth' });
-            }
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
 
