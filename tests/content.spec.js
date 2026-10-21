@@ -17,11 +17,11 @@ for (const file of ['index.html', 'photos.html']) {
 
         const title = await page.title();
         expect(title).toContain('2026');
-        expect(title).toContain('IV');
+        expect(title).toContain('III');
     });
 }
 
-test('главная: название конференции — главный акцент, а не «IV Ежегодная»', async ({ page }) => {
+test('главная: название конференции — главный акцент, а не «III Ежегодная»', async ({ page }) => {
     await page.goto('/index.html');
     const h1 = page.locator('#hero h1');
     await expect(h1).toBeVisible();
@@ -113,8 +113,16 @@ test('контакты: единый шаблон карточки', async ({ pa
     await expect(links).toHaveCount(1);
     await expect(links.first()).toHaveAttribute('href', 'mailto:vdv.vertyanov@yandex.ru');
 
-    // Карточки без данных помечены как ожидающие
-    await expect(page.locator('.contact-card--pending')).toHaveCount(2);
+    // Делегаты и спонсоры — Косолапова Г. В., телефон и почта
+    const delegates = cards.nth(1);
+    await expect(delegates.locator('h3')).toHaveText('По вопросам работы с делегатами и спонсорами');
+    await expect(delegates).toContainText('Косолапова Галина Викторовна');
+    await expect(delegates.locator('.contact-links a')).toHaveCount(2);
+    await expect(delegates.locator('.contact-links a').first()).toHaveAttribute('href', 'tel:+79958990559');
+    await expect(delegates.locator('.contact-links a').last()).toHaveAttribute('href', 'mailto:galka-vikt@mail.ru');
+
+    // Карточка без данных помечена как ожидающая
+    await expect(page.locator('.contact-card--pending')).toHaveCount(1);
     await expect(page.locator('.contact-card--pending').first()).toContainText('уточняется');
 
     // Адрес — карточка того же вида и на всю ширину сетки
@@ -158,6 +166,43 @@ test('спикеры: 16 организаций, разбиты на три гр
     for (const group of await page.locator('.speakers-group').all()) {
         const count = Number(await group.locator('.speakers-group-count').textContent());
         expect(await group.locator('.speaker-card--org').count()).toBe(count);
+    }
+});
+
+test('спикеры: карточка ведёт на официальный сайт организации', async ({ page }) => {
+    await page.goto('/index.html');
+
+    const links = page.locator('.speaker-card--org .speaker-link');
+    await expect(links).toHaveCount(16);
+
+    const expected = {
+        'НИУ МИЭТ': 'https://miet.ru/',
+        'АО «ЗНТЦ»': 'https://zntc.ru/',
+        'ООО «Совтест АТЕ»': 'https://sovtest-ate.ru/',
+        'Т1 Интеграция': 'https://t1.ru/',
+        'ЭРЕМЕКС': 'https://www.eremex.ru/',
+        'ООО «Остек-ЭК»': 'https://ostec-group.ru/',
+        'Савтек': 'https://savtech.ru/',
+        'Трамплин Электроникс': 'https://tramplin.group/',
+        'Тестовые Решения': 'https://tsocket.ru/',
+        'ЛМП': 'https://mp-lab.ru/',
+        'ДжиЭс-Нанотех': 'https://gsnanotech.ru/',
+        'АО «НИИМА «Прогресс»': 'https://i-progress.tech/',
+        'МФТИ': 'https://mipt.ru/',
+        'ФИЦ ПХФ и МХ РАН': 'https://icp-ras.ru/',
+        'НИИСИ РАН': 'https://www.niisi.ru/',
+        'НИИПП': 'https://www.niipp.ru/',
+    };
+
+    for (const [name, url] of Object.entries(expected)) {
+        const card = page.locator('.speaker-card--org', { has: page.getByText(name, { exact: true }) }).first();
+        await expect(card.locator('a.speaker-link')).toHaveAttribute('href', url);
+    }
+
+    // Внешние ссылки открываются в новой вкладке и без доступа к opener
+    for (const link of await links.all()) {
+        await expect(link).toHaveAttribute('target', '_blank');
+        expect((await link.getAttribute('rel')) || '').toContain('noopener');
     }
 });
 

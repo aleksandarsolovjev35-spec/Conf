@@ -227,21 +227,31 @@
     border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+/* Все три логотипа организаторов — одной высоты */
 .hero-logo-miet {
-    height: 58px;
+    height: var(--hero-logo-size, 48px);
     width: auto;
     opacity: 0.95;
 }
 
 /* Логотипы подразделений: официальные файлы, белые на прозрачном.
-   Высота меньше, чем у МИЭТ — МИЭТ остаётся главным. */
+   Высота та же, что у МИЭТ, — знаки в строке выровнены по размеру. */
 .hero-logo-mark {
-    height: 46px;
+    height: var(--hero-logo-size, 48px);
     width: auto;
     opacity: 0.92;
 }
 
-.hero-logo-mark--wide { height: 40px; }
+.hero-logo-mark--wide { height: var(--hero-logo-size, 48px); }
+
+/* На узких экранах знаки мельче, но по-прежнему одинаковые между собой */
+@media (max-width: 1024px) {
+    .hero-logos { --hero-logo-size: 44px; }
+}
+
+@media (max-width: 768px) {
+    .hero-logos { --hero-logo-size: 40px; }
+}
 
 .hero-logo-text {
     display: flex;
