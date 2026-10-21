@@ -182,7 +182,7 @@ test('спикеры: карточка ведёт на официальный с
         'Т1 Интеграция': 'https://t1.ru/',
         'ЭРЕМЕКС': 'https://www.eremex.ru/',
         'ООО «Остек-ЭК»': 'https://ostec-group.ru/',
-        'Савтек': 'https://savtech.ru/',
+        'САВТЭК': 'https://savtech.ru/',
         'Трамплин Электроникс': 'https://tramplin.group/',
         'Тестовые Решения': 'https://tsocket.ru/',
         'ЛМП': 'https://mp-lab.ru/',
@@ -222,18 +222,35 @@ test('спикеры и партнёры: официальные логотип�
         expect(await img.evaluate(el => el.naturalWidth)).toBeGreaterThan(0);
     }
 
-    // Карточка спикера: логотип есть — название остаётся в разметке
+    // Логотип есть у всех 16 организаций; название остаётся в разметке
     const withLogo = page.locator('.speaker-brand:has(img)');
-    expect(await withLogo.count()).toBeGreaterThanOrEqual(6);
+    await expect(withLogo).toHaveCount(16);
     for (const brand of await withLogo.all()) {
         await expect(brand.locator('.speaker-name')).toHaveCount(1);
         await expect(brand.locator('img')).toHaveAttribute('alt', '');
     }
 
+    // Все логотипы загрузились и не выходят за общий размер
+    // (loading="lazy" — прокручиваем секцию, чтобы браузер их запросил)
+    await page.locator('#speakers').scrollIntoViewIfNeeded();
+    for (const img of await page.locator('.speaker-brand img').all()) {
+        await img.scrollIntoViewIfNeeded();
+    }
+    await page.waitForFunction(() =>
+        [...document.querySelectorAll('.speaker-brand img')].every(i => i.complete));
+
+    const boxes = await page.locator('.speaker-brand img').evaluateAll(els =>
+        els.map(el => ({ w: Math.round(el.getBoundingClientRect().width),
+                         h: Math.round(el.getBoundingClientRect().height),
+                         ok: el.complete && el.naturalWidth > 0 })));
+    expect(boxes).toHaveLength(16);
+    expect(boxes.every(b => b.ok)).toBe(true);
+    expect(boxes.every(b => b.w <= 150 && b.h <= 32)).toBe(true);
+
     // Все 16 карточек имеют строку бренда одинаковой высоты — подписи выровнены
     const heights = await page.locator('.speaker-brand').evaluateAll(
         els => [...new Set(els.map(el => Math.round(el.getBoundingClientRect().height)))]);
-    expect(heights).toEqual([40]);
+    expect(heights).toEqual([44]);
 });
 
 test('без JS контент и заголовки разделов остаются видимыми', async ({ browser }) => {
