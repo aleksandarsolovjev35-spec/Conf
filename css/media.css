@@ -14,6 +14,10 @@
     isolation: isolate;
 }
 
+.video-teaser[data-video-url]:not([data-video-url=""]):not(.is-playing) {
+    cursor: pointer;
+}
+
 .video-teaser-poster {
     width: 100%;
     height: 100%;
