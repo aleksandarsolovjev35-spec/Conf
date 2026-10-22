@@ -4,11 +4,14 @@
 ============================================================= */
 
 :root {
+    --navy:       #0a1628;
     --blue:       #0f45c7;
     --blue-dark:  #0a2f8a;
     --blue-light: #e8efff;
     --white:      #ffffff;
     --light-gray: #f7f8fc;
+    --bg:         #ffffff;
+    --bg-alt:     #f7f8fc;
     --gray:       #e5e7eb;
     --text:       #1f2937;
     --text-light: #6b7280;
