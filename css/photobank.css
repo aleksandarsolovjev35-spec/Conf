@@ -1,13 +1,29 @@
 /* =============================================================
-   PHOTOBANK — страница фотобанка (photos.html): шапка,
-   поиск и фильтры, сетка альбомов. Альбом и лайтбокс — photobank-album.css,
-   тизер с каруселью для главной — photobank-teaser.css.
+   PHOTOBANK — страница фотобанка (photos.html):
+   шапка-баннер, поиск, чипы-фильтры, сетка альбомов,
+   кнопка возврата. Раскрытый альбом и лайтбокс — в photobank-album.css.
 ============================================================= */
 
+/* ---- Шапка страницы ---- */
 .photobank-hero {
-    background: linear-gradient(135deg, #0a1628 0%, #0f45c7 100%);
+    background: linear-gradient(135deg, var(--navy) 0%, #244b7a 60%, var(--blue) 100%);
     color: white;
-    padding: 150px 0 64px;
+    padding: 140px 0 64px;
+    position: relative;
+    overflow: hidden;
+}
+
+.photobank-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(74, 144, 226, 0.25), transparent 55%);
+    pointer-events: none;
+}
+
+.photobank-hero .container {
+    position: relative;
+    z-index: 1;
 }
 
 .breadcrumbs {
@@ -15,142 +31,90 @@
     align-items: center;
     gap: 10px;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 18px;
 }
 
 .breadcrumbs a {
     color: rgba(255, 255, 255, 0.85);
-    text-decoration: none;
+    transition: color var(--transition);
 }
 
-.breadcrumbs a:hover {
-    color: white;
-    text-decoration: underline;
-}
+.breadcrumbs a:hover { color: white; }
 
 .photobank-hero h1 {
-    color: white;
     font-size: 2.8rem;
     font-weight: 800;
-    letter-spacing: -1px;
     line-height: 1.15;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .photobank-subtitle {
+    max-width: 680px;
     font-size: 1.15rem;
-    line-height: 1.7;
     color: rgba(255, 255, 255, 0.85);
-    max-width: 640px;
-    margin-bottom: 20px;
+    line-height: 1.65;
+    margin-bottom: 24px;
 }
 
 .photobank-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.65);
-    margin-bottom: 36px;
-}
-
-.btn-back {
-    display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 13px 26px;
-    border-radius: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    color: white;
-    font-weight: 600;
-    font-size: 0.98rem;
-    text-decoration: none;
-    transition: all var(--transition);
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.78);
 }
 
-.btn-back svg {
-    width: 18px;
-    height: 18px;
-    transition: transform var(--transition);
-}
-
-.btn-back:hover {
-    background: white;
-    border-color: white;
-    color: var(--blue);
-    text-decoration: none;
-}
-
-.btn-back:hover svg { transform: translateX(-4px); }
-
-.btn-back:focus-visible {
-    outline: 3px solid white;
-    outline-offset: 3px;
-}
-
-.btn-back--dark {
-    border-color: var(--blue);
-    color: var(--blue);
-}
-
-.btn-back--dark:hover {
-    background: var(--blue);
-    border-color: var(--blue);
-    color: white;
-}
-
-.btn-back--dark:focus-visible {
-    outline-color: var(--blue);
-}
-
+/* ---- Основная часть ---- */
 .photobank-main {
-    background: var(--light-gray);
-    padding: 48px 0 80px;
+    padding: 64px 0 90px;
+    background: var(--bg-alt);
 }
 
+/* ---- Панель поиска и фильтров ---- */
 .photobank-toolbar {
     display: flex;
     flex-wrap: wrap;
+    gap: 18px;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 28px;
+    justify-content: space-between;
+    margin-bottom: 36px;
 }
 
 .photobank-search {
+    position: relative;
     flex: 1 1 280px;
+    max-width: 420px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: white;
-    border: 1px solid var(--gray);
-    border-radius: 10px;
-    padding: 0 16px;
-    transition: border-color var(--transition), box-shadow var(--transition);
-}
-
-.photobank-search:focus-within {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px var(--blue-light);
 }
 
 .photobank-search svg {
+    position: absolute;
+    left: 16px;
     width: 18px;
     height: 18px;
-    flex-shrink: 0;
     color: var(--text-light);
+    pointer-events: none;
 }
 
 .photobank-search input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font: inherit;
-    font-size: 0.98rem;
+    width: 100%;
+    padding: 13px 16px 13px 44px;
+    border-radius: 50px;
+    border: 1.5px solid var(--gray);
+    background: white;
+    font-family: inherit;
+    font-size: 0.95rem;
     color: var(--text);
-    background: transparent;
-    padding: 13px 0;
-    min-width: 0;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.photobank-search input:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(45, 108, 223, 0.14);
 }
 
 .photobank-filters {
@@ -161,15 +125,15 @@
 
 .filter-chip {
     padding: 10px 18px;
-    border-radius: 999px;
-    border: 1px solid var(--gray);
+    border-radius: 50px;
+    border: 1.5px solid var(--gray);
     background: white;
     color: var(--text);
-    font: inherit;
+    font-family: inherit;
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all var(--transition);
+    transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
 }
 
 .filter-chip:hover {
@@ -181,138 +145,163 @@
     background: var(--blue);
     border-color: var(--blue);
     color: white;
+    box-shadow: 0 4px 12px rgba(45, 108, 223, 0.25);
 }
 
-.filter-chip:focus-visible {
-    outline: 3px solid var(--blue);
-    outline-offset: 2px;
-}
-
+/* ---- Сетка альбомов ---- */
 .album-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px;
 }
 
 .album-card {
-    position: relative;
     background: white;
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
     transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .album-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
 
-.album-card[hidden],
-.album-grid[hidden],
-.photobank-toolbar[hidden] { display: none; }
+.album-card[hidden] { display: none; }
 
-.album-cover--placeholder {
-    aspect-ratio: 4 / 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    padding: 24px;
-    text-align: center;
-    background: linear-gradient(135deg, var(--blue-light) 0%, #cfdefc 100%);
-    color: var(--blue);
+.album-cover {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: #0f1f36;
 }
 
-.album-cover--placeholder svg {
-    width: 56px;
-    height: 56px;
-    opacity: 0.55;
-}
-
-.album-cover--placeholder span {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--blue-dark);
-    opacity: 0.75;
-    max-width: 220px;
-    line-height: 1.5;
+.album-cover::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 45%;
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 22, 40, 0.5) 100%);
+    pointer-events: none;
 }
 
 .album-cover img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.55s ease;
+}
+
+@media (hover: hover) {
+    .album-card:hover .album-cover img {
+        transform: scale(1.04);
+    }
 }
 
 .album-badge {
     position: absolute;
     top: 14px;
-    right: 14px;
-    background: var(--blue);
-    color: white;
-    font-size: 0.78rem;
-    font-weight: 600;
+    left: 14px;
+    z-index: 1;
     padding: 5px 12px;
-    border-radius: 999px;
-    letter-spacing: 0.02em;
+    border-radius: 50px;
+    background: rgba(10, 22, 40, 0.68);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
 }
 
-.album-info {
-    padding: 20px 22px 22px;
+.album-count {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    background: rgba(15, 31, 54, 0.76);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.album-count svg { width: 14px; height: 14px; }
+
+.album-body {
+    padding: 22px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .album-title {
-    font-size: 1.08rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    line-height: 1.45;
-    color: var(--text);
-    margin-bottom: 8px;
+    color: var(--navy);
+    line-height: 1.35;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
-.album-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.88rem;
+.album-desc {
+    font-size: 0.94rem;
     color: var(--text-light);
+    line-height: 1.65;
+    flex: 1;
 }
 
-.album-empty {
+.photobank-empty {
     text-align: center;
+    padding: 48px 20px;
     color: var(--text-light);
-    font-size: 1.05rem;
-    padding: 48px 0;
+    font-size: 1.02rem;
 }
 
+/* ---- Кнопка «Вернуться на главную» ---- */
 .photobank-back {
-    margin-top: 48px;
+    margin-top: 56px;
     text-align: center;
 }
 
-.album-card--clickable {
-    cursor: pointer;
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 26px;
+    border-radius: 50px;
+    background: white;
+    border: 1.5px solid var(--gray);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow);
+    transition: border-color var(--transition), color var(--transition), transform var(--transition);
 }
 
-.album-card--clickable:focus-visible {
-    outline: 3px solid var(--blue);
-    outline-offset: 3px;
+.btn-back svg {
+    width: 18px;
+    height: 18px;
+    transition: transform var(--transition);
 }
 
-.photobank-main {
-    padding-top: 56px;
-    padding-bottom: 56px;
+.btn-back:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    transform: translateY(-2px);
 }
 
-/* В альбоме поднимаем содержимое ближе к шапке, не меняя отступы списка. */
-.photobank-main.album-open {
-    padding-top: 24px;
-}
-
-.album-grid { align-items: stretch; }
-
-.album-card { height: 100%; }
-
-body.lightbox-open { overflow: hidden; }
+.btn-back:hover svg { transform: translateX(-4px); }
