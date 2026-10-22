@@ -74,18 +74,18 @@
 
     <!-- Стили: модули по ответственности (см. README.md)
          base → каркас → секции главной → фотобанк-тизер → анимации → адаптив -->
-    <link rel="stylesheet" href="css/base.css?v=6">
-    <link rel="stylesheet" href="css/header.css?v=5">
-    <link rel="stylesheet" href="css/about.css?v=3">
-    <link rel="stylesheet" href="css/speakers.css?v=8">
+    <link rel="stylesheet" href="css/base.css?v=7">
+    <link rel="stylesheet" href="css/header.css?v=6">
+    <link rel="stylesheet" href="css/about.css?v=4">
+    <link rel="stylesheet" href="css/speakers.css?v=9">
     <link rel="stylesheet" href="css/program.css?v=3">
     <link rel="stylesheet" href="css/partners.css?v=7">
     <link rel="stylesheet" href="css/photobank-teaser.css?v=1">
     <link rel="stylesheet" href="css/registration.css?v=5">
-    <link rel="stylesheet" href="css/contacts.css?v=5">
+    <link rel="stylesheet" href="css/contacts.css?v=6">
     <link rel="stylesheet" href="css/media.css?v=1">
     <link rel="stylesheet" href="css/animations.css?v=2">
-    <link rel="stylesheet" href="css/responsive.css?v=5">
+    <link rel="stylesheet" href="css/responsive.css?v=6">
 
     <!-- Без JS контент должен оставаться видимым: анимации появления
          включаются только при наличии класса .js -->
@@ -147,11 +147,27 @@
 
     <div class="container hero-content">
 
-        <div class="hero-badge">17 декабря 2026</div>
+        <div class="hero-lockup">
+            <div class="hero-lockup-mark">
+                <img class="hero-tmks-logo" src="images/logos/tmks.png"
+                     alt="Логотип конференции ТМКС-2026" width="480" height="462" decoding="async" draggable="false">
+                <span class="hero-tmks-code">ТМКС-2026</span>
+            </div>
 
-        <p class="hero-kicker">III Ежегодная научно-практическая конференция</p>
+            <div class="hero-lockup-divider" aria-hidden="true"></div>
 
-        <h1>Технологии микросистем, корпусирования и сборки ЭКБ</h1>
+            <div class="hero-lockup-body">
+                <p class="hero-kicker">
+                    <span class="hero-kicker-roman" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </span>
+                    <span class="visually-hidden">III </span>
+                    <span class="hero-kicker-text">Ежегодная<br> научно-практическая<br> конференция</span>
+                </p>
+
+                <h1>Технологии<br> микросистем,<br> корпусирования<br> и сборки ЭКБ</h1>
+            </div>
+        </div>
 
         <div class="hero-details">
             <div class="hero-detail">
@@ -181,18 +197,16 @@
         </div>
 
         <!--
-            ЛОГОТИПЫ ОРГАНИЗАТОРОВ (п. 5): МИЭТ — крупнее, логотипы
-            подразделений — мельче.
-            Официальные файлы: images/logos/nmst.png, images/logos/nil-tkpm.png.
-            Логотипы белые на прозрачном — рассчитаны на тёмный фон шапки.
+            ЛОГОТИПЫ ОРГАНИЗАТОРОВ (п. 5): все три — компактные белые знаки
+            на прозрачном фоне (круглый МИЭТ, НМСТ, куб НИЛ ТКПМ без букв LAP).
         -->
         <div class="hero-logos">
-            <img class="hero-logo-miet" src="images/logos/miet-white.png" alt="НИУ МИЭТ" width="220" height="100">
+            <img class="hero-logo-miet" src="images/logos/miet-circle-white.png" alt="НИУ МИЭТ" width="480" height="480">
             <img class="hero-logo-mark" src="images/logos/nmst.png"
                  alt="Институт нано- и микросистемной техники (НМСТ)" width="263" height="240">
-            <img class="hero-logo-mark hero-logo-mark--wide" src="images/logos/nil-tkpm.png"
+            <img class="hero-logo-mark" src="images/logos/nil-tkpm.png?v=2"
                  alt="НИЛ ТКПМ — передовые технологии корпусирования и производства 3D микросистем"
-                 width="508" height="240">
+                 width="213" height="240">
         </div>
 
     </div>
@@ -226,18 +240,6 @@
                     компонентной базы.
                 </p>
                 <p>
-                    Организаторы конференции — Передовая инженерная школа МИЭТ, Институт
-                    нано- и микросистемной техники (НМСТ) и научно-исследовательская
-                    лаборатория «Передовые технологии корпусирования и производства
-                    3D микросистем» (НИЛ ТКПМ) НИУ МИЭТ совместно с партнёрами отрасли.
-                </p>
-                <p>
-                    В программу входят пленарные и инженерно-прикладные доклады, стендовая
-                    сессия, дискуссионные площадки и экскурсии на современное производство.
-                    Докладчики представляют результаты исследований и решения практических
-                    задач: от проектирования подложек и корпусов до испытаний готовых изделий.
-                </p>
-                <p>
                     Конференция объединяет предприятия, научные институты, дизайн-центры
                     и вузы из разных регионов России. Это площадка для обмена опытом,
                     поиска технологических партнёров и обсуждения кооперации в области
@@ -250,7 +252,6 @@
                 СТАТИСТИКА
                 Измените числа и подписи.
                 --bar-width: ширина полоски (0%–100%)
-                Данные согласованы под «~6 участников на организацию».
                 TODO: уточнить фактические цифры после регистрации.
             -->
             <div class="about-stats">
@@ -265,9 +266,9 @@
                     <div class="about-stat-bar" style="--bar-width: 90%;" aria-hidden="true"></div>
                 </div>
                 <div class="about-stat">
-                    <div class="about-stat-number">25+</div>
+                    <div class="about-stat-number">80+</div>
                     <div class="about-stat-label">Организаций</div>
-                    <div class="about-stat-bar" style="--bar-width: 65%;" aria-hidden="true"></div>
+                    <div class="about-stat-bar" style="--bar-width: 85%;" aria-hidden="true"></div>
                 </div>
                 <div class="about-stat">
                     <div class="about-stat-number">1</div>
@@ -1046,6 +1047,7 @@
                 </div>
                 <h3>Председатель оргкомитета</h3>
                 <p class="contact-name">Тимошенков Сергей Петрович</p>
+                <p class="contact-degree">доктор технических наук, профессор</p>
                 <ul class="contact-links">
                     <li><span class="contact-pending">Контакт уточняется</span></li>
                 </ul>
@@ -1061,6 +1063,7 @@
                 </div>
                 <h3>Председатель программного комитета</h3>
                 <p class="contact-name">Вертянов Денис Васильевич</p>
+                <p class="contact-degree">кандидат технических наук</p>
                 <ul class="contact-links">
                     <li>
                         <a href="mailto:vdv.vertyanov@yandex.ru">

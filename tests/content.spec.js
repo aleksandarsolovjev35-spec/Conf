@@ -86,11 +86,23 @@ test('главная: название конференции — главный
     await expect(h1).toBeVisible();
     await expect(h1).toHaveText(/Технологии микросистем/);
 
+    await expect(page.locator('.hero-tmks-logo')).toBeVisible();
+    await expect(page.locator('.hero-tmks-code')).toHaveText('ТМКС-2026');
+    await expect(page.locator('.hero-logo-miet')).toHaveAttribute('src', /miet-circle-white\.png/);
+    expect(await page.locator('.hero-logos img').last().evaluate(img => img.naturalWidth)).toBeLessThan(250);
+
     const sizes = await page.evaluate(() => ({
         h1: parseFloat(getComputedStyle(document.querySelector('#hero h1')).fontSize),
         kicker: parseFloat(getComputedStyle(document.querySelector('.hero-kicker')).fontSize),
     }));
     expect(sizes.h1).toBeGreaterThan(sizes.kicker * 1.8);
+});
+
+test('главная: в блоке «О мероприятии» два абзаца и 80+ организаций', async ({ page }) => {
+    await page.goto('/index.html');
+    await expect(page.locator('.about-hero-text p')).toHaveCount(2);
+    const orgStat = page.locator('.about-stat', { has: page.getByText('Организаций', { exact: true }) });
+    await expect(orgStat.locator('.about-stat-number')).toHaveText('80+');
 });
 
 test('заставка: фоновое изображение не перехватывает клики и не перетаскивается', async ({ page }) => {
@@ -217,7 +229,7 @@ test('контакты: единый шаблон карточки', async ({ pa
     const cards = page.locator('.contacts-grid .contact-card');
     await expect(cards).toHaveCount(3);
 
-    // В каждой карточке один и тот же порядок: должность → ФИО → контакты.
+    // В каждой карточке один и тот же порядок: должность → ФИО → (учёная степень) → контакты.
     for (let i = 0; i < 3; i++) {
         const card = cards.nth(i);
         await expect(card.locator('.contact-icon')).toHaveCount(1);
@@ -228,23 +240,23 @@ test('контакты: единый шаблон карточки', async ({ pa
         await expect(card).not.toHaveClass(/contact-card--pending/);
         expect(await card.locator('.contact-icon').evaluate(el => el.compareDocumentPosition(el.closest('.contact-card').querySelector('h3')) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
     }
-    await expect(page.locator('.contacts-grid')).not.toContainText('Кандидат технических наук');
     await expect(cards.nth(0).locator('.contact-icon')).toHaveClass(/contact-icon--committee/);
     await expect(cards.nth(1).locator('.contact-icon')).toHaveClass(/contact-icon--program/);
     await expect(cards.nth(2).locator('.contact-icon')).toHaveClass(/contact-icon--coordinator/);
 
-    // Председатель оргкомитета — Тимошенков С. П.; контакты ещё не предоставлены
+    // Председатель оргкомитета — Тимошенков С. П., д.т.н., профессор; контакты ещё не предоставлены
     const organizer = cards.nth(0);
     await expect(organizer.locator('h3')).toHaveText('Председатель оргкомитета');
     await expect(organizer).toContainText('Тимошенков Сергей Петрович');
+    await expect(organizer.locator('.contact-degree')).toHaveText(/доктор технических наук,\s*профессор/i);
     await expect(organizer.locator('.contact-links .contact-pending')).toHaveText('Контакт уточняется');
     await expect(organizer.locator('.contact-links a')).toHaveCount(0);
 
-    // Председатель программного комитета — Вертянов Д. В., связь по почте
+    // Председатель программного комитета — Вертянов Д. В., к.т.н., связь по почте
     const programChair = cards.nth(1);
     await expect(programChair.locator('h3')).toHaveText('Председатель программного комитета');
     await expect(programChair).toContainText('Вертянов Денис Васильевич');
-    await expect(programChair).not.toContainText('Кандидат технических наук');
+    await expect(programChair.locator('.contact-degree')).toHaveText(/кандидат технических наук/i);
     await expect(programChair.locator('.contact-links a')).toHaveCount(1);
     await expect(programChair.locator('.contact-links a')).toHaveAttribute('href', 'mailto:vdv.vertyanov@yandex.ru');
 
@@ -252,6 +264,7 @@ test('контакты: единый шаблон карточки', async ({ pa
     const coordinator = cards.nth(2);
     await expect(coordinator.locator('h3')).toHaveText('Координатор мероприятия');
     await expect(coordinator).toContainText('Косолапова Галина Викторовна');
+    await expect(coordinator.locator('.contact-degree')).toHaveCount(0);
     await expect(coordinator.locator('.contact-links a')).toHaveCount(2);
     await expect(coordinator.locator('.contact-links a').first()).toHaveAttribute('href', 'tel:+79958990559');
     await expect(coordinator.locator('.contact-links a').last()).toHaveAttribute('href', 'mailto:galka-vikt@mail.ru');

@@ -17,29 +17,29 @@
 
 .speakers-group-head {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 10px 12px;
-    margin-bottom: 18px;
+    gap: 10px 14px;
+    margin-bottom: 20px;
 }
 
 .speakers-group-title {
-    font-size: 0.78rem;
+    font-size: 1.02rem;
     font-weight: 700;
-    letter-spacing: 1.4px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    color: var(--text-light);
+    color: var(--text);
     margin: 0;
 }
 
 /* Счётчик организаций в группе */
 .speakers-group-count {
-    min-width: 24px;
-    padding: 2px 8px;
+    min-width: 28px;
+    padding: 2px 10px;
     border-radius: 50px;
     background: var(--blue-light);
     color: var(--blue);
-    font-size: 0.72rem;
+    font-size: 0.86rem;
     font-weight: 700;
     line-height: 1.6;
     text-align: center;
@@ -47,9 +47,8 @@
 
 /* Пояснение к группе — тише заголовка */
 .speakers-group-note {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     color: var(--text-light);
-    opacity: 0.85;
 }
 
 /* Линия, добивающая строку заголовка до края */
@@ -135,23 +134,23 @@
 }
 
 .speaker-card--org .speaker-info h3 {
-    font-size: 1rem;
-    line-height: 1.3;
+    font-size: 1.08rem;
+    line-height: 1.35;
     margin: 0;
 }
 
 .speaker-card--org .speaker-req {
-    font-size: 0.8rem;
-    line-height: 1.45;
+    font-size: 0.95rem;
+    line-height: 1.5;
     margin-bottom: 12px;
 }
 
 /* Подпись под логотипом не должна «прилипать» к нему */
 
 .speaker-card--org .speaker-topic {
-    font-size: 0.78rem;
+    font-size: 0.88rem;
     margin-bottom: 0;
-    padding: 4px 11px;
+    padding: 5px 13px;
     border-radius: 50px;
 }
 
@@ -203,11 +202,11 @@
 }
 
 .speakers-note {
-    margin-top: 30px;
+    margin-top: 32px;
     text-align: center;
-    font-size: 0.92rem;
+    font-size: 0.98rem;
     color: var(--text-light);
-    max-width: 640px;
+    max-width: 660px;
     margin-left: auto;
     margin-right: auto;
 }

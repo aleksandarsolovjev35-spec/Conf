@@ -151,51 +151,108 @@
     z-index: 2;
     text-align: center;
     color: white;
-    padding: 152px 24px 64px;
+    padding: 132px 24px 52px;
 }
 
-.hero-badge {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 8px 24px;
-    border-radius: 50px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 22px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+/* Двухколоночная шапка конференции: слева знак ТМКС-2026,
+   посередине вертикальная линия, справа «III Ежегодная…» и название */
+.hero-lockup {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(22px, 3vw, 40px);
+    max-width: 100%;
+    margin: 0 auto 36px;
+    text-align: left;
 }
 
-/* Надзаголовок «IV Ежегодная …» — мельче названия конференции (п. 4) */
+.hero-lockup-mark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.hero-tmks-logo {
+    width: clamp(132px, 16vw, 218px);
+    height: auto;
+    display: block;
+}
+
+.hero-tmks-code {
+    font-size: clamp(1.45rem, 2.9vw, 2.55rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.hero-lockup-divider {
+    width: 2px;
+    align-self: stretch;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+.hero-lockup-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+/* Надзаголовок «III Ежегодная научно-практическая конференция» */
 .hero-kicker {
-    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.82);
-    margin-bottom: 14px;
+    display: flex;
+    align-items: stretch;
+    gap: 0.9em;
+    font-size: clamp(0.92rem, 1.45vw, 1.32rem);
+    font-weight: 400;
+    line-height: 1.24;
+    letter-spacing: 0;
+    color: #ffffff;
+    margin: 0 0 clamp(14px, 1.5vw, 20px);
+    text-align: left;
+}
+
+.hero-kicker-roman {
+    display: inline-flex;
+    align-items: stretch;
+    gap: 0.72em;
+    margin: 0.14em 0;
+    flex-shrink: 0;
+}
+
+.hero-kicker-roman span {
+    width: 0.52em;
+    background: #ffffff;
+}
+
+.hero-kicker-text {
+    display: block;
 }
 
 /* Название конференции — главный акцент (п. 4) */
 #hero h1 {
-    font-size: clamp(2rem, 4.4vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1.12;
-    margin: 0 auto 22px;
-    max-width: 15ch;
-    letter-spacing: -1px;
-    text-wrap: balance;
-    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+    font-size: clamp(1.75rem, 3.6vw, 3.15rem);
+    font-weight: 700;
+    line-height: 1.06;
+    margin: 0;
+    max-width: none;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #ffffff;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
 }
 
 .hero-details {
     display: flex;
     gap: 40px;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 34px;
     flex-wrap: wrap;
 }
 
@@ -219,21 +276,22 @@
     flex-wrap: wrap;
 }
 
-/* Логотипы организаторов: МИЭТ крупнее, подразделения мельче (п. 5) */
+/* Логотипы организаторов: все три — компактные белые знаки одной высоты */
 .hero-logos {
+    --hero-logo-size: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 28px 40px;
-    margin-top: 52px;
-    padding-top: 28px;
+    gap: 28px 44px;
+    margin-top: 44px;
+    padding-top: 26px;
     border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 /* Все три логотипа организаторов — одной высоты */
 .hero-logo-miet {
-    height: var(--hero-logo-size, 48px);
+    height: var(--hero-logo-size, 52px);
     width: auto;
     opacity: 0.95;
 }
@@ -241,20 +299,18 @@
 /* Логотипы подразделений: официальные файлы, белые на прозрачном.
    Высота та же, что у МИЭТ, — знаки в строке выровнены по размеру. */
 .hero-logo-mark {
-    height: var(--hero-logo-size, 48px);
+    height: var(--hero-logo-size, 52px);
     width: auto;
     opacity: 0.92;
 }
 
-.hero-logo-mark--wide { height: var(--hero-logo-size, 48px); }
-
 /* На узких экранах знаки мельче, но по-прежнему одинаковые между собой */
 @media (max-width: 1024px) {
-    .hero-logos { --hero-logo-size: 44px; }
+    .hero-logos { --hero-logo-size: 46px; }
 }
 
 @media (max-width: 768px) {
-    .hero-logos { --hero-logo-size: 40px; }
+    .hero-logos { --hero-logo-size: 42px; }
 }
 
 .hero-logo-text {
