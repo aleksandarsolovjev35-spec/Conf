@@ -1,114 +1,140 @@
 /* =============================================================
-   PHOTOBANK-ALBUM — открытый альбом фотобанка: мозаика фотографий и большой просмотр (лайтбокс).
+   PHOTOBANK ALBUM — раскрытый альбом, мозаика кадров и лайтбокс
+   (используются только на photos.html при клике на карточку альбома).
 ============================================================= */
 
-.album-view[hidden] { display: none; }
-
-.album-view {
-    padding: 0;
-    scroll-margin-top: 76px;
-}
-
-.album-view-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 8px 20px;
-    margin-bottom: 8px;
-    border-radius: 10px;
-    border: 2px solid var(--blue);
-    background: transparent;
-    color: var(--blue);
-    font: inherit;
-    font-weight: 600;
-    font-size: 0.95rem;
+/* ---- Кликабельные карточки альбомов ---- */
+.album-card {
     cursor: pointer;
-    transition: all var(--transition);
 }
 
-.album-view-back svg {
-    width: 17px;
-    height: 17px;
+.album-card:focus-visible {
+    outline: 3px solid var(--blue);
+    outline-offset: 3px;
+}
+
+.album-card .album-body::after {
+    content: "Открыть альбом →";
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--blue);
     transition: transform var(--transition);
 }
 
-.album-view-back:hover {
-    background: var(--blue);
-    color: white;
+.album-card:hover .album-body::after {
+    transform: translateX(4px);
 }
 
-.album-view-back:hover svg { transform: translateX(-3px); }
+/* ---- Раскрытый альбом (мозаика фотографий) ---- */
+.album-view {
+    animation: albumFadeIn 0.35s ease;
+}
 
-.album-view-back:focus-visible {
-    outline: 3px solid var(--blue);
-    outline-offset: 2px;
+.album-view[hidden] { display: none; }
+
+@keyframes albumFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.album-view-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 28px;
+    margin-bottom: 24px;
+}
+
+.album-view-back {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.album-view-titles {
+    flex: 1 1 260px;
 }
 
 .album-view-title {
-    text-align: left;
-    font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--navy);
     line-height: 1.25;
     margin-bottom: 4px;
+    text-align: left;
 }
 
-.album-view-meta {
-    color: var(--text-light);
-    font-size: 0.98rem;
-    margin-bottom: 6px;
-}
-
-.album-view-hint {
-    color: var(--text-light);
-    font-size: 0.92rem;
-    margin-bottom: 26px;
-}
-
+/* ---- Мозаика кадров (соотношение сторон ~3:2, как у оригиналов 2048×1365) ---- */
 .photo-mosaic {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 150px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 185px;
     grid-auto-flow: dense;
     gap: 14px;
 }
 
 .photo-thumb {
     position: relative;
-    border: none;
-    border-radius: 14px;
+    border-radius: 12px;
     overflow: hidden;
-    cursor: pointer;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    text-align: center;
-    font: inherit;
-    color: var(--blue-dark);
-    background: linear-gradient(135deg, var(--blue-light) 0%, #cfdefc 100%);
-    transition: transform var(--transition), box-shadow var(--transition);
-    /* появление по одному — класс is-visible ставит JS */
+    border: none;
+    padding: 0;
+    background: #0f1f36;
+    box-shadow: 0 6px 18px rgba(15, 31, 54, 0.12);
+    cursor: zoom-in;
+    font-family: inherit;
+    display: block;
     opacity: 0;
-    transform: translateY(18px) scale(0.98);
+    transform: translateY(14px) scale(0.98);
+    transition: opacity 0.4s ease, transform 0.4s ease, box-shadow var(--transition);
 }
 
-.photo-thumb:nth-child(3n)   { background: linear-gradient(135deg, #dbeafe 0%, #bcd3fb 100%); }
-
-.photo-thumb:nth-child(4n)   { background: linear-gradient(135deg, #e0eaff 0%, #c3d4fb 100%); }
-
-.photo-thumb:nth-child(5n)   { background: linear-gradient(135deg, #d6e6ff 0%, #aecbf9 100%); }
-
-.photo-thumb.is-visible {
+.photo-thumb.is-in {
     opacity: 1;
     transform: translateY(0) scale(1);
-    transition: opacity 0.45s ease, transform 0.45s ease, box-shadow var(--transition);
 }
 
-.photo-thumb:hover,
-.photo-thumb:focus-visible {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+.photo-thumb--featured {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.photo-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.photo-thumb-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 28px 14px 11px;
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 22, 40, 0.86) 100%);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: left;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+@media (hover: hover) {
+    .photo-thumb:hover {
+        box-shadow: 0 14px 32px rgba(15, 31, 54, 0.24);
+    }
+    .photo-thumb:hover img {
+        transform: scale(1.04);
+    }
+    .photo-thumb:hover .photo-thumb-caption {
+        opacity: 1;
+    }
 }
 
 .photo-thumb:focus-visible {
@@ -116,136 +142,110 @@
     outline-offset: 2px;
 }
 
-.photo-thumb--wide { grid-column: span 2; }
-
-.photo-thumb--tall { grid-row: span 2; }
-
-.photo-thumb svg {
-    width: 34px;
-    height: 34px;
-    max-width: 34px;
-    max-height: 34px;
-    color: var(--blue);
-    opacity: 0.55;
-    flex-shrink: 0;
+.photo-thumb:focus-visible .photo-thumb-caption {
+    opacity: 1;
 }
 
-.photo-thumb-num {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--blue);
-    opacity: 0.75;
-}
-
-.photo-thumb-name {
-    font-size: 0.98rem;
-    font-weight: 700;
-    line-height: 1.35;
-}
-
-.photo-thumb-tag {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--blue-dark);
-    background: rgba(255, 255, 255, 0.75);
-    border-radius: 999px;
-    padding: 3px 9px;
-    opacity: 0.85;
-}
-
-.lightbox[hidden] { display: none; }
-
+/* ---- Полноэкранный просмотр кадра (лайтбокс) ---- */
 .lightbox {
     position: fixed;
     inset: 0;
     z-index: 2000;
-    background: rgba(6, 17, 38, 0.92);
+    background: rgba(8, 17, 31, 0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 28px 76px;
+    padding: 48px 76px 32px;
+    animation: albumFadeIn 0.22s ease;
 }
+
+.lightbox[hidden] { display: none; }
 
 .lightbox-figure {
-    width: min(880px, 100%);
-}
-
-.lightbox-photo {
-    aspect-ratio: 16 / 10;
-    max-height: 68vh;
-    border-radius: 16px;
-    background: linear-gradient(135deg, var(--blue-light) 0%, #bcd3fb 100%);
-    color: var(--blue-dark);
+    max-width: min(1140px, 84vw);
+    width: 100%;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 14px;
-    font-weight: 600;
-    margin: 0 auto;
 }
 
-.lightbox-photo svg {
-    width: 84px;
-    height: 84px;
-    max-width: 84px;
-    max-height: 84px;
-    color: var(--blue);
-    opacity: 0.5;
+.lightbox-photo {
+    width: 100%;
+    max-height: 76vh;
+    max-height: 76dvh;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.lightbox-img {
+    max-width: 100%;
+    max-height: 76vh;
+    max-height: 76dvh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+    background: rgba(15, 31, 54, 0.65);
+    user-select: none;
 }
 
 .lightbox-caption {
+    width: 100%;
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
+    align-items: baseline;
     gap: 16px;
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    padding-top: 16px;
+    padding: 14px 4px 0;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.95rem;
+    line-height: 1.4;
 }
 
 .lightbox-counter {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.86rem;
+    font-weight: 600;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
 
 .lightbox-close,
 .lightbox-arrow {
-    position: absolute;
-    border: none;
-    border-radius: 50%;
+    position: fixed;
+    border: 1px solid rgba(255, 255, 255, 0.22);
     background: rgba(255, 255, 255, 0.12);
     color: white;
+    border-radius: 50%;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: background var(--transition);
-    z-index: 2;
+    transition: background var(--transition), transform var(--transition);
 }
 
 .lightbox-close:hover,
-.lightbox-arrow:hover { background: var(--blue); }
-
-.lightbox-close:focus-visible,
-.lightbox-arrow:focus-visible {
-    outline: 3px solid white;
-    outline-offset: 2px;
+.lightbox-arrow:hover {
+    background: var(--blue);
+    border-color: var(--blue);
 }
 
 .lightbox-close {
-    top: 20px;
-    right: 20px;
+    top: 22px;
+    right: 24px;
     width: 44px;
     height: 44px;
+    font-size: 1.7rem;
+    line-height: 1;
 }
-
-.lightbox-close svg { width: 20px; height: 20px; }
 
 .lightbox-arrow {
     top: 50%;
@@ -254,8 +254,9 @@
     height: 48px;
 }
 
+.lightbox-arrow:hover { transform: translateY(-50%) scale(1.06); }
 .lightbox-arrow svg { width: 22px; height: 22px; }
+.lightbox-arrow--prev { left: 22px; }
+.lightbox-arrow--next { right: 22px; }
 
-.lightbox-arrow--prev { left: 18px; }
-
-.lightbox-arrow--next { right: 18px; }
+body.lightbox-open { overflow: hidden; }

@@ -80,12 +80,12 @@
     <link rel="stylesheet" href="css/speakers.css?v=9">
     <link rel="stylesheet" href="css/program.css?v=3">
     <link rel="stylesheet" href="css/partners.css?v=7">
-    <link rel="stylesheet" href="css/photobank-teaser.css?v=1">
+    <link rel="stylesheet" href="css/photobank-teaser.css?v=2">
     <link rel="stylesheet" href="css/registration.css?v=5">
     <link rel="stylesheet" href="css/contacts.css?v=6">
     <link rel="stylesheet" href="css/media.css?v=1">
     <link rel="stylesheet" href="css/animations.css?v=2">
-    <link rel="stylesheet" href="css/responsive.css?v=6">
+    <link rel="stylesheet" href="css/responsive.css?v=7">
 
     <!-- Без JS контент должен оставаться видимым: анимации появления
          включаются только при наличии класса .js -->
@@ -920,44 +920,40 @@
                 </a>
             </div>
 
-            <!-- Карусель альбомов: клик по слайду, стрелкам или кнопке выше ведёт в фотобанк (photos.html) -->
+            <!-- Карусель альбомов: клик по слайду или кнопке выше ведёт в фотобанк (photos.html) -->
             <div class="photobank-carousel" id="photobankCarousel">
                 <div class="photobank-carousel-viewport">
                     <div class="photobank-carousel-track" id="carouselTrack">
                         <a href="photos.html#album/opening" class="photobank-slide" aria-label="Альбом «Торжественное открытие конференции» — перейти в фотобанк">
-                            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                            <strong>Торжественное открытие конференции</strong>
-                            <small>Фотографии с прошлых конференций</small>
+                            <img class="photobank-slide-img" src="Photos/thumbs/Opening/IMG_5950.webp" alt="Торжественное открытие конференции в НИУ МИЭТ" width="800" height="533" loading="lazy" decoding="async">
+                            <span class="photobank-slide-caption">
+                                <strong>Торжественное открытие конференции</strong>
+                                <small>6 фотографий · Открыть альбом</small>
+                            </span>
                             <span class="photobank-slide-badge">Архив</span>
                         </a>
-                        <a href="photos.html#album/plenary" class="photobank-slide" aria-label="Альбом «Пленарные доклады» — перейти в фотобанк">
-                            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                            <strong>Пленарные доклады</strong>
-                            <small>Фотографии с прошлых конференций</small>
+                        <a href="photos.html#album/speakers" class="photobank-slide" aria-label="Альбом «Пленарные и секционные доклады» — перейти в фотобанк">
+                            <img class="photobank-slide-img" src="Photos/thumbs/Speakers/IMG_6210.webp" alt="Выступления докладчиков на конференции НМСТ" width="800" height="533" loading="lazy" decoding="async">
+                            <span class="photobank-slide-caption">
+                                <strong>Пленарные и секционные доклады</strong>
+                                <small>17 фотографий · Открыть альбом</small>
+                            </span>
                             <span class="photobank-slide-badge">Архив</span>
                         </a>
-                        <a href="photos.html#album/sections" class="photobank-slide" aria-label="Альбом «Секционные доклады» — перейти в фотобанк">
-                            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                            <strong>Секционные доклады</strong>
-                            <small>Фотографии с прошлых конференций</small>
-                            <span class="photobank-slide-badge">Архив</span>
-                        </a>
-                        <a href="photos.html#album/poster" class="photobank-slide" aria-label="Альбом «Стендовая сессия и постерные доклады» — перейти в фотобанк">
-                            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                            <strong>Стендовая сессия и постерные доклады</strong>
-                            <small>Фотографии с прошлых конференций</small>
+                        <a href="photos.html#album/stands" class="photobank-slide" aria-label="Альбом «Выставка и стендовая сессия» — перейти в фотобанк">
+                            <img class="photobank-slide-img" src="Photos/thumbs/Stands/IMG_6475.webp" alt="Выставка партнёров и стендовая сессия в фойе" width="800" height="533" loading="lazy" decoding="async">
+                            <span class="photobank-slide-caption">
+                                <strong>Выставка и стендовая сессия</strong>
+                                <small>13 фотографий · Открыть альбом</small>
+                            </span>
                             <span class="photobank-slide-badge">Архив</span>
                         </a>
                         <a href="photos.html#album/guests" class="photobank-slide" aria-label="Альбом «Гости конференции и общение» — перейти в фотобанк">
-                            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                            <strong>Гости конференции и общение</strong>
-                            <small>Фотографии с прошлых конференций</small>
-                            <span class="photobank-slide-badge">Архив</span>
-                        </a>
-                        <a href="photos.html#album/closing" class="photobank-slide" aria-label="Альбом «Подведение итогов и закрытие конференции» — перейти в фотобанк">
-                            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                            <strong>Подведение итогов и закрытие конференции</strong>
-                            <small>Фотографии с прошлых конференций</small>
+                            <img class="photobank-slide-img" src="Photos/thumbs/IMG_7703.webp" alt="Общая фотография участников конференции в атриуме НИУ МИЭТ" width="800" height="533" loading="lazy" decoding="async">
+                            <span class="photobank-slide-caption">
+                                <strong>Гости конференции и общение</strong>
+                                <small>15 фотографий · Открыть альбом</small>
+                            </span>
                             <span class="photobank-slide-badge">Архив</span>
                         </a>
                     </div>
@@ -972,7 +968,7 @@
 
                 <div class="photobank-carousel-footer">
                     <div class="photobank-carousel-dots" id="carouselDots" role="tablist" aria-label="Выбор альбома"></div>
-                    <span class="photobank-carousel-counter" id="carouselCounter">1 / 6</span>
+                    <span class="photobank-carousel-counter" id="carouselCounter">1 / 4</span>
                 </div>
             </div>
 

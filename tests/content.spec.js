@@ -28,7 +28,11 @@ test('фотобанк: описание относится к архиву пр
     await expect(page).toHaveTitle(/Фотоархив прошлых конференций НМСТ/);
     await expect(page.locator('.photobank-subtitle')).toContainText('прошлых конференций');
     await expect(page.locator('.photobank-meta')).toContainText('Архив предыдущих конференций');
+    await expect(page.locator('#albumCount')).toHaveText('4 альбома');
+    await expect(page.locator('#photoTotalCount')).toHaveText('51 фото');
     await expect(page.locator('.photobank-meta')).not.toContainText('17 декабря');
+    await expect(page.locator('.album-card')).toHaveCount(4);
+    await expect(page.locator('.album-cover img')).toHaveCount(4);
     await expect(page.locator('.album-card time')).toHaveCount(0);
 });
 
@@ -205,8 +209,9 @@ test('фотобанк: карусель описывает фотоархив �
     await expect(teaser).toContainText('прошлых конференций НМСТ');
     await expect(teaser).not.toContainText('после конференции');
     await expect(teaser).not.toContainText('17 декабря');
-    await expect(teaser.locator('.photobank-slide')).toHaveCount(6);
-    await expect(teaser.locator('.photobank-slide-badge')).toHaveText(Array(6).fill('Архив'));
+    await expect(teaser.locator('.photobank-slide')).toHaveCount(4);
+    await expect(teaser.locator('.photobank-slide-img')).toHaveCount(4);
+    await expect(teaser.locator('.photobank-slide-badge')).toHaveText(Array(4).fill('Архив'));
 });
 
 test('видео: анонс длится минуту и рассказывает о конференции этого года', async ({ page }) => {

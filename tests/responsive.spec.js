@@ -85,9 +85,9 @@ test('карусель помещается на узком экране и пе
     await page.setViewportSize({ width: 320, height: 720 });
     await page.goto('/index.html');
     await page.locator('#carouselNext').click();
-    await expect(page.locator('#carouselCounter')).toHaveText('2 / 6');
+    await expect(page.locator('#carouselCounter')).toHaveText('2 / 4');
     await page.locator('#carouselPrev').click();
-    await expect(page.locator('#carouselCounter')).toHaveText('1 / 6');
+    await expect(page.locator('#carouselCounter')).toHaveText('1 / 4');
     const clipped = await page.locator('.photobank-slide').evaluateAll(slides =>
         slides.some(slide => slide.scrollHeight > slide.clientHeight)
     );
@@ -106,7 +106,8 @@ test('фотобанк: поиск, альбом и просмотр в двух
     await expect(page.locator('.photobank-toolbar')).toBeHidden();
     await expect(page.locator('#albumView')).toBeVisible();
     await expect(page.locator('#albumViewTitle')).toHaveText('Торжественное открытие конференции');
-    await expect(page.locator('.photo-thumb')).toHaveCount(10);
+    await expect(page.locator('.photo-thumb')).toHaveCount(6);
+    await expect(page.locator('.photo-thumb img')).toHaveCount(6);
     await expect(page.locator('.album-view-meta, .album-view-hint')).toHaveCount(0);
     await expectNoOverflow(page);
     expect(await page.locator('.photo-thumb').evaluateAll(tiles =>
@@ -114,8 +115,9 @@ test('фотобанк: поиск, альбом и просмотр в двух
     )).toBe(false);
     await page.locator('.photo-thumb').first().click();
     await expect(page.locator('#lightbox')).toBeVisible();
+    await expect(page.locator('.lightbox-img')).toBeVisible();
     await page.locator('#lightboxNext').click();
-    await expect(page.locator('#lightboxCounter')).toHaveText('2 / 10');
+    await expect(page.locator('#lightboxCounter')).toHaveText('2 / 6');
     for (const size of [{ width: 320, height: 720 }, { width: 667, height: 375 }]) {
         await page.setViewportSize(size);
         await expectNoOverflow(page);
@@ -150,7 +152,7 @@ test.describe('сенсорный телефон с обычными анима�
             await expect(page.locator('#navLinks')).toBeHidden();
             if (file === 'index.html') {
                 await page.locator('#carouselNext').tap();
-                await expect(page.locator('#carouselCounter')).toHaveText('2 / 6');
+                await expect(page.locator('#carouselCounter')).toHaveText('2 / 4');
             } else {
                 await page.locator('[data-album="opening"]').tap();
                 await expect(page.locator('#albumView')).toBeVisible();
