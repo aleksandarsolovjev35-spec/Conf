@@ -1,11 +1,3 @@
-/* =============================================================
-   REGISTRATION — секция «Регистрация» и встроенная форма
-   Битрикс24 на главной странице.
-   Содержимое блока минимально: заголовок и форма.
-   Заголовок, который форма рисует сама, перекрывается нашим
-   (js/registration.js), поэтому шаблон Битрикс24 менять не нужно.
-============================================================= */
-
 .registration-section {
     background: linear-gradient(135deg, #0a1628 0%, #0f45c7 100%) !important;
     color: white;
@@ -22,8 +14,6 @@
     margin-bottom: 12px;
 }
 
-/* ---------- Белая карточка с формой ---------- */
-
 .reg-form {
     background: white;
     border-radius: 16px;
@@ -35,23 +25,12 @@
 
 .reg-form iframe { max-width: 100%; }
 
-/* Проверка единообразия: наш заголовок и заголовок, который рисует
-   форма, не должны стоять одновременно. */
 .reg-restyled .b24-form-header { display: none !important; }
 
-/* Надпись «Регистрация на конференцию Micropack» приходит label'ом
-   секции (поле type: layout), а не шапкой формы. Скрываем такой label
-   напрямую — на случай, если JS не успел или отключён. Дети layout-поля
-   остаются на месте: правило трогает только control-label. */
 .reg-form .b24-form-field-layout > .b24-form-control-label,
 #registration .b24-form-field-layout > .b24-form-control-label {
     display: none !important;
 }
-
-/* ---------- Собственный заголовок формы (Bitrix24) ----------
-   Форма приходит со своим заголовком («Регистрация на конференцию
-   Micropack»). Скрываем его разными способами, чтобы не зависеть
-   от версии шаблона: по известным классам и по общим признакам. */
 
 .reg-form .b24-form-header,
 .reg-form .b24-form-header-title,
@@ -60,26 +39,19 @@
     display: none !important;
 }
 
-/* Только шапка формы: [class*="form-title"] трогать нельзя —
-   под этот признак попадают подписи полей. */
 .reg-form [class*="b24-form-header"],
 .reg-form [class*="form-header"] {
     display: none !important;
 }
 
-/* Элемент, который нашёл js/registration.js по тексту заголовка */
 .reg-form [data-nmst-covered] {
     display: none !important;
 }
 
-/* Первый блок формы не должен «прилипать» к краю карточки,
-   когда собственный заголовок скрыт. */
 .reg-form .b24-form-content > :first-child,
 .reg-form > .b24-form > .b24-form-content > :first-child {
     margin-top: 0;
 }
-
-/* ---------- Кнопка (на случай кастомной формы) ---------- */
 
 .btn-reg {
     display: inline-flex;

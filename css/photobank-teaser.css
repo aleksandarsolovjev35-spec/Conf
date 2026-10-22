@@ -1,7 +1,3 @@
-/* =============================================================
-   PHOTOBANK TEASER — секция-переход в фотобанк на главной (#photobank)
-============================================================= */
-
 .photobank-teaser-section {
     background: var(--bg);
 }
@@ -44,7 +40,6 @@
     transform: translateX(4px);
 }
 
-/* ---- Карусель альбомов ---- */
 .photobank-carousel {
     position: relative;
     min-width: 0;

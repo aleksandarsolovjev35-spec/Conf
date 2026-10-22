@@ -1,6 +1,5 @@
 const { test, expect } = require('@playwright/test');
 
-// Внешняя форма и шрифты не должны влиять на стабильность проверки.
 test.beforeEach(async ({ page }) => {
     await page.route('**/*', route => {
         const url = new URL(route.request().url());
@@ -146,7 +145,6 @@ test('партнёры: поясняющая надпись про официа�
 test('главная: партнёры разбиты на категории, в два столбца и ведут на официальные сайты', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto('/index.html');
-    // Стратегический партнёр — полный высококачественный логотип с прозрачным фоном
     const zntcLogo = page.locator('.partner-strategic img');
     await expect(zntcLogo).toHaveAttribute('alt', /ЗНТЦ/);
     await zntcLogo.scrollIntoViewIfNeeded();
@@ -181,18 +179,15 @@ test('главная: партнёры разбиты на категории, �
 test('программа: только общее расписание, список докладов скрыт', async ({ page }) => {
     await page.goto('/index.html');
 
-    // Общие временные диапазоны работы конференции
     await page.locator('.program-item').first().scrollIntoViewIfNeeded();
     await expect(page.locator('.program-item').first()).toContainText('кофе');
     await expect(page.locator('.program-item .program-time').last()).toHaveText(/18:00/);
     await expect(page.locator('.program-block')).toHaveCount(2);
 
-    // Конкретных докладов и их тайминга в программе больше нет
     await expect(page.locator('#program')).not.toContainText('Докладчик: уточняется');
     await expect(page.locator('#program .program-org')).toHaveCount(0);
     expect(await page.locator('#program .program-item').count()).toBeLessThanOrEqual(10);
 
-    // Вместо списка — пометка, что тайминг докладчиков будет позже
     await expect(page.locator('.program-note--pending')).toContainText('Расписание докладчиков будет опубликовано позже');
 });
 
@@ -234,7 +229,6 @@ test('контакты: единый шаблон карточки', async ({ pa
     const cards = page.locator('.contacts-grid .contact-card');
     await expect(cards).toHaveCount(3);
 
-    // В каждой карточке один и тот же порядок: должность → ФИО → (учёная степень) → контакты.
     for (let i = 0; i < 3; i++) {
         const card = cards.nth(i);
         await expect(card.locator('.contact-icon')).toHaveCount(1);
@@ -249,7 +243,6 @@ test('контакты: единый шаблон карточки', async ({ pa
     await expect(cards.nth(1).locator('.contact-icon')).toHaveClass(/contact-icon--program/);
     await expect(cards.nth(2).locator('.contact-icon')).toHaveClass(/contact-icon--coordinator/);
 
-    // Председатель оргкомитета — Тимошенков С. П., д.т.н., профессор; контакты ещё не предоставлены
     const organizer = cards.nth(0);
     await expect(organizer.locator('h3')).toHaveText('Председатель оргкомитета');
     await expect(organizer).toContainText('Тимошенков Сергей Петрович');
@@ -257,7 +250,6 @@ test('контакты: единый шаблон карточки', async ({ pa
     await expect(organizer.locator('.contact-links .contact-pending')).toHaveText('Контакт уточняется');
     await expect(organizer.locator('.contact-links a')).toHaveCount(0);
 
-    // Председатель программного комитета — Вертянов Д. В., к.т.н., связь по почте
     const programChair = cards.nth(1);
     await expect(programChair.locator('h3')).toHaveText('Председатель программного комитета');
     await expect(programChair).toContainText('Вертянов Денис Васильевич');
@@ -265,7 +257,6 @@ test('контакты: единый шаблон карточки', async ({ pa
     await expect(programChair.locator('.contact-links a')).toHaveCount(1);
     await expect(programChair.locator('.contact-links a')).toHaveAttribute('href', 'mailto:vdv.vertyanov@yandex.ru');
 
-    // Координатор мероприятия — Косолапова Г. В., телефон и почта
     const coordinator = cards.nth(2);
     await expect(coordinator.locator('h3')).toHaveText('Координатор мероприятия');
     await expect(coordinator).toContainText('Косолапова Галина Викторовна');
@@ -274,11 +265,9 @@ test('контакты: единый шаблон карточки', async ({ pa
     await expect(coordinator.locator('.contact-links a').first()).toHaveAttribute('href', 'tel:+79958990559');
     await expect(coordinator.locator('.contact-links a').last()).toHaveAttribute('href', 'mailto:galka-vikt@mail.ru');
 
-    // Контакт-заглушка находится в том же блоке, что и рабочие контакты.
     await expect(page.locator('.contact-card--pending')).toHaveCount(0);
     await expect(organizer.locator('.contact-links .contact-pending')).toContainText('уточняется');
 
-    // Адрес — карточка того же вида и на всю ширину сетки
     const venue = page.locator('.venue');
     await expect(venue.locator('.contact-icon')).toHaveCount(1);
     await expect(venue.locator('h3')).toHaveText('Место проведения');
@@ -292,12 +281,10 @@ test('программа: только расписание, без описат
     const header = page.locator('#program .section-header');
     await expect(header).toContainText('Программа конференции');
 
-    // Подзаголовок с датой, временем и длительностью доклада убран
     await expect(header.locator('.section-subtitle')).toHaveCount(0);
     await expect(header).not.toContainText('Средняя длительность');
     await expect(header).not.toContainText('Начало регистрации');
 
-    // Само расписание на месте
     await expect(page.locator('#program .program-block')).toHaveCount(2);
     await expect(page.locator('#program .program-item').first()).toBeVisible();
 });
@@ -311,11 +298,9 @@ test('спикеры: 16 организаций, разбиты на три гр
     const titles = await page.locator('.speakers-group-title').allTextContents();
     expect(titles).toEqual(['Организаторы', 'Индустрия', 'Наука и образование']);
 
-    // Счётчики в заголовках складываются в общее число карточек
     const counts = await page.locator('.speakers-group-count').allTextContents();
     expect(counts.reduce((sum, n) => sum + Number(n), 0)).toBe(16);
 
-    // В каждой группе количество карточек совпадает со счётчиком
     for (const group of await page.locator('.speakers-group').all()) {
         const count = Number(await group.locator('.speakers-group-count').textContent());
         expect(await group.locator('.speaker-card--org').count()).toBe(count);
@@ -352,7 +337,6 @@ test('спикеры: карточка ведёт на официальный с
         await expect(card.locator('a.speaker-link')).toHaveAttribute('href', url);
     }
 
-    // Внешние ссылки открываются в новой вкладке и без доступа к opener
     for (const link of await links.all()) {
         await expect(link).toHaveAttribute('target', '_blank');
         expect((await link.getAttribute('rel')) || '').toContain('noopener');
@@ -362,7 +346,6 @@ test('спикеры: карточка ведёт на официальный с
 test('спикеры и партнёры: официальные логотипы, названия доступны скринридеру', async ({ page }) => {
     await page.goto('/index.html');
 
-    // Логотипы партнёров: файл открывается, у картинки есть текстовое описание
     const logos = page.locator('.partners-grid .partner-logo img');
     await expect(logos).toHaveCount(4);
     await expect(page.locator('.partner-strategic img')).toHaveCount(1);
@@ -370,12 +353,11 @@ test('спикеры и партнёры: официальные логотип�
     for (const img of await logos.all()) {
         const alt = await img.getAttribute('alt');
         expect(alt && alt.trim().length).toBeTruthy();
-        await img.scrollIntoViewIfNeeded();       // lazy-loading грузится по появлению
+        await img.scrollIntoViewIfNeeded();
         await expect(img).toHaveJSProperty('complete', true);
         expect(await img.evaluate(el => el.naturalWidth)).toBeGreaterThan(0);
     }
 
-    // Логотип есть у всех 16 организаций; название остаётся в разметке
     const withLogo = page.locator('.speaker-brand:has(img)');
     await expect(withLogo).toHaveCount(16);
     for (const brand of await withLogo.all()) {
@@ -383,8 +365,6 @@ test('спикеры и партнёры: официальные логотип�
         await expect(brand.locator('img')).toHaveAttribute('alt', '');
     }
 
-    // Все логотипы загрузились и не выходят за общий размер
-    // (loading="lazy" — прокручиваем секцию, чтобы браузер их запросил)
     await page.locator('#speakers').scrollIntoViewIfNeeded();
     for (const img of await page.locator('.speaker-brand img').all()) {
         await img.scrollIntoViewIfNeeded();
@@ -400,7 +380,6 @@ test('спикеры и партнёры: официальные логотип�
     expect(boxes.every(b => b.ok)).toBe(true);
     expect(boxes.every(b => b.w <= 150 && b.h <= 32)).toBe(true);
 
-    // Все 16 карточек имеют строку бренда одинаковой высоты — подписи выровнены
     const heights = await page.locator('.speaker-brand').evaluateAll(
         els => [...new Set(els.map(el => Math.round(el.getBoundingClientRect().height)))]);
     expect(heights).toEqual([44]);
@@ -430,11 +409,9 @@ test('есть семантический main и ссылка «Перейти 
     const skip = page.locator('.skip-link');
     await expect(skip).toHaveAttribute('href', '#main');
 
-    // Ссылка скрыта, пока на неё не встал фокус
     expect(await skip.evaluate(el => el.getBoundingClientRect().bottom <= 0)).toBe(true);
     await page.keyboard.press('Tab');
     await expect(skip).toBeFocused();
-    // Появление анимировано (top: -100px → 0), поэтому ждём, а не меряем сразу
     await expect(skip).toBeInViewport();
 
     await page.goto('/photos.html');
@@ -449,7 +426,6 @@ test('шапка: только регистрация и программа, б�
     await expect(buttons.nth(0)).toHaveText('Зарегистрироваться');
     await expect(buttons.nth(1)).toHaveText('Программа');
 
-    // Событие в календарь больше не предлагаем: ни кнопки, ни файла
     await expect(page.locator('.btn-calendar, a[href$=".ics"]')).toHaveCount(0);
     const res = await page.request.get('/nmst-2026.ics');
     expect(res.status()).toBe(404);
@@ -480,7 +456,6 @@ test('видео: превью без ссылки не притворяется
     const button = page.locator('#videoPlay');
     await expect(button).toHaveAttribute('aria-disabled', 'true');
     await expect(page.locator('#videoHint')).toContainText('появится');
-    // iframe не подгружается до клика
     await expect(page.locator('.video-teaser iframe')).toHaveCount(0);
 });
 
@@ -505,7 +480,6 @@ test('меню: текущий раздел подсвечивается при 
     await expect(page.locator('.nav-links a[href="#program"]')).toHaveClass(/nav-link-active/);
 });
 
-// Разметка, которую рисует встроенная форма Битрикс24 (упрощённо).
 const BITRIX_FORM = `
 <div class="b24-form">
     <div class="b24-form-header">
@@ -527,20 +501,17 @@ const BITRIX_FORM = `
 test('регистрация: заголовок встроенной формы перекрыт нашим', async ({ page }) => {
     await page.goto('/index.html');
 
-    // Форма подгружается после загрузки страницы — имитируем это
     await page.evaluate(html => {
         document.getElementById('regForm').insertAdjacentHTML('beforeend', html);
     }, BITRIX_FORM);
     await page.waitForTimeout(300);
 
-    // Заголовок формы скрыт, остался только наш
     await expect(page.locator('.b24-form-header')).toBeHidden();
     await expect(page.locator('#reg-heading')).toBeVisible();
     await expect(page.locator('#reg-heading')).toHaveText('Регистрация на конференцию');
     expect(await page.getByText('Micropack').count()).toBeGreaterThan(0);
     await expect(page.getByText('Micropack')).toBeHidden();
 
-    // Поля и кнопка при этом на месте и доступны
     await expect(page.locator('#f-name')).toBeVisible();
     await expect(page.locator('#f-mail')).toBeVisible();
     await expect(page.locator('.b24-form-btn')).toBeVisible();
@@ -556,14 +527,12 @@ test('регистрация: в блоке нет дублирующей инф
     await expect(section).not.toContainText('ДПО');
     await expect(section).not.toContainText('Участие бесплатное');
     await expect(section.locator('.reg-subtitle')).toHaveCount(0);
-    // Время и место регистрации остаются в программе
     await expect(page.locator('#program')).toContainText('кофе');
 });
 
 test('регистрация: надпись-секция формы скрывается и вне #regForm', async ({ page }) => {
     await page.goto('/index.html');
-    // Так форма отдаёт надпись на самом деле: label секции (layout),
-    // вставленный рядом со скриптом-загрузчиком, а не внутри #regForm
+
     await page.evaluate(() => {
         document.getElementById('registration').insertAdjacentHTML('beforeend', `
             <div class="b24-form-field b24-form-field-layout" id="layoutSection">
@@ -572,16 +541,13 @@ test('регистрация: надпись-секция формы скрыв�
     });
     await page.waitForTimeout(300);
 
-    // Скрывается и стилями, и скриптом — проверяем оба слоя
     await expect(page.locator('#layoutSection')).toBeHidden();
     expect(await page.locator('#layoutSection').evaluate(el => el.getBoundingClientRect().height)).toBe(0);
-    // Заголовок раздела на месте
     await expect(page.locator('#reg-heading')).toBeVisible();
 });
 
 test('регистрация: заголовок формы закрывается и без известных классов', async ({ page }) => {
     await page.goto('/index.html');
-    // Форма с произвольной разметкой: CSS-правила её не ловят, работает только JS
     await page.evaluate(() => {
         document.getElementById('regForm').insertAdjacentHTML('beforeend', `
             <div class="crm-wrap">
@@ -598,9 +564,7 @@ test('регистрация: заголовок формы закрываетс
     const title = page.locator('.crm-head h3');
     await expect(title).toBeHidden();
     expect(await title.evaluate(el => el.getBoundingClientRect().height)).toBe(0);
-    // Обёртка заголовка скрыта целиком — лишних отступов не остаётся
     await expect(page.locator('.crm-head')).toBeHidden();
-    // Поля на месте
     await expect(page.locator('#crm-name')).toBeVisible();
     await expect(page.locator('#crm-mail')).toBeVisible();
 });
@@ -614,7 +578,6 @@ test('регистрация: наш заголовок внутри карто�
             </div><input type="text" id="f1"></div>`);
     });
     await page.waitForTimeout(300);
-    // Заголовок раздела (вне формы) остаётся видимым
     await expect(page.locator('.reg-content .section-header')).toBeVisible();
     await expect(page.locator('#reg-heading')).toBeVisible();
 });

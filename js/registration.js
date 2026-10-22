@@ -1,29 +1,10 @@
-/* =============================================================
-   REGISTRATION — перекрытие собственного заголовка формы Битрикс24.
-
-   Что скрываем: надпись «Регистрация на конференцию Micropack».
-   В форме она приходит не шапкой, а label'ом секции
-   (поле section_5869203, type: layout), поэтому у неё нет ни класса
-   .b24-form-header, ни тега заголовка — искать нужно по тексту.
-
-   Где ищем: по всему документу, а не только внутри #regForm.
-   Битрикс24 вставляет форму рядом со скриптом-загрузчиком, и позиция
-   контейнера зависит от версии app.js — привязка к #regForm ломается.
-
-   Правка шаблона в bo.miet.ru не нужна: надпись перекрывается нашим
-   заголовком раздела, а сама она скрывается здесь.
-============================================================= */
-
 (function () {
-    // Что считаем перекрываемой надписью
     const TITLE_PATTERN = /(micropack|микропак|регистрация на конференцию)/i;
     const MAX_TITLE_LENGTH = 90;
-    const WATCH_TIMEOUT = 20000; // форма подгружается асинхронно
+    const WATCH_TIMEOUT = 20000;
 
-    // Свой заголовок раздела — его не трогаем (лежит вне формы)
     const ownHeader = document.querySelector('.reg-content .section-header');
 
-    // Скрывать имеет смысл только внутри блока регистрации
     const scope = document.getElementById('registration');
     if (!scope) return;
 
@@ -45,11 +26,11 @@
     }
 
     function isTitleCandidate(el) {
-        if (el.hasAttribute('data-nmst-covered')) return false; // уже скрыт
+        if (el.hasAttribute('data-nmst-covered')) return false;
         if (isProtectedTag(el)) return false;
         if (isInsideOwnHeader(el)) return false;
         if (el.closest('.section-header')) return false;
-        if (hasFields(el)) return false; // это контейнер с полями, а не надпись
+        if (hasFields(el)) return false;
 
         const text = norm(el.textContent);
         if (!text || text.length > MAX_TITLE_LENGTH) return false;
@@ -67,15 +48,11 @@
         const candidates = Array.from(scope.querySelectorAll('*')).filter(isTitleCandidate);
         if (!candidates.length) return false;
 
-        // Самый глубокий подходящий элемент — это сама надпись,
-        // всё выше — только обёртки.
         let title = candidates[0];
         for (const el of candidates) {
             if (depth(el) > depth(title)) title = el;
         }
 
-        // Поднимаемся по обёрткам, внутри которых нет ничего, кроме
-        // этой надписи: исчезает и текст, и его отступы.
         let block = title;
         while (block.parentElement && block !== scope) {
             const parent = block.parentElement;
@@ -91,7 +68,6 @@
 
     if (hideTitle()) return;
 
-    // Форма ещё не отрисована — ждём её появления
     let scheduled = false;
     const observer = new MutationObserver(function () {
         if (scheduled) return;

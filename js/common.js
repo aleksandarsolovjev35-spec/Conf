@@ -1,13 +1,3 @@
-/* =============================================================
-   COMMON — общий каркас обеих страниц:
-   бургер-меню, навбар при прокрутке, кнопка «наверх»,
-   плавная прокрутка по якорям и переход между страницами.
-   Подключается на index.html и photos.html первым.
-============================================================= */
-
-    // ===== Защита изображений от обычного копирования =====
-    // Это мешает случайно сохранить картинку через меню браузера, перетаскивание
-    // или Ctrl/Cmd+C. Сам файл всё равно можно получить через инструменты браузера.
     (function () {
         const imageSelector = 'img, picture, svg, canvas';
 
@@ -40,14 +30,12 @@
                             return;
                         }
                     } catch (_) {
-                        // Узел мог быть удалён динамически во время выделения.
                     }
                 }
             }
         }, true);
     })();
 
-    // ===== Бургер-меню =====
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
     const navbar    = document.getElementById('navbar');
@@ -61,7 +49,6 @@
         document.body.classList.toggle('nav-open', open);
         navToggle.setAttribute('aria-expanded', String(open));
         navToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
-        // Закрытая выдвижная панель недоступна для Tab и скринридеров.
         navLinks.inert = mobileNav.matches && !open;
         if (restoreFocus) navToggle.focus();
     }
@@ -100,7 +87,6 @@
     window.addEventListener('pageshow', () => setMenuOpen(false));
     setMenuOpen(false);
 
-    // ===== Навбар + кнопка «Наверх» =====
     const scrollTopBtn = document.getElementById('scrollTop');
 
     window.addEventListener('scroll', () => {
@@ -108,7 +94,6 @@
         scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
     });
 
-    // Страницы со светлой шапкой помечают <body data-navbar="light">
     if (document.body.dataset.navbar === 'light') {
         navbar.classList.add('navbar--light');
     }
@@ -117,8 +102,6 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== Подсветка текущего раздела в меню =====
-    // Работает только там, где меню ведёт на якоря этой же страницы.
     (function () {
         const links = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
         if (!links.length || !('IntersectionObserver' in window)) return;
@@ -144,9 +127,6 @@
         sectionToLink.forEach((_, section) => observer.observe(section));
     })();
 
-    // ===== Плавная прокрутка =====
-    // Смещение под фиксированной шапкой задано через scroll-margin-top в base.css;
-    // scrollIntoView использует его так же, как обычный межстраничный hash-переход.
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -155,17 +135,12 @@
         });
     });
 
-    // ===== Плавный переход между страницами (главная <-> фотобанк) =====
-    // В браузерах с кросс-документными View Transitions анимацию делает
-    // сам браузер (см. @view-transition в css/animations.css), здесь — запасной
-    // вариант через оверлей для остальных браузеров.
     (function () {
         const overlay = document.getElementById('pageTransition');
         if (!overlay) return;
         const nativeVT = 'onpagereveal' in window;
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Приход на страницу по переходу: оверлей плавно уходит
         if (sessionStorage.getItem('page-transition') === '1') {
             sessionStorage.removeItem('page-transition');
             if (!nativeVT && !reduceMotion) {
@@ -195,6 +170,5 @@
             });
         });
 
-        // Возврат по кнопке «Назад» браузера: не оставлять закрытый оверлей
         window.addEventListener('pageshow', () => overlay.classList.remove('is-cover'));
     })();

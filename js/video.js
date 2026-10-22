@@ -1,12 +1,3 @@
-/* =============================================================
-   VIDEO — превью видеоролика на главной (п. 15).
-   Плеер подгружается только по клику: до этого страница не тянет
-   сторонние скрипты и iframe. Пока ссылки нет (data-video-url пуст),
-   кнопка недоступна и подпись честно сообщает, что ролик будет позже.
-
-   Использование: <div class="video-teaser" data-video-url="https://...">
-============================================================= */
-
 (function () {
     const teaser = document.getElementById('videoTeaser');
     if (!teaser) return;
@@ -15,9 +6,8 @@
     const hint = document.getElementById('videoHint');
     const url = (teaser.dataset.videoUrl || '').trim();
 
-    if (!url) return; // ссылки пока нет — оставляем статичное превью
+    if (!url) return;
 
-    // Ссылка есть: кнопка становится рабочей
     playBtn.removeAttribute('aria-disabled');
     if (hint) hint.textContent = 'Нажмите, чтобы посмотреть';
 
