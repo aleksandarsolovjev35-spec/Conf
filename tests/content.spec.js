@@ -451,12 +451,21 @@ test('SEO: микроразметка события, OG-обложка и robot
     }
 });
 
-test('видео: превью без ссылки не притворяется рабочим', async ({ page }) => {
+test('видео: плеер Rutube подгружается по клику на превью', async ({ page }) => {
     await page.goto('/index.html');
+    const teaser = page.locator('#videoTeaser');
     const button = page.locator('#videoPlay');
-    await expect(button).toHaveAttribute('aria-disabled', 'true');
-    await expect(page.locator('#videoHint')).toContainText('появится');
+    await expect(teaser).toHaveAttribute('data-video-url', /rutube\.ru\/play\/embed\/ed041286e4f9eae7c36b2c04011bcd86/);
+    await expect(button).not.toHaveAttribute('aria-disabled', 'true');
+    await expect(page.locator('#videoHint')).toContainText('Нажмите');
     await expect(page.locator('.video-teaser iframe')).toHaveCount(0);
+
+    await button.click();
+    const frame = page.locator('.video-teaser iframe');
+    await expect(frame).toHaveCount(1);
+    await expect(frame).toHaveAttribute('src', 'https://rutube.ru/play/embed/ed041286e4f9eae7c36b2c04011bcd86/?p=ofHDZpaYniWq0TbdbXgI2g&skinColor=3949AB');
+    await expect(frame).toHaveAttribute('allow', /clipboard-write/);
+    await expect(frame).toHaveAttribute('allow', /autoplay/);
 });
 
 test('фотобанк: переход к разделу главной точно учитывает фиксированную шапку', async ({ page }) => {
