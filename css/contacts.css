@@ -1,9 +1,3 @@
-/* =============================================================
-   CONTACTS — секция «Контакты» главной страницы.
-   Единый шаблон карточки: иконка → роль → ФИО → контакты.
-   Полный адрес площадки (п. 3) — карточка «Место проведения».
-============================================================= */
-
 .contacts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -12,8 +6,6 @@
     margin: 0 auto;
     align-items: stretch;
 }
-
-/* ---------- Карточка контакта ---------- */
 
 .contact-card,
 .venue {
@@ -86,7 +78,6 @@
     overflow-wrap: anywhere;
 }
 
-/* Телефон и e-mail — всегда одним блоком, в одинаковом виде */
 .contact-links {
     width: 100%;
     margin: auto 0 0;
@@ -124,7 +115,6 @@
     border-radius: 4px;
 }
 
-/* Плейсхолдер контакта занимает ту же строку, что и реальные контакты. */
 .contact-links .contact-pending {
     display: inline-flex;
     align-items: center;
@@ -135,8 +125,6 @@
     color: var(--text-light);
     overflow-wrap: anywhere;
 }
-
-/* ---------- Место проведения ---------- */
 
 .venue {
     grid-column: 1 / -1;

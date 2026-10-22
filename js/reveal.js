@@ -1,13 +1,6 @@
-/* =============================================================
-   REVEAL — поочерёдное появление элементов внутри каждой секции.
-   У каждой секции своя очередь: переход по меню в дальний раздел
-   не ждёт анимацию блоков выше. Классы .animate-* — animations.css.
-   Использование: initReveal('селекторы', (el, instant) => {...})
-============================================================= */
-
 function initReveal(selector, onReveal) {
-        const REVEAL_INTERVAL = 130; // мс между соседними элементами одной секции
-        const revealGroups = new Map(); // секция -> { queue: [], timer: null }
+        const REVEAL_INTERVAL = 130;
+        const revealGroups = new Map();
 
         function getRevealGroup(el) {
             const key = el.closest('section') || el.parentElement;
@@ -20,7 +13,6 @@ function initReveal(selector, onReveal) {
         function scheduleReveal(group) {
             if (group.timer) return;
             group.timer = setInterval(() => {
-                // элементы выше экрана не должны тормозить очередь — показываем сразу
                 while (group.queue.length && group.queue[0].getBoundingClientRect().bottom < 0) {
                     const flushed = group.queue.shift();
                     flushed.classList.add('animate-in');
@@ -42,7 +34,6 @@ function initReveal(selector, onReveal) {
             const touched = new Set();
             entries
                 .filter(entry => entry.isIntersecting)
-                // порядок в документе — сверху вниз, слева направо
                 .sort((a, b) => {
                     const pos = a.target.compareDocumentPosition(b.target);
                     return (pos & Node.DOCUMENT_POSITION_PRECEDING) ? 1 : -1;
@@ -64,9 +55,6 @@ function initReveal(selector, onReveal) {
         observer.observe(el);
     });
 
-    // Страховка: если IntersectionObserver не сработал (ошибка JS,
-    // встроенный браузер, печать), через 2.5 с показываем всё, что
-    // осталось скрытым. Контент никогда не должен пропадать.
     setTimeout(() => {
         targets.forEach(el => {
             if (el.classList.contains('animate-in')) return;

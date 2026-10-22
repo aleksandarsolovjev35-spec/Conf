@@ -1,9 +1,3 @@
-/* =============================================================
-   RESPONSIVE — адаптив обеих страниц, reduced-motion и печать.
-   Подключается последним. Брейкпоинты идут от больших к меньшим.
-============================================================= */
-
-/* Содержимое grid/flex не должно расширять колонки за пределы экрана. */
 .about-hero > *,
 .about-topics > *,
 .speakers-grid > *,
@@ -27,7 +21,6 @@
     .about-topics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .photobank-teaser { gap: 28px; padding: 32px; }
 
-    /* Сворачиваем меню до того, как ссылки перестанут помещаться. */
     .nav-logo { flex-shrink: 0; }
     .nav-toggle {
         display: flex;
@@ -60,7 +53,6 @@
     .nav-links.active {
         transform: translateX(0);
         visibility: visible;
-        /* Ссылки доступны для фокуса сразу, без ожидания анимации. */
         transition: transform var(--transition);
     }
     body.nav-open { overflow: hidden; }
@@ -151,7 +143,6 @@
     .photobank-hero h1 { font-size: 2.1rem; }
     .photobank-subtitle { font-size: 1.02rem; }
     .photobank-toolbar { flex-direction: column; align-items: stretch; }
-    /* В колонке flex-basis задаёт высоту, а не ширину поля поиска. */
     .photobank-search { flex: 0 1 auto; }
     .photobank-search input { font-size: 1rem; }
 
@@ -241,8 +232,6 @@
     .photo-thumb-caption { display: none; }
 }
 
-/* Светлый фон под шапкой (страница фотобанка) — логотип и меню
-   должны быть тёмными, чтобы оставаться различимыми. */
 .navbar--light { background: rgba(255, 255, 255, 0.97); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08); padding: 10px 0; }
 .navbar--light .nav-logo-img--light { display: none; }
 .navbar--light .nav-logo-img--dark  { display: block; }
@@ -257,11 +246,6 @@
     .lightbox-img { max-height: 50vh; max-height: 50dvh; }
     .lightbox-caption { flex-direction: row; align-items: baseline; font-size: 0.85rem; padding-top: 8px; }
 }
-
-/* =============================================================
-   Новые блоки 2026: логотипы в шапке и hero, адрес площадки,
-   дополнительные контакты, видео и публикации
-============================================================= */
 
 @media (max-width: 1024px) {
     .nav-logo-img { height: 34px; }

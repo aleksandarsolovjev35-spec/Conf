@@ -1,6 +1,5 @@
 const { test, expect } = require('@playwright/test');
 
-// Внешняя форма и шрифты не должны влиять на стабильность проверки вёрстки.
 test.beforeEach(async ({ page }) => {
     await page.route('**/*', route => {
         const url = new URL(route.request().url());
@@ -21,7 +20,6 @@ for (const file of ['index.html', 'photos.html']) {
             await page.goto(`/${file}`);
             await expectNoOverflow(page);
             if (file === 'index.html') {
-                // Проверяем саму карусель, а не только overflow скрытый на body.
                 const bounds = await page.locator('#photobankCarousel').boundingBox();
                 expect(bounds.x).toBeGreaterThanOrEqual(0);
                 expect(bounds.x + bounds.width).toBeLessThanOrEqual(width);
@@ -53,7 +51,6 @@ for (const file of ['index.html', 'photos.html']) {
         await expect(page.locator('body')).toHaveClass(/nav-open/);
         await expectNoOverflow(page);
         await expect(links).toBeVisible();
-        // Дожидаемся окончания выезда панели перед проверкой клавиатуры.
         await links.locator('a').last().click({ trial: true });
         await page.keyboard.press('Shift+Tab');
         await expect(links.locator('a').last()).toBeFocused();
@@ -67,7 +64,6 @@ for (const file of ['index.html', 'photos.html']) {
         await page.mouse.click(10, 200);
         await expect(toggle).toHaveAttribute('aria-expanded', 'false');
         await toggle.click();
-        // Первый пункт — якорь на главной, без перехода между страницами.
         if (file === 'index.html') {
             await links.locator('a').first().click();
             await expect(toggle).toHaveAttribute('aria-expanded', 'false');

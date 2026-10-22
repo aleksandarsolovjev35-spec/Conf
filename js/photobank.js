@@ -1,15 +1,5 @@
-/* =============================================================
-   PHOTOBANK — логика страницы фотобанка (photos.html):
-   поиск и фильтрация альбомов, раскрытие альбома в мозаику,
-   полноэкранный просмотр кадра (лайтбокс) с предзагрузкой
-   соседних снимков и поддержкой свайпа. Требует common.js и reveal.js выше.
-============================================================= */
-
     initReveal('.album-card');
 
-    // ===== Каталог альбомов и фотографий =====
-    // thumb — облегчённое превью 800×533 (.webp) для сетки и мозаики;
-    // full  — полноразмерный кадр 2048×1365 (.webp) для лайтбокса.
     function photo(folder, file, caption, featured = false) {
         const rel = folder ? folder + '/' + file : file;
         return {
@@ -94,7 +84,6 @@
         },
     };
 
-    // Совместимость со старыми ссылками вида #album/plenary, #album/poster и т.д.
     const ALBUM_ALIASES = {
         plenary: 'speakers',
         sections: 'speakers',
@@ -108,7 +97,6 @@
         return ALBUM_ALIASES[rawKey] || null;
     }
 
-    // ===== Поиск и фильтрация альбомов =====
     const searchInput     = document.getElementById('albumSearch');
     const filterChips     = document.querySelectorAll('.filter-chip');
     const albumCards      = document.querySelectorAll('.album-card');
@@ -168,7 +156,6 @@
     searchInput.addEventListener('input', applyFilters);
     applyFilters();
 
-    // ===== Просмотр альбома и мозаика фотографий =====
     const albumGrid      = document.getElementById('albumGrid');
     const toolbar        = document.querySelector('.photobank-toolbar');
     const albumView      = document.getElementById('albumView');
@@ -274,7 +261,6 @@
 
     albumViewBack.addEventListener('click', () => closeAlbum());
 
-    // Открытие альбома по прямой ссылке вида photos.html#album/opening
     function syncFromHash() {
         const m = location.hash.match(/^#album\/([a-z0-9_-]+)$/i);
         const key = m && resolveAlbumKey(m[1]);
@@ -284,7 +270,6 @@
     window.addEventListener('hashchange', syncFromHash);
     syncFromHash();
 
-    // ===== Полноэкранный просмотр кадра (лайтбокс) =====
     let lightboxImg = null;
 
     function ensureLightboxImage() {
@@ -352,7 +337,6 @@
         if (e.target === lightbox) closeLightbox();
     });
 
-    // Свайп влево/вправо в лайтбоксе на сенсорных экранах
     let lbTouchX = null;
     lightbox.addEventListener('touchstart', (e) => {
         lbTouchX = e.changedTouches[0].clientX;

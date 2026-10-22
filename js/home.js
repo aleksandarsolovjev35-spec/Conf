@@ -1,10 +1,3 @@
-/* =============================================================
-   HOME — логика главной страницы (index.html):
-   счётчики статистики, запуск анимаций появления (reveal.js)
-   и карусель фотобанка. Требует common.js и reveal.js выше.
-============================================================= */
-
-    // ===== Счётчики статистики: число докручивается от 0 при появлении =====
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function startCounter(statEl, instant) {
@@ -29,11 +22,6 @@
         })(started);
     }
 
-    // Появление элементов главной: статистика (со счётчиками),
-    // направления, спикеры, партнёры, контакты, карусель фотобанка
-    // и пункты программы.
-    // ВАЖНО: заголовки секций (section h2) не анимируем — иначе при
-    // сбое IntersectionObserver раздел выглядит пустым без заголовка.
     initReveal(
         '.about-stat, .about-topic-card, ' +
         '.speaker-card, .partner-logo, .contact-card, ' +
@@ -43,8 +31,6 @@
         }
     );
 
-    // ===== Карусель фотобанка на главной =====
-    // Клик по слайду ведёт в фотобанк (photos.html). Стрелки, точки и свайп листают альбомы.
     (function () {
         const track   = document.getElementById('carouselTrack');
         if (!track) return;
@@ -75,7 +61,6 @@
         document.getElementById('carouselPrev').addEventListener('click', () => { goTo(current - 1); restart(); });
         document.getElementById('carouselNext').addEventListener('click', () => { goTo(current + 1); restart(); });
 
-        // Автопрокрутка (пауза при наведении/фокусе и при reduced-motion)
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         function restart() {
             clearInterval(timer);
@@ -87,7 +72,6 @@
         carousel.addEventListener('focusin',  () => clearInterval(timer));
         carousel.addEventListener('focusout', restart);
 
-        // Свайп на телефоне
         let touchX = null;
         carousel.addEventListener('touchstart', (e) => { touchX = e.changedTouches[0].clientX; }, { passive: true });
         carousel.addEventListener('touchend', (e) => {

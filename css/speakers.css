@@ -1,14 +1,3 @@
-/* =============================================================
-   SPEAKERS — секция «Спикеры» главной страницы.
-   Пока показываем организации-докладчиков (п. 9): ФИО и темы
-   докладов публикуются позже.
-   16 организаций разбиты на три группы (организаторы, индустрия,
-   наука и образование): сплошная стена одинаковых карточек читалась
-   плохо, а по группам видно структуру программы.
-============================================================= */
-
-/* ---- Группы ---- */
-
 .speakers-groups {
     display: flex;
     flex-direction: column;
@@ -32,7 +21,6 @@
     margin: 0;
 }
 
-/* Счётчик организаций в группе */
 .speakers-group-count {
     min-width: 28px;
     padding: 2px 10px;
@@ -45,13 +33,11 @@
     text-align: center;
 }
 
-/* Пояснение к группе — тише заголовка */
 .speakers-group-note {
     font-size: 0.95rem;
     color: var(--text-light);
 }
 
-/* Линия, добивающая строку заголовка до края */
 .speakers-group-head::after {
     content: '';
     flex: 1 1 40px;
@@ -60,8 +46,6 @@
     align-self: center;
 }
 
-/* auto-fill, а не auto-fit: последние карточки в ряду держатся слева,
-   а не растягиваются на всю ширину */
 .speakers-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
@@ -82,7 +66,6 @@
     box-shadow: var(--shadow-lg);
 }
 
-/* Карточка организации-докладчика */
 .speaker-card--org {
     display: flex;
     align-items: flex-start;
@@ -94,9 +77,6 @@
     text-align: left;
 }
 
-/* Бренд организации: либо логотип, либо название текстом.
-   Строка одной высоты, поэтому подписи в ряду выровнены независимо
-   от того, есть для организации официальный логотип или нет. */
 .speaker-brand {
     height: 44px;
     max-width: calc(100% - 24px);
@@ -105,10 +85,6 @@
     margin-bottom: 10px;
 }
 
-/* Логотипы приведены к одному размеру: одинаковая высота плюс предел
-   по ширине. Без предела широкие знаки (Т1, ЭРЕМЕКС, САВТЭК, GS)
-   растягивались на всю карточку и выглядели крупнее остальных,
-   а ещё наезжали на указатель «↗» в правом верхнем углу. */
 .speaker-brand img {
     max-width: 150px;
     max-height: 32px;
@@ -117,7 +93,6 @@
     object-fit: contain;
 }
 
-/* Если логотип есть — название остаётся для скринридеров и поиска */
 .speaker-brand:has(img) .speaker-name {
     position: absolute;
     width: 1px;
@@ -144,8 +119,6 @@
     line-height: 1.5;
     margin-bottom: 12px;
 }
-
-/* Подпись под логотипом не должна «прилипать» к нему */
 
 .speaker-card--org .speaker-topic {
     font-size: 0.88rem;
@@ -231,7 +204,6 @@
     height: 100%;
 }
 
-/* Вся карточка — ссылка на официальный сайт организации */
 .speaker-link {
     display: flex;
     align-items: flex-start;
@@ -255,7 +227,6 @@
 
 .speaker-link:hover .speaker-name { color: var(--blue); }
 
-/* Ненавязчивый указатель, что карточка ведёт на внешний сайт */
 .speaker-link::after {
     content: '↗';
     margin-left: auto;

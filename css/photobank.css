@@ -1,10 +1,3 @@
-/* =============================================================
-   PHOTOBANK — страница фотобанка (photos.html):
-   шапка-баннер, поиск, чипы-фильтры, сетка альбомов,
-   кнопка возврата. Раскрытый альбом и лайтбокс — в photobank-album.css.
-============================================================= */
-
-/* ---- Шапка страницы ---- */
 .photobank-hero {
     background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1a5cff 100%);
     color: white;
@@ -66,13 +59,11 @@
     color: rgba(255, 255, 255, 0.78);
 }
 
-/* ---- Основная часть ---- */
 .photobank-main {
     padding: 64px 0 90px;
     background: var(--bg-alt);
 }
 
-/* ---- Панель поиска и фильтров ---- */
 .photobank-toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -148,7 +139,6 @@
     box-shadow: 0 4px 12px rgba(45, 108, 223, 0.25);
 }
 
-/* ---- Сетка альбомов ---- */
 .album-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -271,7 +261,6 @@
     font-size: 1.02rem;
 }
 
-/* ---- Кнопка «Вернуться на главную» ---- */
 .photobank-back {
     margin-top: 56px;
     text-align: center;

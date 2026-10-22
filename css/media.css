@@ -1,10 +1,3 @@
-/* =============================================================
-   MEDIA — блоки «Видео о конференции» (п. 15) и «Публикация
-   докладов» (п. 16) на главной странице.
-============================================================= */
-
-/* ---------- Видео ---------- */
-
 .video-section { background: var(--light-gray); }
 
 .video-teaser {
@@ -89,7 +82,6 @@
     outline-offset: 6px;
 }
 
-/* Пока ролика нет — кнопка не притворяется рабочей */
 .video-teaser-play[aria-disabled="true"] { cursor: default; }
 .video-teaser:hover .video-teaser-play[aria-disabled="true"] {
     transform: translate(-50%, -50%);
@@ -104,8 +96,6 @@
     border: 0;
     display: block;
 }
-
-/* ---------- Публикации ---------- */
 
 .publications-section { background: white; }
 
