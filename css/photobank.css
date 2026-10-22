@@ -6,7 +6,7 @@
 
 /* ---- Шапка страницы ---- */
 .photobank-hero {
-    background: linear-gradient(135deg, var(--navy) 0%, #244b7a 60%, var(--blue) 100%);
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1a5cff 100%);
     color: white;
     padding: 140px 0 64px;
     position: relative;
