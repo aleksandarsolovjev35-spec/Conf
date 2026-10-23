@@ -1,62 +1,80 @@
 (function () {
+    'use strict';
+
     const TITLE_PATTERN = /(micropack|микропак|регистрация на конференцию)/i;
     const MAX_TITLE_LENGTH = 90;
     const WATCH_TIMEOUT = 20000;
 
+    const scope = document.getElementById('registration');
+    if (!scope) {
+        return;
+    }
+
     const ownHeader = document.querySelector('.reg-content .section-header');
 
-    const scope = document.getElementById('registration');
-    if (!scope) return;
+    const PROTECTED_TAGS = new Set([
+        'SCRIPT',
+        'STYLE',
+        'LINK',
+        'INPUT',
+        'TEXTAREA',
+        'SELECT',
+        'BUTTON',
+        'IFRAME',
+        'FORM'
+    ]);
 
-    function norm(text) {
+    function normalizeText(text) {
         return (text || '').replace(/\s+/g, ' ').trim();
     }
 
-    function isInsideOwnHeader(el) {
-        return Boolean(ownHeader && ownHeader.contains(el));
-    }
-
-    function hasFields(el) {
+    function hasFormControls(el) {
         return Boolean(el.querySelector('input, textarea, select, button, form, iframe'));
     }
 
-    function isProtectedTag(el) {
-        return ['SCRIPT', 'STYLE', 'LINK', 'INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'IFRAME', 'FORM']
-            .includes(el.tagName);
-    }
-
     function isTitleCandidate(el) {
-        if (el.hasAttribute('data-nmst-covered')) return false;
-        if (isProtectedTag(el)) return false;
-        if (isInsideOwnHeader(el)) return false;
-        if (el.closest('.section-header')) return false;
-        if (hasFields(el)) return false;
+        if (
+            el.hasAttribute('data-nmst-covered') ||
+            PROTECTED_TAGS.has(el.tagName) ||
+            Boolean(ownHeader && ownHeader.contains(el)) ||
+            Boolean(el.closest('.section-header')) ||
+            hasFormControls(el)
+        ) {
+            return false;
+        }
 
-        const text = norm(el.textContent);
-        if (!text || text.length > MAX_TITLE_LENGTH) return false;
-        return TITLE_PATTERN.test(text);
+        const text = normalizeText(el.textContent);
+        return Boolean(text && text.length <= MAX_TITLE_LENGTH && TITLE_PATTERN.test(text));
     }
 
-    function depth(el) {
+    function getDepth(el) {
         let level = 0;
         let node = el;
-        while ((node = node.parentElement) && node !== scope) level++;
+        while ((node = node.parentElement) && node !== scope) {
+            level += 1;
+        }
         return level;
     }
 
-    function hideTitle() {
+    function hideDuplicateTitle() {
         const candidates = Array.from(scope.querySelectorAll('*')).filter(isTitleCandidate);
-        if (!candidates.length) return false;
+        if (!candidates.length) {
+            return false;
+        }
 
         let title = candidates[0];
         for (const el of candidates) {
-            if (depth(el) > depth(title)) title = el;
+            if (getDepth(el) > getDepth(title)) {
+                title = el;
+            }
         }
 
         let block = title;
         while (block.parentElement && block !== scope) {
             const parent = block.parentElement;
-            if (norm(parent.textContent) !== norm(title.textContent)) break;
+            if (normalizeText(parent.textContent) !== normalizeText(title.textContent)) {
+                break;
+            }
             block = parent;
         }
 
@@ -66,18 +84,26 @@
         return true;
     }
 
-    if (hideTitle()) return;
+    if (hideDuplicateTitle()) {
+        return;
+    }
 
     let scheduled = false;
     const observer = new MutationObserver(function () {
-        if (scheduled) return;
+        if (scheduled) {
+            return;
+        }
         scheduled = true;
         window.requestAnimationFrame(function () {
             scheduled = false;
-            if (hideTitle()) observer.disconnect();
+            if (hideDuplicateTitle()) {
+                observer.disconnect();
+            }
         });
     });
 
     observer.observe(scope, { childList: true, subtree: true });
-    window.setTimeout(function () { observer.disconnect(); }, WATCH_TIMEOUT);
+    window.setTimeout(function () {
+        observer.disconnect();
+    }, WATCH_TIMEOUT);
 })();

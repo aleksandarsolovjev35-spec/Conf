@@ -1,0 +1,116 @@
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .js .animate-target,
+    .photo-thumb {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+    }
+
+    .page-transition {
+        transition: none;
+    }
+}
+
+@media print {
+    .navbar,
+    .nav-toggle,
+    .scroll-top,
+    .hero-buttons,
+    .registration-section,
+    .photobank-toolbar,
+    .photobank-back,
+    .btn-back {
+        display: none !important;
+    }
+
+    body {
+        color: black;
+        background: white;
+    }
+
+    section {
+        page-break-inside: avoid;
+        padding: 20px 0;
+    }
+
+    #hero {
+        min-height: auto;
+        background: none;
+        color: black;
+    }
+
+    #hero h1,
+    .hero-kicker,
+    .hero-tmks-code,
+    .hero-detail {
+        color: black;
+    }
+
+    .hero-kicker-roman span,
+    .hero-lockup-divider {
+        background: black;
+    }
+
+    .hero-tmks-logo {
+        filter: invert(1);
+    }
+
+    .hero-bg,
+    .hero-overlay,
+    .hero-logos,
+    .video-teaser-play {
+        display: none !important;
+    }
+
+    .js .animate-target {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+
+    .speaker-card,
+    .about-topic-card,
+    .about-stat,
+    .contact-card,
+    .program-item {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    .program-item {
+        transform: none !important;
+    }
+
+    .program-item--break {
+        background: #fff9e6;
+    }
+
+    .program-item--lunch {
+        background: #f0fff0;
+    }
+
+    .program-item--special {
+        background: #f0f0ff;
+    }
+}

@@ -172,9 +172,18 @@
     transition: background var(--transition), color var(--transition), transform var(--transition);
 }
 
-.photobank-carousel-arrow svg { width: 18px; height: 18px; }
-.photobank-carousel-arrow--prev { left: 12px; }
-.photobank-carousel-arrow--next { right: 12px; }
+.photobank-carousel-arrow svg {
+    width: 18px;
+    height: 18px;
+}
+
+.photobank-carousel-arrow--prev {
+    left: 12px;
+}
+
+.photobank-carousel-arrow--next {
+    right: 12px;
+}
 
 .photobank-carousel-arrow:hover {
     background: var(--blue);
