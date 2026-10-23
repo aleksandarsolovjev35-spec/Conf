@@ -238,10 +238,6 @@
         gap: 8px;
     }
 
-    .partner-strategic {
-        padding: 32px 24px;
-    }
-
     .photobank-teaser {
         grid-template-columns: minmax(0, 1fr);
         gap: 32px;
@@ -469,23 +465,31 @@
         padding: 22px 20px;
     }
 
-    .partners-grid {
-        gap: 12px;
+    .partners-section {
+        --partners-gap: 12px;
     }
 
-    .partners-grid .partner-logo {
+    .partner-logo {
         min-width: 0;
-        min-height: 96px;
-        height: auto;
+        height: 104px;
+        min-height: 104px;
         padding: 14px 12px;
     }
 
-    .partners-grid .partner-logo img {
-        max-height: 56px;
+    .partner-logo img,
+    .partner-logo--wide img {
+        max-width: 100%;
+        max-height: 48px;
     }
 
-    .partner-strategic img {
-        max-height: 64px;
+    .partner-logo--dense img {
+        max-width: 82%;
+        max-height: 46px;
+    }
+
+    .partner-logo--compact img {
+        max-width: 76%;
+        max-height: 60px;
     }
 
     .photobank-teaser {
