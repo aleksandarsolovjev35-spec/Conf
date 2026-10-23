@@ -1,0 +1,131 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: transparent;
+    padding: 16px 0;
+    transition: all var(--transition);
+}
+
+.navbar.scrolled,
+.navbar--light {
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    padding: 10px 0;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.nav-logo-img {
+    height: 42px;
+    width: auto;
+    display: block;
+    transition: opacity var(--transition);
+}
+
+.nav-logo-img--dark {
+    display: none;
+}
+
+.navbar.scrolled .nav-logo-img--light,
+.navbar--light .nav-logo-img--light {
+    display: none;
+}
+
+.navbar.scrolled .nav-logo-img--dark,
+.navbar--light .nav-logo-img--dark {
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color var(--transition);
+    position: relative;
+    text-decoration: none;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after,
+.nav-links a.nav-link-active::after {
+    width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a.nav-link-active {
+    color: white;
+}
+
+.nav-links a.nav-link-active {
+    font-weight: 700;
+}
+
+.navbar.scrolled .nav-links a,
+.navbar--light .nav-links a {
+    color: var(--text);
+}
+
+.navbar.scrolled .nav-links a:hover,
+.navbar.scrolled .nav-links a.nav-link-active,
+.navbar--light .nav-links a:hover,
+.navbar--light .nav-links a.nav-link-active {
+    color: var(--blue);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 5px;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: white;
+    transition: all var(--transition);
+    border-radius: 2px;
+}
+
+.navbar.scrolled .nav-toggle span,
+.navbar--light .nav-toggle span {
+    background: var(--text);
+}

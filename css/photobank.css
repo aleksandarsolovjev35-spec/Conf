@@ -33,7 +33,9 @@
     transition: color var(--transition);
 }
 
-.breadcrumbs a:hover { color: white; }
+.breadcrumbs a:hover {
+    color: white;
+}
 
 .photobank-hero h1 {
     font-size: 2.8rem;
@@ -143,6 +145,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px;
+    justify-content: center;
 }
 
 .album-card {
@@ -161,7 +164,9 @@
     box-shadow: var(--shadow-lg);
 }
 
-.album-card[hidden] { display: none; }
+.album-card[hidden] {
+    display: none;
+}
 
 .album-cover {
     position: relative;
@@ -229,7 +234,10 @@
     font-weight: 600;
 }
 
-.album-count svg { width: 14px; height: 14px; }
+.album-count svg {
+    width: 14px;
+    height: 14px;
+}
 
 .album-body {
     padding: 22px 24px 24px;
@@ -293,4 +301,6 @@
     transform: translateY(-2px);
 }
 
-.btn-back:hover svg { transform: translateX(-4px); }
+.btn-back:hover svg {
+    transform: translateX(-4px);
+}

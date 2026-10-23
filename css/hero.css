@@ -1,0 +1,190 @@
+#hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a1628 0%, #0f45c7 50%, #1a5cff 100%);
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+}
+
+.hero-bg img {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 62% center;
+    opacity: 0.85;
+    -webkit-user-drag: none;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(100deg, rgba(6, 16, 36, 0.92) 0%, rgba(8, 22, 48, 0.75) 45%, rgba(10, 28, 64, 0.45) 100%),
+        radial-gradient(ellipse at 75% 30%, rgba(26, 92, 255, 0.28) 0%, transparent 60%),
+        linear-gradient(to bottom, rgba(6, 16, 36, 0.65) 0%, transparent 35%, rgba(6, 16, 36, 0.75) 100%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 132px 24px 52px;
+}
+
+.hero-lockup {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(22px, 3vw, 40px);
+    max-width: 100%;
+    margin: 0 auto 36px;
+    text-align: left;
+}
+
+.hero-lockup-mark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.hero-tmks-logo {
+    width: clamp(132px, 16vw, 218px);
+    height: auto;
+    display: block;
+}
+
+.hero-tmks-code {
+    font-size: clamp(1.45rem, 2.9vw, 2.55rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.hero-lockup-divider {
+    width: 2px;
+    align-self: stretch;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+.hero-lockup-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+.hero-kicker {
+    display: flex;
+    align-items: stretch;
+    gap: 0.9em;
+    font-size: clamp(0.92rem, 1.45vw, 1.32rem);
+    font-weight: 400;
+    line-height: 1.24;
+    letter-spacing: 0;
+    color: #ffffff;
+    margin: 0 0 clamp(14px, 1.5vw, 20px);
+    text-align: left;
+}
+
+.hero-kicker-roman {
+    display: inline-flex;
+    align-items: stretch;
+    gap: 0.72em;
+    margin: 0.14em 0;
+    flex-shrink: 0;
+}
+
+.hero-kicker-roman span {
+    width: 0.52em;
+    background: #ffffff;
+}
+
+.hero-kicker-text {
+    display: block;
+}
+
+#hero h1 {
+    font-size: clamp(1.75rem, 3.6vw, 3.15rem);
+    font-weight: 700;
+    line-height: 1.06;
+    margin: 0;
+    max-width: none;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #ffffff;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-details {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-bottom: 34px;
+    flex-wrap: wrap;
+}
+
+.hero-detail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.15rem;
+    opacity: 0.92;
+}
+
+.hero-detail-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-logos {
+    --hero-logo-size: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px 44px;
+    margin-top: 44px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.hero-logo-miet {
+    height: var(--hero-logo-size, 52px);
+    width: auto;
+    opacity: 0.95;
+}
+
+.hero-logo-mark {
+    height: var(--hero-logo-size, 52px);
+    width: auto;
+    opacity: 0.92;
+}

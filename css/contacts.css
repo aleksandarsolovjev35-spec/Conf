@@ -4,6 +4,7 @@
     gap: 24px;
     max-width: 1040px;
     margin: 0 auto;
+    justify-content: center;
     align-items: stretch;
 }
 
@@ -21,6 +22,7 @@
 }
 
 .contact-card {
+    height: 100%;
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
@@ -31,7 +33,8 @@
 }
 
 .contact-icon {
-    width: 52px; height: 52px;
+    width: 52px;
+    height: 52px;
     flex-shrink: 0;
     margin: 0 auto 18px;
     background: var(--blue-light);
@@ -42,7 +45,8 @@
 }
 
 .contact-icon svg {
-    width: 26px; height: 26px;
+    width: 26px;
+    height: 26px;
     color: var(--blue);
 }
 
@@ -101,10 +105,13 @@
     overflow-wrap: anywhere;
 }
 
-.contact-links a:hover { color: var(--blue); }
+.contact-links a:hover {
+    color: var(--blue);
+}
 
 .contact-links svg {
-    width: 16px; height: 16px;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     color: var(--blue);
 }
@@ -128,7 +135,6 @@
 
 .venue {
     grid-column: 1 / -1;
-    box-shadow: var(--shadow);
 }
 
 .venue-address {
@@ -138,4 +144,6 @@
     max-width: 62ch;
 }
 
-.venue-address br { line-height: 1.9; }
+.venue-address br {
+    line-height: 1.9;
+}

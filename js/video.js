@@ -1,24 +1,38 @@
 (function () {
+    'use strict';
+
     const teaser = document.getElementById('videoTeaser');
-    if (!teaser) return;
+    if (!teaser) {
+        return;
+    }
 
     const playBtn = document.getElementById('videoPlay');
     const hint = document.getElementById('videoHint');
     const url = (teaser.dataset.videoUrl || '').trim();
 
     if (!url) {
-        if (playBtn) playBtn.setAttribute('aria-disabled', 'true');
-        if (hint) hint.textContent = 'Ролик появится после публикации';
+        if (playBtn) {
+            playBtn.setAttribute('aria-disabled', 'true');
+        }
+        if (hint) {
+            hint.textContent = 'Ролик появится после публикации';
+        }
         return;
     }
 
-    if (playBtn) playBtn.removeAttribute('aria-disabled');
-    if (hint) hint.textContent = 'Нажмите, чтобы посмотреть';
+    if (playBtn) {
+        playBtn.removeAttribute('aria-disabled');
+    }
+    if (hint) {
+        hint.textContent = 'Нажмите, чтобы посмотреть';
+    }
 
     let started = false;
 
     function startVideo() {
-        if (started) return;
+        if (started) {
+            return;
+        }
         started = true;
 
         const iframe = document.createElement('iframe');
@@ -34,7 +48,9 @@
         iframe.loading = 'eager';
 
         function onPlayerMessage(event) {
-            if (!iframe.contentWindow || event.source !== iframe.contentWindow) return;
+            if (!iframe.contentWindow || event.source !== iframe.contentWindow) {
+                return;
+            }
             try {
                 const msg = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
                 if (msg && msg.type === 'player:ready') {
@@ -44,7 +60,8 @@
                         'https://rutube.ru'
                     );
                 }
-            } catch (_) {}
+            } catch (_) {
+            }
         }
 
         window.addEventListener('message', onPlayerMessage);

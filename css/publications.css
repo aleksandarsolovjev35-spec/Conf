@@ -1,0 +1,37 @@
+.publications-section {
+    background: var(--white);
+}
+
+.publications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+.publication-card {
+    background: var(--light-gray);
+    border: 1px solid var(--gray);
+    border-radius: 14px;
+    padding: 28px 26px;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.publication-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.publication-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.publication-card p {
+    font-size: 0.96rem;
+    line-height: 1.7;
+    color: var(--text-light);
+}

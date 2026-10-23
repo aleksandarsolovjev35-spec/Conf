@@ -1,0 +1,51 @@
+footer {
+    background: var(--navy);
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9rem;
+}
+
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all var(--transition);
+    box-shadow: 0 4px 16px rgba(15, 69, 199, 0.4);
+    z-index: 999;
+}
+
+.scroll-top svg {
+    width: 20px;
+    height: 20px;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top:hover {
+    background: var(--blue-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(15, 69, 199, 0.5);
+}
+
+.scroll-top:focus-visible {
+    outline: 3px solid var(--blue-light);
+    outline-offset: 3px;
+}
